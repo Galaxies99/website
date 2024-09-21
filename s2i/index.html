@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="S2I">
+  <meta name="keywords" content="Mixed-Quality Demonstrations, Robotic Manipulation, Imitation Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S2I</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://tonyfang.net/s2i/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://rh20t.github.io/">
+            RH20T
+          </a>
+          <a class="navbar-item" href="https://airexo.github.io/">
+            AirExo
+          </a>
+          <a class="navbar-item" href="https://rise-policy.github.io/">
+            RISE
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="mailto:jjchen20@sjtu.edu.cn">Jingjing Chen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://tonyfang.net/">Hongjie Fang</a><sup>1,2</sup>,</span>
+            <span class="author-block">
+              <a href="https://fang-haoshu.github.io/">Hao-Shu Fang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.mvig.org/">Cewu Lu</a><sup>1,2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <sup>1</sup><span class="author-block">Shanghai Jiao Tong University</span>, <sup>2</sup><span class="author-block">Shanghai Artificial Intelligence Laboratory</span>
+          </div>
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper (Comming Soon)</span>
+                </a>
+              </span>  
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Comming Soon)</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+    <p>
+      <div class="columns is-centered has-text-centered"><img src="static/images/intro.jpg" style="width:60%"></img></div>
+      With only 3 expert demonstrations for reference, the plug-and-play S2I framework can be used as a data preprocessing step to enhance the performance of various downstream robot manipulation policies when handling mixed-quality demonstrations.
+    </p>
+    </div>
+  </div>
+</section>
+
+<section class="section"></section>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Data is crucial for robotic manipulation, as it underpins the development of robotic systems for complex tasks. While high-quality, diverse datasets enhance the performance and adaptability of robotic manipulation policies, collecting extensive expert-level data is resource-intensive. Consequently, many current datasets suffer from quality inconsistencies due to operator variability, highlighting the need for methods to utilize mixed-quality data effectively. To mitigate these issues, we propose "Select Segments to Imitate" (S2I), a framework that selects and optimizes mixed-quality demonstration data at the segment level, while ensuring plug-and-play compatibility with existing robotic manipulation policies. The framework has three components: demonstration segmentation dividing origin data into meaningful segments, segment selection using contrastive learning to find high-quality segments, and trajectory optimization to refine suboptimal segments for better policy learning. We evaluate S2I through comprehensive experiments in simulation and real-world environments across six tasks, demonstrating that with only 3 expert demonstrations for reference, S2I can improve the performance of various downstream policies when trained with mixed-quality demonstrations.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+
+
+<section class="section"></section>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+          <img id="model" src="static/images/model.jpg"></img>
+          <br><br>
+          <div class="content has-text-justified">
+            <p>
+              We then propose <b><i>Select Segments to Imitate</i> (S2I)</b>, a framework for processing mixed-quality datasets, which consists of three parts: (a) demonstration segmentation, (b) segment selection, and (c) trajectory optimization. Specifically, S2I first divides the demonstrations into meaningful semantic segments. Then, contrastive learning is applied using minimal expert demonstrations (3 expert demonstrations in experiments) to extract features for segment selection. Finally, the framework performs trajectory optimization on segments identified as suboptimal, refining them to enhance the overall policy learning. In short, the S2I framework produces an optimized and high-quality demonstration dataset that can be directly used for downstream policy training.
+            </p>  
+          </div>
+        </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section"></section>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Evaluations</h2>
+        <img id="tasks" src="static/images/tasks.jpg"></img>
+        <div class="content has-text-justified">
+          <p>
+            For simulation experiments, we evaluate three <a href="https://robomimic.github.io/">RoboMimic</a> tasks (<b><i>Lift</i></b>, <b><i>Can</i></b> and <b><i>Square</i></b>) in <a href="https://robosuite.ai/">RoboSuite</a>, and for real-world experiments, we evaluate three tasks (<b><i>Tissue</i></b>, <b><i>Cup</i></b> and <b><i>Pen</i></b>) on a robot platform with a Flexiv Rizon robotic arm (equipped with a Dahuan AG-95 gripper) for control and 2 Intel RealSense D435 cameras for environment perceptions. We employ various downstream policies during evaluations, including <a href="https://robomimic.github.io/">BC-RNN</a>, <a href="https://tonyzhaozh.github.io/aloha/">ACT</a>, <a href="https://diffusion-policy.cs.columbia.edu/">Diffusion Policy</a>, and <a href="https://rise-policy.github.io/">RISE</a>. Baselines includes <a href="https://proceedings.mlr.press/v229/kuhar23a.html">L2D (Oracle)</a>, <a href="https://proceedings.mlr.press/v229/wang23f.html">PUBC</a>, <a href="https://proceedings.mlr.press/v162/beliaev22a.html">ILEED</a> and <a href="https://lucys0.github.io/awe/">AWE</a>.
+          </p>
+        </div>
+
+        <h2 class="title is-4">Simulation Results: BC-RNN</h2>
+        <div class="content has-text-justified">
+          <p>
+            <div class="columns is-centered has-text-centered">
+              <img src="static/images/sim-result-bcrnn.png" style="height:180px"></img>
+            </div>
+          </p>
+        </div>
+
+
+        <div class="content has-text-justified">
+          <p>
+            <b><i>Lift</i></b>-10. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="lift-bcrnn-10-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-10/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-10-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-10/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-10-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-10/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-10-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-10/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-10-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-10/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+          <p>
+            <b><i>Lift</i></b>-30. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="lift-bcrnn-30-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-30/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-30-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-30/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-30-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-30/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-30-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-30/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="lift-bcrnn-30-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/lift/bcrnn-30/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+          <p>
+            <b><i>Can</i></b>-30. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="can-bcrnn-30-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-30/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-30-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-30/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-30-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-30/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-30-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-30/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-30-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-30/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+          <p>
+            <b><i>Can</i></b>-100. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="can-bcrnn-100-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-100/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-100-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-100/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-100-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-100/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-100-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-100/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="can-bcrnn-100-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/can/bcrnn-100/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+          <p>
+            <b><i>Square</i></b>-50. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="can-square-50-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-50/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-50-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-50/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-50-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-50/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-50-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-50/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-50-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-50/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+          <p>
+            <b><i>Square</i></b>-150. <br>
+            <div class="columns is-centered has-text-centered">
+              <video id="can-square-150-original" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-150/original.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-150-l2d" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-150/l2d.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-150-pubc" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-150/pubc.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-150-ileed" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-150/ileed.mp4"
+                        type="video/mp4">
+              </video>
+              <video id="square-bcrnn-150-s2i" autoplay muted loop playsinline style="width:120px">
+                <source src="./static/videos/square/bcrnn-150/s2i.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </p>
+        </div>
+        <br>
+
+        <h2 class="title is-4">Simulation Results: Diffusion Policy</h2>
+        <div class="content has-text-justified">
+          <p>
+            <div class="columns is-centered has-text-centered">
+              <img src="static/images/sim-result-dp.png" style="height:215px"></img>
+            </div>
+          </p>
+        </div>
+
+        <h2 class="title is-4">Real-World Results</h2>
+        <div class="content has-text-justified">
+          <div class="columns is-centered has-text-centered"><img src="static/images/real-result.png" style="height:160px"></img></div>
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            <b><i>Tissue</i></b>. Take tissue out and place it in the container.
+            <div id="results-tissue" class="carousel results-carousel">
+              <div class="item item-tissue-act-1">
+                <video id="tissue-act-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/act-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-tissue-act-2">
+                <video id="tissue-act-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/act-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-tissue-dp-1">
+                <video id="tissue-dp-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/dp-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-tissue-dp-2">
+                <video id="tissue-dp-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/dp-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-tissue-rise-1">
+                <video id="tissue-rise-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/rise-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-tissue-rise-2">
+                <video id="tissue-rise-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/tissue/rise-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </p>
+        </div>
+        
+
+        <br>
+        <div class="content has-text-justified">
+          <p>
+            <b><i>Cup</i></b>. Collect all the cups (at most 2) into the large metal cup.
+
+            <div id="results-cup" class="carousel results-carousel">
+              <div class="item item-cup-act-1-1">
+                <video id="cup-act-1-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/act-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-dp-1-1">
+                <video id="cup-dp-1-1" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/dp-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-dp-2-1">
+                <video id="cup-dp-2-1" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/dp-2-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-dp-2-2">
+                <video id="cup-dp-2-2" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/dp-2-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-rise-1-1">
+                <video id="cup-rise-1-1" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/rise-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-rise-1-2">
+                <video id="cup-rise-1-2" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/rise-1-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-rise-2-1">
+                <video id="cup-rise-2-1" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/rise-2-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-cup-rise-2-2">
+                <video id="cup-rise-2-2" autoplay muted loop playsinline>
+                  <source src="./static/videos/cup/rise-2-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </p>
+        </div>
+
+        <br>
+        <div class="content has-text-justified">
+          <p>
+            <b><i>Pen</i></b>. Collect all the pens (at most 3) into the bowl.
+
+            <div id="results-collect-pen" class="carousel results-carousel">
+              <div class="item item-pen-act-1-1">
+                <video id="pen-act-1-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/act-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-act-1-2">
+                <video id="pen-act-1-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/act-1-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-dp-1-1">
+                <video id="pen-dp-1-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/dp-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-dp-1-2">
+                <video id="pen-dp-1-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/dp-1-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-dp-2-1">
+                <video id="pen-dp-2-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/dp-2-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-dp-2-2">
+                <video id="pen-dp-2-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/dp-2-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-rise-1-1">
+                <video id="pen-rise-1-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/rise-1-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-rise-1-2">
+                <video id="pen-rise-1-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/rise-1-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-rise-2-1">
+                <video id="pen-rise-2-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/rise-2-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-rise-2-2">
+                <video id="pen-rise-2-2"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/rise-2-2.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+              <div class="item item-pen-rise-3-1">
+                <video id="pen-rise-3-1"  autoplay muted loop playsinline>
+                  <source src="./static/videos/pen/rise-3-1.mp4"
+                          type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </p>
+          <br><br>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+    <h2 class="title">BibTeX</h2>
+    </div>
+    <pre><code>
+      
+</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. Modified upon original <a href="https://nerfies.github.io/"> Nerfies </a> website (<a href="https://github.com/nerfies/nerfies.github.io">source</a>). 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
