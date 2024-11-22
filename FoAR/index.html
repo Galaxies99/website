@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="FoAR">
+  <meta name="keywords" content="FoAR, Robotics, Robot Learning, Imitation Learning, Multimodel Learning, Force and Torque">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FoAR: Force-Aware Reactive Policy for Contact-Rich Robotic Manipulation</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://github.com/Alan-Heoooh">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://rh20t.github.io/">
+            RH20T
+          </a>
+          <a class="navbar-item" href="https://airexo.github.io/">
+            AirExo
+          </a>
+          <a class="navbar-item" href="https://rise-policy.github.io/">
+            RISE
+          </a>
+          <a class="navbar-item" href="https://cage-policy.github.io/">
+            CAGE
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><text style="color:rgb(51, 153, 102)">FoAR</text>: <text style="color:rgb(51, 153, 102)">Fo</text>rce-<text style="color:rgb(51, 153, 102)">A</text>ware <text style="color:rgb(51, 153, 102)">R</text>eactive Policy for Contact-Rich Robotic Manipulation</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://github.com/Alan-Heoooh">Zihao He</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="https://tonyfang.net/">Hongjie Fang</a><sup>*</sup>,</span>
+            <span class="author-block">
+              <a href="mailto:jjchen20@sjtu.edu.cn">Jingjing Chen</a>,</span>
+            <span class="author-block">
+              <a href="https://fang-haoshu.github.io/">Hao-Shu Fang</a><sup>&#8224;</sup>,</span>
+            <span class="author-block">
+              <a href="https://www.mvig.org/">Cewu Lu</a><sup>&#8224;</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            Shanghai Jiao Tong University
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            * Equal Contribution &nbsp; &nbsp; &nbsp; &#8224; Corresponding Authors
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper coming soon</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video coming soon</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/Alan-Heoooh"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code coming soon</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body has-text-centered">
+      <img id="teaser" width="70%" src="static/images/teaser.png"></img>
+      
+      <h3 class="content has-text-justified">
+      Vision alone struggles to distinguish contact from non-contact states in contact-rich tasks, underscoring the need for integrating force/torque information. Our FoAR policy combines vision and force/torque inputs to predict robot actions along with a future contact probability. Reactive control then refines actions dynamically based on current and predicted future contact states, enabling precise, force-aware manipulations for contact-rich tasks.
+      </h3>
+    </div>
+  </div>
+</section>
+
+
+<!-- <section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/steve.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/chair-tp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/shiba.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/fullbody.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/blueshirt.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/mask.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/coffee.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos/toby2.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Contact-rich tasks present significant challenges for robotic manipulation policies due to the complex dynamics of contact and the need for precise control. Vision-based policies often struggle with the skill required for such tasks, as they typically lack critical contact feedback modalities like force/torque information. To address this issue, we propose FoAR, a force-aware reactive policy that combines high-frequency force/torque sensing with visual inputs to enhance the performance in contact-rich manipulation. Built upon the RISE policy, FoAR incorporates a multimodal feature fusion mechanism guided by a future contact predictor, enabling dynamic adjustment of force/torque data usage between non-contact and contact phases. Its reactive control strategy also allows FoAR to accomplish contact-rich tasks accurately through simple position control. Experimental results demonstrate that FoAR significantly outperforms all baselines across various challenging contact-rich tasks while maintaining robust performance under unexpected dynamic disturbances.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Method</h2>
+              <img id="model" src="static/images/model.png" width="90%"></img>
+              <br><br>
+              <div class="content has-text-justified">
+                <p>
+                  FoAR consists of a point cloud encoder, a force/torque encoder, a future contact predictor, and a diffusion action head. The scene features and force features are fused under the guidance of the future contact predictor.
+                </p>  
+              </div>
+            </div>
+        </div>
+        <!--/ Model. -->
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Evaluations</h2>
+            <img id="model" src="static/images/task.png"></img>
+            <div class="content has-text-justified">
+              <p>
+                We design three challenging contact-rich tasks across two categories: surface force control (<b><i>Wiping</i></b> and <b><i>Peeling</i></b>) and instantaneous force impact (<b><i>Chopping</i></b>). These tasks require different capabilities in terms of the direction, intensity, and precision of applied contact forces. Moreover, these tasks are designed to have both non-contact phases and contact phases for thorough evaluations. For the <b><i>Wiping</i></b> task, we design two variants: one with a fixed orientation of the whiteboard, and another that allows arbitrary orientations, denoted as <b><i>Wiping</i></b> (General).
+              </p>
+              <p>
+                We evaluate our proposed approach against five baseline methods, including the vision-based policy <a href="https://rise-policy.github.io/">RISE</a> and three ablation variants: (1) <i>RISE (force-token)</i>: incorporates encoded force/torque information as additional tokens within the RISE transformer, akin to \cite{vtt, seehearfeel, maniwav, octo}; (2) <i>RISE (force-concat)</i>: directly concatenates the force feature with the vision feature for action generation; (3) <i>FoAR (3D-cls)</i>: uses scene features directly in the future contact predictor, instead of a separate image encoder. 
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <section class="results-wipe">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <h2 class="title is-4">Surface Force Control Tasks: <b><i>Wiping</i></b> and <b><i>Peeling</i></b> </h2>
+                <div class="content has-text-justified">
+                  <p>
+                    <div class="columns is-centered has-text-centered"><img src="static/images/wipe_peel.png" width="70%"></img></div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="results-chop">
+          <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+              <div class="column is-four-fifths">
+                <h2 class="title is-4">Instantaneous Force Impact Task: <b><i>Chopping</i></b> </h2>
+                <div class="content has-text-justified">
+                  <p>
+                    <div class="columns is-centered has-text-centered" ><img src="static/images/chop.png" width="55%"></img></div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <section class="results-reactive">
+            <div class="container is-max-desktop">
+              <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                  <h2 class="title is-4">Robustness to Dynamic Disturbances</h2>
+                  <div class="content has-text-justified">
+                    <p>
+                      <div class="columns is-centered has-text-centered"><img src="static/images/reactive.png" width="87%"></img></div>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+
+    </code></pre>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>. Modified upon original <a href="https://nerfies.github.io/"> Nerfies </a> website (<a href="https://github.com/nerfies/nerfies.github.io">source</a>).
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
