@@ -112,12 +112,12 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href=""
+                <a href="https://youtu.be/XylnqvIt25s"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
                   </span>
-                  <span>Video coming soon</span>
+                  <span>Video</span>
                 </a>
               </span>
               <!-- Code Link. -->
@@ -140,73 +140,14 @@
 
 <section class="hero teaser">
   <div class="container is-max-desktop">
-    <div class="hero-body has-text-centered">
-      <img id="teaser" width="70%" src="static/images/teaser.png"></img>
+    <div class="hero-body has-text-centered"><iframe width="560" height="315" src="https://www.youtube.com/embed/XylnqvIt25s?si=K6Pw5xADAGPx8sJu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       
       <h3 class="content has-text-justified">
-      Vision alone struggles to distinguish contact from non-contact states in contact-rich tasks, underscoring the need for integrating force/torque information. Our FoAR policy combines vision and force/torque inputs to predict robot actions along with a future contact probability. Reactive control then refines actions dynamically based on current and predicted future contact states, enabling precise, force-aware manipulations for contact-rich tasks.
+      Our FoAR policy combines vision and force/torque inputs to predict robot actions along with a future contact probability. Reactive control then refines actions dynamically based on current and predicted future contact states, enabling precise, force-aware manipulations for contact-rich tasks.
       </h3>
     </div>
   </div>
 </section>
-
-
-<!-- <section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
 
 
 <section class="section">
@@ -229,7 +170,7 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Method</h2>
-              <img id="model" src="static/images/model.png" width="90%"></img>
+              <img id="model" src="static/images/model.jpg" width="90%"></img>
               <br><br>
               <div class="content has-text-justified">
                 <p>
@@ -247,7 +188,7 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-four-fifths">
             <h2 class="title is-3">Evaluations</h2>
-            <img id="model" src="static/images/task.png"></img>
+            <img id="model" src="static/images/task.jpg"></img>
             <div class="content has-text-justified">
               <p>
                 We design three challenging contact-rich tasks across two categories: surface force control (<b><i>Wiping</i></b> and <b><i>Peeling</i></b>) and instantaneous force impact (<b><i>Chopping</i></b>). These tasks require different capabilities in terms of the direction, intensity, and precision of applied contact forces. Moreover, these tasks are designed to have both non-contact phases and contact phases for thorough evaluations. For the <b><i>Wiping</i></b> task, we design two variants: one with a fixed orientation of the whiteboard, and another that allows arbitrary orientations, denoted as <b><i>Wiping</i></b> (General).
@@ -269,6 +210,26 @@
                   <p>
                     <div class="columns is-centered has-text-centered"><img src="static/images/wipe_peel.png" width="70%"></img></div>
                   </p>
+                  <br></br>
+                  <div class="columns is-centered has-text-centered">
+                    <video id="wipe-foar" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_foar.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="wipe-rise" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_rise.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="peel-foar" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/peel_foar.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="peel-rise" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/peel_rise.mp4"
+                              type="video/mp4">
+                    </video> 
+                  </div>
+                  <br></br>
                 </div>
               </div>
             </div>
@@ -284,10 +245,24 @@
                   <p>
                     <div class="columns is-centered has-text-centered" ><img src="static/images/chop.png" width="55%"></img></div>
                   </p>
+                  <br></br>
+                  <div class="columns is-centered has-text-centered">
+                    <video id="chop-foar" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/chop_foar.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="chop-rise" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/chop_rise.mp4"
+                              type="video/mp4">
+                    </video>
+                  </div>
+                  <br></br>
+
                 </div>
               </div>
             </div>
           </div>
+
 
           <section class="results-reactive">
             <div class="container is-max-desktop">
@@ -298,6 +273,26 @@
                     <p>
                       <div class="columns is-centered has-text-centered"><img src="static/images/reactive.png" width="87%"></img></div>
                     </p>
+                    <br></br>
+                  <div class="columns is-centered has-text-centered">
+                    <video id="wipe-original" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_original.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="wipe-rewrite" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_rewrite.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="wipe-move" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_move.mp4"
+                              type="video/mp4">
+                    </video>
+                    <video id="wipe_rewrite+move" autoplay muted loop playsinline style="width:235px">
+                      <source src="./static/videos/wipe_rewrite+move.mp4"
+                              type="video/mp4">
+                    </video> 
+                  </div>
+                  <br></br>
                   </div>
                 </div>
               </div>
