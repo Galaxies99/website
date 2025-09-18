@@ -495,7 +495,38 @@
                 </div>
               </div>
             </div>
-    
+            <div class="mySlides fade">
+                <div class="caption">ACT <i>v.s.</i> <i>HistACT</i></div>
+                <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+                  <div>
+                    <video width="500" autoplay muted playsinline controls>
+                        <source src="resources/video/three-scoop/act/1-low.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="caption">ACT <i>v.s.</i> <i>HistACT</i></div>
+                <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+                  <div>
+                    <video width="500" autoplay muted playsinline controls>
+                        <source src="resources/video/three-scoop/act/2-low.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+            </div>
+
+            <div class="mySlides fade">
+                <div class="caption">ACT <i>v.s.</i> <i>HistACT</i></div>
+                <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+                  <div>
+                    <video width="500" autoplay muted playsinline controls>
+                        <source src="resources/video/three-scoop/act/3-low.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+            </div>
           <a class="prev" onclick="slideshow4.plusSlides(-1)">❮</a>
           <a class="next" onclick="slideshow4.plusSlides(1)">❯</a>
         </div>
@@ -505,6 +536,8 @@
           <span class="dot" onclick="slideshow4.currentSlide(2)"></span> 
           <span class="dot" onclick="slideshow4.currentSlide(3)"></span> 
           <span class="dot" onclick="slideshow4.currentSlide(4)"></span> 
+          <span class="dot" onclick="slideshow4.currentSlide(5)"></span> 
+          <span class="dot" onclick="slideshow4.currentSlide(6)"></span> 
         </div>
   
     </div>
@@ -699,6 +732,73 @@
     </div>
 
 
+    <div style="width:1280; margin:0 auto; text-align=left" align="left">
+        <hr>
+        <center id="videos"><h1>Videos: <i>Guess-Easy</i></h1></center>
+  
+        <div class="slideshow-container" id="guess-easy-container">
+          <div class="mySlides fade">
+            <div class="caption"><i>HistRISE</i></div>
+            <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+              <div>
+                <video width="500" autoplay muted playsinline controls>
+                    <source src="resources/video/guess-easy/1-low.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="mySlides fade">
+            <div class="caption"><i>HistRISE</i></div>
+            <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+              <div>
+                <video width="500" autoplay muted playsinline controls>
+                    <source src="resources/video/guess-easy/2-low.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+          <div class="mySlides fade">            
+            <div class="caption"><i>HistRISE</i></div>
+            <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+              <div>
+                <video width="500" autoplay muted playsinline controls>
+                    <source src="resources/video/guess-easy/3-low.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+  
+  
+          <div class="mySlides fade">
+            <div class="caption"><i>HistRISE</i></div>
+            <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+              <div>
+                <video width="500" autoplay muted playsinline controls>
+                    <source src="resources/video/guess-easy/4-low.mp4" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+  
+          <a class="prev" onclick="slideshow5.plusSlides(-1)">❮</a>
+          <a class="next" onclick="slideshow5.plusSlides(1)">❯</a>
+        </div>
+        <br>
+        <div id="guess-easy-dots" style="text-align:center">
+          <span class="dot" onclick="slideshow5.currentSlide(1)"></span> 
+          <span class="dot" onclick="slideshow5.currentSlide(2)"></span> 
+          <span class="dot" onclick="slideshow5.currentSlide(3)"></span> 
+          <span class="dot" onclick="slideshow5.currentSlide(4)"></span>  
+        </div>
+  
+    </div>
+
+
     <div style="max-width:900px">
       <div class="description">
         <p>
@@ -757,6 +857,10 @@
       slideshow4 = Object.create(Slideshow);
       slideshow4.name = "three-scoop"
       slideshow4.showSlides(slideshow4.slideIndex);
+
+      slideshow5 = Object.create(Slideshow);
+      slideshow5.name = "guess-easy"
+      slideshow5.showSlides(slideshow5.slideIndex);
     </script>
 
 
