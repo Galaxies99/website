@@ -352,6 +352,22 @@
       <p>
         Our object-centric point track history representation can be seamlessly integrated into various visuomotor policies. It enables effective history-aware decision-making, and demonstrates strong effectiveness across all five evaluation aspects.
       </p>
+
+      <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+        <img src="resources/image/tracker.png" alt="results" style="width:900px;">
+      </div>
+
+      <p>
+        2D trackers suffer from depth ambiguities and tracking discontinuities, producing low-quality tracks. By contrast, 3D trackers maintain accurate spatial relationships and handle occlusions effectively, yielding substantially better performance than 2D trackers, making them better suited for robotic manipulations.
+      </p>
+
+      <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+        <img src="resources/image/async.png" alt="results" style="width:350px;">
+      </div>
+
+      <p>
+        Asynchronous tracking with train-time augmentation improves efficiency while preserving policy performance. In all experiments and the following videos, <i>HistRISE</i> are implemented with asynchronous tracking, while <i>HistACT</i> and <i>HistDP</i> are implemented with synchronous tracking.
+      </p>
     </div>
 
 
@@ -390,6 +406,40 @@
             <div>
               <video width="500" autoplay muted playsinline controls>
                   <source src="resources/video/add-salt/rise/3-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="mySlides fade">
+          <div class="caption">DP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/add-salt/dp/1-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="caption">LongDP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/add-salt/dp/2-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="caption">TraceDP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/add-salt/dp/3-low.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -439,8 +489,12 @@
         <span class="dot" onclick="slideshow7.currentSlide(1)"></span> 
         <span class="dot" onclick="slideshow7.currentSlide(2)"></span> 
         <span class="dot" onclick="slideshow7.currentSlide(3)"></span> 
-      </div>
-
+        <span class="dot" onclick="slideshow7.currentSlide(4)"></span> 
+        <span class="dot" onclick="slideshow7.currentSlide(5)"></span> 
+        <span class="dot" onclick="slideshow7.currentSlide(6)"></span> 
+        <span class="dot" onclick="slideshow7.currentSlide(7)"></span> 
+        <span class="dot" onclick="slideshow7.currentSlide(8)"></span> 
+        <span class="dot" onclick="slideshow7.currentSlide(9)"></span> 
   </div>
 
 
@@ -483,6 +537,40 @@
               </div>
             </div>
           </div>
+
+
+        <div class="mySlides fade">
+          <div class="caption">DP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/one-move/dp/1-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="caption">LongDP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/one-move/dp/2-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
+
+        <div class="mySlides fade">
+          <div class="caption">TraceDP <i>v.s.</i> <i>HistDP</i></div>
+          <div class="table-like" style="justify-content:space-evenly;margin:auto;padding:0px;">
+            <div>
+              <video width="500" autoplay muted playsinline controls>
+                <source src="resources/video/one-move/dp/3-low.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+        </div>
 
             <div class="mySlides fade">
               <div class="caption">ACT <i>v.s.</i> <i>HistACT</i></div>
@@ -531,6 +619,9 @@
           <span class="dot" onclick="slideshow3.currentSlide(4)"></span> 
           <span class="dot" onclick="slideshow3.currentSlide(5)"></span> 
           <span class="dot" onclick="slideshow3.currentSlide(6)"></span> 
+          <span class="dot" onclick="slideshow3.currentSlide(7)"></span> 
+          <span class="dot" onclick="slideshow3.currentSlide(8)"></span> 
+          <span class="dot" onclick="slideshow3.currentSlide(9)"></span> 
         </div>
   
     </div>
