@@ -36,11 +36,9 @@
               </p>
             </td>
             <td style="padding:2.5%;width:40%;max-width:40%; text-align:center; vertical-align:middle;">
-              <a href="images/profile/profile.jpg">
-                <img style="width:75%;max-width:100%" alt="profile photo" src="images/profile/profile_circle.png" class="hoverZoomLink">
-              </a>
+              <img id="profileImg" style="width:75%;max-width:100%" alt="profile photo" src="images/profile/profile_circle.png" class="hoverZoomLink">
               <br>
-              <p>
+              <p id="profileCaption">
                 Photo @ İstanbul, Türkiye
                 <br>
                 Credit to Jingjing Chen
@@ -663,7 +661,7 @@
             <td style="padding:20px;width:100%;vertical-align:middle">
               <heading>Academic Services</heading>
               <p>
-                <b>Reviewer for Conferences</b>: ICRA 2023/2024/2025, IROS 2023/2024/2025, ICLR 2025, CoRL 2025, NeurIPS 2025.
+                <b>Reviewer for Conferences</b>: ICRA 2023/2024/2025/2026, IROS 2023/2024/2025, ICLR 2025, CoRL 2025, NeurIPS 2025.
                 <b>Reviewer for Journals</b>: RA-L, T-CYB, T-MECH.
               </p>
               <!---
@@ -745,6 +743,26 @@
       </td>
     </tr>
   </table>
+  <script>
+    (function() {
+      var img = document.getElementById('profileImg');
+      var caption = document.getElementById('profileCaption');
+      if (!img || !caption) return;
+      var choices = [
+        {
+          src: 'images/profile/profile1.png',
+          captionHtml: 'Photo @ İstanbul, Türkiye<br>Credit to Jingjing Chen'
+        },
+        {
+          src: 'images/profile/profile2.png',
+          captionHtml: 'Photo @ Oslo, Norge<br>Credit to Peishen Yan'
+        }
+      ];
+      var pick = choices[Math.floor(Math.random() * choices.length)];
+      img.src = pick.src;
+      caption.innerHTML = pick.captionHtml;
+    })();
+  </script>
 </body>
 
 </html>
