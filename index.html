@@ -95,10 +95,11 @@
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
                     <heading>
-                       Publications
+                       Publications<span class="pub-total-count" id="pubTotalCount" aria-label="total publications"></span>
                     </heading>
                     <p class="publications-legend">
                        * denotes equal contribution. # denotes corresponding author(s).
+                       <span class="publications-summary" id="publicationsSummary" aria-live="polite"></span>
                     </p>
                     <div class="publications-filter" id="publicationsFilter" aria-label="Filter publications by topic">
                       <span class="publications-filter-label">Filter by topic:</span>
@@ -126,7 +127,7 @@
                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="images/research/forcepolicy.mp4" width="160"></video>
                       </div>
                       <div class="paper-tags-overlay">
-                         <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-manipulation">Contact-Rich Manipulation</span> <span class="paper-tag paper-tag-other">Force/Torque</span>
+                         <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-manipulation">Contact-Rich Manipulation</span> <span class="paper-tag paper-tag-other">Force/Torque</span> <span class="paper-tag paper-tag-other">Generalization</span> 
                       </div>
                     </div>
                   </td>
@@ -188,7 +189,7 @@
                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="history/resources/video/guess-hard/3-low.mp4" width="160"></video>
                       </div>
                       <div class="paper-tags-overlay">
-                         <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-other">History/Memory</span>
+                         <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-other">History/Memory</span>
                       </div>
                     </div>
                   </td>
@@ -250,7 +251,7 @@
                          <img src="images/research/anydexgrasp.png" width="160" loading="lazy" decoding="async"/>
                       </div>
                       <div class="paper-tags-overlay">
-                         <span class="paper-tag paper-tag-grasping">Dexterous Grasping</span>
+                         <span class="paper-tag paper-tag-grasping">Dexterous Grasping</span> <span class="paper-tag paper-tag-manipulation">Dexterous Manipulation</span>
                       </div>
                     </div>
                   </td>
@@ -787,7 +788,7 @@
                        <a class="paper-link-paper" href="https://ieeexplore.ieee.org/document/9796631">paper </a><a class="paper-link-code" href="https://github.com/galaxies99/transcg">code </a><a class="paper-link-project" href="https://graspnet.net/transcg/">project page </a>
                     </div>
                     <p>
-                       Propose <i>TransCG</i>, a large-scale real-world dataset for transparent object depth completion, along with a depth completion method <i>DFNet</i> based on the <i>TransCG</i>dataset.
+                       Introduce <i>TransCG</i>, a large-scale real-world dataset for transparent object depth completion, and a lightweight depth completion method <i>DFNet</i> based on the dataset.
                     </p>
                   </td>
                 </tr>
@@ -1013,7 +1014,7 @@
                            <a href="https://hyn-kulu.github.io/">Yinong He </a>(undergraduate @ SJTU to master @ CMU), 2025.5 - 2025.9
                         </li>
                         <li>
-                           <a href="https://github.com/zming-Mei">Mingyu Mei </a>(Ph.D. @ ZJU, research intern at <a href="https://www.noematrix.ai/">Noematrix </a>), 2025.8 - 2026.3
+                           <a href="https://github.com/zming-Mei">Mingyu Mei </a>(Ph.D. @ ZJU, research intern at <a href="https://www.noematrix.ai/">Noematrix</a>), 2025.8 - 2026.3
                         </li>
                         <li>
                            <a href="https://github.com/1JI0O">Haoxiang Qin </a>(undergraduate @ SJTU), 2025.12 - present
@@ -1159,6 +1160,47 @@
         return row.classList.contains('paper-row-selected');
       });
 
+      var totalPapers = paperRows.length;
+
+      var totalBadge = document.getElementById('pubTotalCount');
+      if (totalBadge) totalBadge.textContent = totalPapers;
+
+      var summaryEl = document.getElementById('publicationsSummary');
+      function updateSummary() {
+        if (!summaryEl) return;
+        var visible = paperRows.reduce(function(n, row) {
+          return n + (row.classList.contains('is-hidden-by-filter') ? 0 : 1);
+        }, 0);
+        if (visible === totalPapers) {
+          summaryEl.textContent = '';
+          summaryEl.classList.remove('is-active');
+        } else {
+          summaryEl.textContent = 'Showing ' + visible + ' of ' + totalPapers + ' publications.';
+          summaryEl.classList.add('is-active');
+        }
+      }
+
+      function countFor(filter) {
+        if (filter === 'all') return totalPapers;
+        if (filter === 'selected') {
+          return rowSelected.reduce(function(n, s) { return n + (s ? 1 : 0); }, 0);
+        }
+        var needle = filter.toLowerCase();
+        return rowTags.reduce(function(n, tags) {
+          return n + (tags.some(function(t) { return t.indexOf(needle) !== -1; }) ? 1 : 0);
+        }, 0);
+      }
+
+      buttons.forEach(function(btn) {
+        var filter = btn.getAttribute('data-filter');
+        var count = countFor(filter);
+        var countEl = document.createElement('span');
+        countEl.className = 'pub-filter-count';
+        countEl.textContent = count;
+        btn.appendChild(countEl);
+        if (count === 0) btn.classList.add('is-empty');
+      });
+
       var activeTopics = new Set();
       var selectedOnly = false;
 
@@ -1170,6 +1212,7 @@
           paperRows.forEach(function(row) {
             row.classList.remove('is-hidden-by-filter');
           });
+          updateSummary();
           return;
         }
 
@@ -1183,6 +1226,7 @@
           var selectedMatch = !selectedOnly || rowSelected[idx];
           row.classList.toggle('is-hidden-by-filter', !(topicMatch && selectedMatch));
         });
+        updateSummary();
       }
 
       buttons.forEach(function(btn) {
