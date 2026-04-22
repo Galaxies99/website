@@ -12,9 +12,23 @@
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2" crossorigin/>
     <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
     <link href="images/icon.ico" rel="icon"/>
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = saved || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <table style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+    <table id="top" style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
       <tbody>
         <tr style="padding:0px">
           <td style="padding:0px">
@@ -24,7 +38,7 @@
                   <td class="profile-text-col" style="padding:2.5%;vertical-align:middle">
                     <p class="profile-name-row" style="text-align:center">
                       <name>
-                         Hongjie (Tony) Fang 方泓杰
+                        <span class="name-en">Hongjie (Tony) Fang</span> <span class="name-cn">方泓杰</span>
                       </name>
                     </p>
                     <p class="profile-intro">
@@ -34,7 +48,7 @@
                   <td class="profile-photo-col" style="padding:2.5% 0;vertical-align:middle;">
                      <img alt="profile photo" class="hoverZoomLink" id="profileImg" src="images/profile/profile1.png"/>
                     <p id="profileCaption">
-                       Photo @ İstanbul, Türkiye<br/>Credit to Jingjing Chen
+                       Photo @ İstanbul, Türkiye 🇹🇷<br/>Credit to Jingjing Chen
                     </p>
                   </td>
                 </tr>
@@ -47,58 +61,36 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-news" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
                     <heading>
                        News
                     </heading>
-                    <p>
-                      <ul>
-                        <li>
-                           <b> [Jan. 2026] </b>Three papers (<a href="https://tonyfang.net/history/"><b>HistRISE</b></a>, <a href="https://rise-policy.github.io/DQ-RISE/"><b>DQ-RISE</b></a> and <a href="https://selen-suyue.github.io/MBApage/"><b>MBA</b></a>) are accepted to ICRA 2026. See you in Vienna!
-                        </li>
-                        <li>
-                           <b> [Aug. 2025] </b><a href="https://airexo.tech/airexo2"><b>AirExo-2</b></a> is accepted by CoRL 2025. See you in Seoul!
-                        </li>
-                        <li>
-                           <b> [Jun. 2025] </b>Three papers (<a href="https://tonyfang.net/FoAR"><b>FoAR</b></a>, <a href="https://ericjin2002.github.io/SIME/"><b>SIME</b></a>, and <a href="https://knowledge-driven.github.io/"><b>KDIL</b></a>) are accepted by IROS 2025.
-                        </li>
-                        <li>
-                           <b> [Apr. 2025] </b><a href="https://tonyfang.net/FoAR"><b>FoAR</b></a> is accepted by RA-L.
-                        </li>
-                        <li>
-                           <b> [Mar. 2025] </b><a href="https://airexo.tech/airexo2"><b>AirExo-2</b></a> is released! Check our website for more details.
-                        </li>
-                        <li>
-                           <b> [Jan. 2025] </b>Two papers (<a href="https://tonyfang.net/s2i"><b>S2I</b></a> and <a href="https://cage-policy.github.io/"><b>CAGE</b></a>) are accepted by ICRA 2025.
-                        </li>
-                        <li>
-                           <b> [Jun. 2024] </b><a href="https://rise-policy.github.io/"><b>RISE</b></a> is accepted by IROS 2024.
-                        </li>
-                        <li>
-                           <b> [Jan. 2024] </b>Four papers (<a href="https://airexo.github.io/"><b>AirExo</b></a>, <a href="https://rh20t.github.io/"><b>RH20T</b></a>, <a href="https://robotics-transformer-x.github.io/"><b>Open X-Embodiment</b></a> and <a href="https://graspnet.net/anygrasp.html"><b>AnyGrasp</b></a>) are accepted by ICRA 2024.
-                        </li>
-                        <li>
-                           <b> [Oct. 2023] </b><a href="https://robotics-transformer-x.github.io/"><b>Open X-Embodiment</b></a> is released! Proud of this wonderful collaboration in the robotics community.
-                        </li>
-                        <li>
-                           <b> [Sept. 2023] </b><a href="https://airexo.github.io/"><b>AirExo</b></a> is released! Check our website for more details.
-                        </li>
-                        <li>
-                           <b> [Apr. 2023] </b><a href="https://graspnet.net/anygrasp/"><b>AnyGrasp</b></a> is accepted by T-RO.
-                        </li>
-                        <li>
-                           <b> [Jun. 2022] </b><a href="https://ieeexplore.ieee.org/document/9796631"><b>TransCG</b></a> is accepted by RA-L.
-                        </li>
-                      </ul>
-                    </p>
+                    <ul class="news-list" id="newsList" data-collapsed="true" data-initial="5">
+                      <li><span class="news-date">Jan. 2026</span><span class="news-body">Three papers (<a href="https://tonyfang.net/history/"><b>HistRISE</b></a>, <a href="https://rise-policy.github.io/DQ-RISE/"><b>DQ-RISE</b></a> and <a href="https://selen-suyue.github.io/MBApage/"><b>MBA</b></a>) are accepted to ICRA 2026. See you in Vienna!</span></li>
+                      <li><span class="news-date">Aug. 2025</span><span class="news-body"><a href="https://airexo.tech/airexo2"><b>AirExo-2</b></a> is accepted by CoRL 2025. See you in Seoul!</span></li>
+                      <li><span class="news-date">Jun. 2025</span><span class="news-body">Three papers (<a href="https://tonyfang.net/FoAR"><b>FoAR</b></a>, <a href="https://ericjin2002.github.io/SIME/"><b>SIME</b></a>, and <a href="https://knowledge-driven.github.io/"><b>KDIL</b></a>) are accepted by IROS 2025.</span></li>
+                      <li><span class="news-date">Apr. 2025</span><span class="news-body"><a href="https://tonyfang.net/FoAR"><b>FoAR</b></a> is accepted by RA-L.</span></li>
+                      <li><span class="news-date">Mar. 2025</span><span class="news-body"><a href="https://airexo.tech/airexo2"><b>AirExo-2</b></a> is released! Check our website for more details.</span></li>
+                      <li><span class="news-date">Jan. 2025</span><span class="news-body">Two papers (<a href="https://tonyfang.net/s2i"><b>S2I</b></a> and <a href="https://cage-policy.github.io/"><b>CAGE</b></a>) are accepted by ICRA 2025.</span></li>
+                      <li><span class="news-date">Jun. 2024</span><span class="news-body"><a href="https://rise-policy.github.io/"><b>RISE</b></a> is accepted by IROS 2024.</span></li>
+                      <li><span class="news-date">Jan. 2024</span><span class="news-body">Four papers (<a href="https://airexo.github.io/"><b>AirExo</b></a>, <a href="https://rh20t.github.io/"><b>RH20T</b></a>, <a href="https://robotics-transformer-x.github.io/"><b>Open X-Embodiment</b></a> and <a href="https://graspnet.net/anygrasp.html"><b>AnyGrasp</b></a>) are accepted by ICRA 2024.</span></li>
+                      <li><span class="news-date">Oct. 2023</span><span class="news-body"><a href="https://robotics-transformer-x.github.io/"><b>Open X-Embodiment</b></a> is released! Proud of this wonderful collaboration in the robotics community.</span></li>
+                      <li><span class="news-date">Sept. 2023</span><span class="news-body"><a href="https://airexo.github.io/"><b>AirExo</b></a> is released! Check our website for more details.</span></li>
+                      <li><span class="news-date">Apr. 2023</span><span class="news-body"><a href="https://graspnet.net/anygrasp/"><b>AnyGrasp</b></a> is accepted by T-RO.</span></li>
+                      <li><span class="news-date">Jun. 2022</span><span class="news-body"><a href="https://ieeexplore.ieee.org/document/9796631"><b>TransCG</b></a> is accepted by RA-L.</span></li>
+                    </ul>
+                    <button type="button" class="news-toggle" id="newsToggle" aria-controls="newsList" aria-expanded="false">
+                      <span class="news-toggle-label"></span>
+                      <svg class="news-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <table class="site-section publications-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-publications" class="site-section publications-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
@@ -832,7 +824,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section projects-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-projects" class="site-section projects-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
@@ -907,7 +899,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-services" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
@@ -956,7 +948,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-talks" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
@@ -995,7 +987,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-collab" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
@@ -1032,7 +1024,7 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-notes" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
@@ -1046,17 +1038,27 @@
                 </tr>
               </tbody>
             </table>
-            <table class="site-footer" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:0px">
-                    <p style="text-align:right;font-size:small;">
-                       The website is built upon this <a href="https://github.com/jonbarron/jonbarron_website">template</a>.
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <footer class="site-footer">
+              <div class="site-footer-row">
+                <div class="site-footer-col site-footer-col-left">
+                  &copy; <span id="footerYear">2026</span> Hongjie Fang
+                </div>
+                <div class="site-footer-col site-footer-col-center">
+                  <a href="#top" class="footer-top-link" aria-label="Back to top" title="Back to top">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 15 12 9 18 15"/></svg>
+                    <span>Back to top</span>
+                  </a>
+                  <span class="footer-views" id="footerViews" aria-live="polite" hidden>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <span class="footer-views-count">—</span>
+                    <span class="footer-views-label">views</span>
+                  </span>
+                </div>
+                <div class="site-footer-col site-footer-col-right">
+                  Built on <a href="https://github.com/jonbarron/jonbarron_website">this template</a>
+                </div>
+              </div>
+            </footer>
           </td>
         </tr>
       </tbody>
@@ -1081,15 +1083,15 @@
       var choices = [
         {
           src: 'images/profile/profile1.png',
-          captionHtml: 'Photo @ İstanbul, Türkiye<br>Credit to Jingjing Chen'
+          captionHtml: 'Photo @ İstanbul, Türkiye 🇹🇷<br>Credit to Jingjing Chen'
         },
         {
           src: 'images/profile/profile2.png',
-          captionHtml: 'Photo @ Oslo, Norge<br>Credit to Peishen Yan'
+          captionHtml: 'Photo @ Oslo, Norge 🇳🇴<br>Credit to Peishen Yan'
         },
         {
           src: 'images/profile/profile3.png',
-          captionHtml: 'Photo @ Yokohama, Japan<br>Credit to Zhenyang Ni'
+          captionHtml: 'Photo @ Yokohama, Japan 🇯🇵<br>Credit to Zhenyang Ni'
         }
       ];
       var pick = choices[Math.floor(Math.random() * choices.length)];
@@ -1235,6 +1237,85 @@
 
       videos.forEach(function(v) { observer.observe(v); });
     })();
+
+    (function() {
+      var yearEl = document.getElementById('footerYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+
+    (function() {
+      var el = document.getElementById('footerViews');
+      if (!el || !window.fetch) return;
+      var countEl = el.querySelector('.footer-views-count');
+      if (!countEl) return;
+      fetch('https://tonyfang.goatcounter.com/counter/TOTAL.json', { mode: 'cors' })
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(data) {
+          if (!data || !data.count) return;
+          countEl.textContent = data.count;
+          el.hidden = false;
+        })
+        .catch(function() {});
+    })();
+
+    (function() {
+      var btn = document.getElementById('themeToggle');
+      if (!btn) return;
+      btn.addEventListener('click', function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+          try { localStorage.setItem('theme', 'light'); } catch (e) {}
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          try { localStorage.setItem('theme', 'dark'); } catch (e) {}
+        }
+      });
+    })();
+
+    (function() {
+      var list = document.getElementById('newsList');
+      var toggle = document.getElementById('newsToggle');
+      if (!list || !toggle) return;
+      var label = toggle.querySelector('.news-toggle-label');
+      var items = Array.prototype.slice.call(list.children).filter(function(n) {
+        return n.tagName === 'LI';
+      });
+      var initial = parseInt(list.getAttribute('data-initial'), 10) || 5;
+      if (items.length <= initial) {
+        toggle.style.display = 'none';
+        return;
+      }
+      var hiddenCount = items.length - initial;
+
+      function render() {
+        var collapsed = list.getAttribute('data-collapsed') === 'true';
+        items.forEach(function(li, idx) {
+          li.classList.remove('is-news-collapsed', 'is-news-last-visible');
+          if (idx >= initial) {
+            if (collapsed) li.classList.add('is-news-collapsed');
+          } else if (idx === initial - 1 && collapsed) {
+            li.classList.add('is-news-last-visible');
+          }
+        });
+        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+        if (label) {
+          label.textContent = collapsed
+            ? 'Show ' + hiddenCount + ' more'
+            : 'Show less';
+        }
+      }
+
+      toggle.addEventListener('click', function() {
+        var collapsed = list.getAttribute('data-collapsed') === 'true';
+        list.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+        render();
+      });
+
+      render();
+    })();
     </script>
+    <script data-goatcounter="https://tonyfang.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
   </body>
 </html>
