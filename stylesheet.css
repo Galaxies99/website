@@ -1846,6 +1846,140 @@ html[data-theme="dark"] .footer-top-link:focus-visible {
   to   { opacity: 1; transform: none; }
 }
 
+/* --- Email modal --------------------------------------------------------- */
+.email-modal-content {
+  width: min(92vw, 420px);
+  max-width: min(92vw, 420px);
+  padding: 22px 22px 18px;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.email-modal-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+
+.email-modal-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: #64748b;
+  text-align: center;
+}
+
+.email-list {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.email-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.email-item-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0 2px;
+}
+
+.email-item-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #e4e9ef;
+  border-radius: 10px;
+  background: #f8fafc;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.12s ease;
+}
+
+.email-item-row:hover,
+.email-item-row:focus-visible {
+  border-color: rgba(23, 114, 208, 0.45);
+  background: #f0f7ff;
+  box-shadow: 0 2px 8px rgba(23, 114, 208, 0.10);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.email-item-address {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: #0f172a;
+  word-break: break-all;
+  flex: 1;
+}
+
+.email-item-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1772d0;
+  letter-spacing: 0.02em;
+}
+
+.email-copy-icon,
+.email-check-icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.email-check-icon {
+  display: none;
+  color: #16a34a;
+}
+
+.email-item-row.is-copied .email-copy-icon {
+  display: none;
+}
+
+.email-item-row.is-copied .email-check-icon {
+  display: inline-block;
+}
+
+.email-item-row.is-copied .email-item-copy {
+  color: #16a34a;
+}
+
+.email-modal-hint {
+  margin: 0;
+  min-height: 1em;
+  font-size: 12px;
+  color: #16a34a;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
 /* ==========================================================================
    Theme toggle button (floating, top-right)
    ========================================================================== */
@@ -2184,4 +2318,42 @@ html[data-theme="dark"] .image-modal-close:focus {
 
 html[data-theme="dark"] .image-modal-caption {
   color: var(--ink-500);
+}
+
+html[data-theme="dark"] .email-modal-title {
+  color: var(--ink-900);
+}
+
+html[data-theme="dark"] .email-modal-subtitle,
+html[data-theme="dark"] .email-item-label {
+  color: var(--ink-500);
+}
+
+html[data-theme="dark"] .email-item-row {
+  background: rgba(148, 163, 184, 0.06);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .email-item-row:hover,
+html[data-theme="dark"] .email-item-row:focus-visible {
+  background: rgba(96, 165, 250, 0.10);
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: 0 2px 10px rgba(96, 165, 250, 0.16);
+}
+
+html[data-theme="dark"] .email-item-address {
+  color: var(--ink-800);
+}
+
+html[data-theme="dark"] .email-item-copy {
+  color: var(--accent);
+}
+
+html[data-theme="dark"] .email-check-icon,
+html[data-theme="dark"] .email-item-row.is-copied .email-item-copy {
+  color: #4ade80;
+}
+
+html[data-theme="dark"] .email-modal-hint {
+  color: #4ade80;
 }

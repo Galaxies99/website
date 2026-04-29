@@ -55,7 +55,7 @@
                 <tr>
                   <td class="profile-links-cell" colspan="2" style="padding:0 2.5% 2.5%;">
                     <p class="profile-links">
-                       <a class="profile-link profile-link-email" href="mailto:tony.fang.galaxies@gmail.com">Email</a> <a class="profile-link profile-link-scholar" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ">Scholar</a> <a class="profile-link profile-link-github" href="https://github.com/galaxies99/">GitHub</a> <a class="profile-link profile-link-twitter" href="https://x.com/FangGalaxies">X</a> <a class="profile-link profile-link-wechat" data-modal="wechat" href="images/profile/wechat.jpg">WeChat</a> <a class="profile-link profile-link-cv" href="data/cv.pdf">CV (04/2026)</a>
+                       <a class="profile-link profile-link-email" data-modal="email" href="mailto:tony.fang.galaxies@gmail.com">Email</a> <a class="profile-link profile-link-scholar" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ">Google Scholar</a> <a class="profile-link profile-link-github" href="https://github.com/galaxies99/">GitHub</a> <a class="profile-link profile-link-twitter" href="https://x.com/FangGalaxies">X</a> <a class="profile-link profile-link-wechat" data-modal="wechat" href="images/profile/wechat.jpg">WeChat</a> <a class="profile-link profile-link-cv" href="data/cv.pdf">CV (04/2026)</a>
                     </p>
                   </td>
                 </tr>
@@ -1077,6 +1077,41 @@
         </p>
       </div>
     </div>
+    <div aria-hidden="true" class="image-modal email-modal" id="emailModal" role="dialog" aria-labelledby="emailModalTitle">
+      <div class="image-modal-backdrop" data-modal-close=""></div>
+      <div class="image-modal-content email-modal-content" role="document">
+        <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
+          ×
+        </button>
+        <h3 class="email-modal-title" id="emailModalTitle">Contact via Email</h3>
+        <p class="email-modal-subtitle">Click an address to copy it to your clipboard.</p>
+        <ul class="email-list">
+          <li class="email-item">
+            <span class="email-item-label">Personal</span>
+            <button type="button" class="email-item-row" data-copy-email="tony.fang.galaxies@gmail.com" aria-label="Copy tony.fang.galaxies@gmail.com">
+              <span class="email-item-address">tony.fang.galaxies@gmail.com</span>
+              <span class="email-item-copy" aria-hidden="true">
+                <svg class="email-copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="email-check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="email-copy-label">Copy</span>
+              </span>
+            </button>
+          </li>
+          <li class="email-item">
+            <span class="email-item-label">SJTU</span>
+            <button type="button" class="email-item-row" data-copy-email="galaxies@sjtu.edu.cn" aria-label="Copy galaxies@sjtu.edu.cn">
+              <span class="email-item-address">galaxies@sjtu.edu.cn</span>
+              <span class="email-item-copy" aria-hidden="true">
+                <svg class="email-copy-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <svg class="email-check-icon" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span class="email-copy-label">Copy</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+        <p class="email-modal-hint" id="emailModalHint" aria-live="polite"></p>
+      </div>
+    </div>
     <script>
       (function() {
       var img = document.getElementById('profileImg');
@@ -1102,34 +1137,101 @@
     })();
 
     (function() {
-      var modal = document.getElementById('wechatModal');
-      if (!modal) return;
+      var modals = {
+        wechat: document.getElementById('wechatModal'),
+        email: document.getElementById('emailModal')
+      };
 
-      function openModal() {
+      function openModal(modal) {
+        if (!modal) return;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
       }
-      function closeModal() {
+      function closeModal(modal) {
+        if (!modal) return;
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
       }
 
-      document.querySelectorAll('[data-modal="wechat"]').forEach(function(trigger) {
+      document.querySelectorAll('[data-modal]').forEach(function(trigger) {
+        var key = trigger.getAttribute('data-modal');
+        if (!modals[key]) return;
         trigger.addEventListener('click', function(e) {
           e.preventDefault();
-          openModal();
+          openModal(modals[key]);
         });
       });
 
-      modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
-        el.addEventListener('click', closeModal);
+      Object.keys(modals).forEach(function(k) {
+        var modal = modals[k];
+        if (!modal) return;
+        modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
+          el.addEventListener('click', function() { closeModal(modal); });
+        });
       });
 
       document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        if (e.key !== 'Escape') return;
+        Object.keys(modals).forEach(function(k) {
+          var modal = modals[k];
+          if (modal && modal.classList.contains('is-open')) closeModal(modal);
+        });
       });
+
+      var emailModal = modals.email;
+      if (emailModal) {
+        var hint = document.getElementById('emailModalHint');
+        var hintTimer = null;
+        function showHint(message) {
+          if (!hint) return;
+          hint.textContent = message;
+          if (hintTimer) clearTimeout(hintTimer);
+          hintTimer = setTimeout(function() { hint.textContent = ''; }, 1800);
+        }
+
+        function copyText(text) {
+          if (navigator.clipboard && window.isSecureContext) {
+            return navigator.clipboard.writeText(text);
+          }
+          return new Promise(function(resolve, reject) {
+            try {
+              var ta = document.createElement('textarea');
+              ta.value = text;
+              ta.setAttribute('readonly', '');
+              ta.style.position = 'fixed';
+              ta.style.opacity = '0';
+              document.body.appendChild(ta);
+              ta.select();
+              var ok = document.execCommand('copy');
+              document.body.removeChild(ta);
+              ok ? resolve() : reject(new Error('execCommand copy failed'));
+            } catch (err) { reject(err); }
+          });
+        }
+
+        emailModal.querySelectorAll('[data-copy-email]').forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            var addr = btn.getAttribute('data-copy-email') || '';
+            copyText(addr).then(function() {
+              btn.classList.add('is-copied');
+              var label = btn.querySelector('.email-copy-label');
+              if (label) {
+                if (!label.dataset.original) label.dataset.original = label.textContent;
+                label.textContent = 'Copied';
+              }
+              showHint(addr + ' copied to clipboard');
+              setTimeout(function() {
+                btn.classList.remove('is-copied');
+                if (label && label.dataset.original) label.textContent = label.dataset.original;
+              }, 1500);
+            }).catch(function() {
+              showHint('Press Ctrl/Cmd+C to copy');
+            });
+          });
+        });
+      }
     })();
 
     (function() {
