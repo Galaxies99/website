@@ -1131,9 +1131,63 @@
           captionHtml: 'Photo @ Yokohama, Japan 🇯🇵<br>Credit to Zhenyang Ni'
         }
       ];
-      var pick = choices[Math.floor(Math.random() * choices.length)];
-      img.src = pick.src;
-      caption.innerHTML = pick.captionHtml;
+
+      var index = Math.floor(Math.random() * choices.length);
+      function apply(i) {
+        var pick = choices[i];
+        img.src = pick.src;
+        caption.innerHTML = pick.captionHtml;
+      }
+      apply(index);
+
+      choices.forEach(function(c) {
+        var pre = new Image();
+        pre.src = c.src;
+      });
+
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('title', 'Click for another photo');
+      img.setAttribute('aria-label', 'Profile photo. Click to change.');
+
+      var swapping = false;
+      function swap(direction) {
+        if (swapping || choices.length <= 1) return;
+        swapping = true;
+        var step = direction === -1 ? -1 : 1;
+        var next = (index + step + choices.length) % choices.length;
+
+        img.classList.add('is-photo-swapping');
+        caption.classList.add('is-caption-swapping');
+
+        var preload = new Image();
+        preload.src = choices[next].src;
+
+        setTimeout(function() {
+          index = next;
+          apply(index);
+          img.classList.remove('is-photo-swapping');
+          caption.classList.remove('is-caption-swapping');
+          img.classList.remove('is-photo-pulse');
+          void img.offsetWidth;
+          img.classList.add('is-photo-pulse');
+          swapping = false;
+        }, 220);
+      }
+
+      img.addEventListener('click', function() { swap(1); });
+      img.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          swap(e.shiftKey ? -1 : 1);
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          swap(1);
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          swap(-1);
+        }
+      });
     })();
 
     (function() {
