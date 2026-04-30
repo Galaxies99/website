@@ -148,7 +148,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2602.22088">paper </a> <span class="paper-link-note">code somming soon</span> <a class="paper-link-project" href="https://force-policy.github.io/">project page </a>
                     </div>
                     <p>
-                       We introduce a physically grounded interaction frame, an instantaneous local basis that separates force regulation from motion, and a method to recover it from demonstrations. Using this, Force Policy combines a global vision policy for free-space motion with a high-frequency local force policy that estimates the interaction frame and executes hybrid force-position control. In real-world contact-rich tasks, it outperforms vision-only and force-aware baselines, improving contact stability, force accuracy, and generalization to novel objects.
+                       We introduce a physically grounded interaction frame that decouples motion and force control axis from demonstrations. By combining a global vision policy and a high-frequency local policy with hybrid force-position control, Force Policy improves contact stability, force regulation, and generalization on real contact-rich tasks.
                     </p>
                   </td>
                 </tr>
@@ -179,7 +179,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2604.10677">paper </a> <span class="paper-link-note">code somming soon</span> <a class="paper-link-project" href="https://yifuxu1127.github.io/LIDEA/">project page </a>
                     </div>
                     <p>
-                       Introduce LIDEA, an imitation learning framework in which policy learning benefits from human demonstrations. In the 2D visual domain, LIDEA employs a dual-stage transitive distillation pipeline that aligns human and robot representations in a shared latent space. In the 3D geometric domain, we propose an embodiment-agnostic alignment strategy that explicitly decouples embodiment from geometry, ensuring consistent 3D perception.
+                       LIDEA transfers human demonstrations through dual-stage 2D feature distillation and embodiment-agnostic 3D geometry alignment. This cross-embodiment design makes human-to-robot imitation more reliable and improves generalization to new setups.
                     </p>
                   </td>
                 </tr>
@@ -210,7 +210,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2509.17141">paper </a><a class="paper-link-code" href="https://github.com/rise-policy/HistRISE">code </a><a class="paper-link-project" href="https://tonyfang.net/history/">project page </a>
                     </div>
                     <p>
-                       Propose an object-centric history representation based on point tracking, which abstracts past observations into a compact and structured form that retains only essential task-relevant information. Tracked points are encoded and aggregated at the object level, yielding a compact history representation that can be seamlessly integrated into various visuomotor policies. Our design provides full history-awareness with high computational efficiency, leading to improved overall task performance and decision accuracy. Our history-aware policies consistently outperforms both Markovian baselines and prior history-based approaches.
+                       We introduce an object-centric history representation built upon point tracks, compressing long-horizon observations into task-relevant object memory for diverse visuomotor policies. This efficient design consistently outperforms both Markovian and prior history-based baselines, improving decision quality and task success.
                     </p>
                   </td>
                 </tr>
@@ -241,7 +241,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2509.17450">paper </a><a class="paper-link-code" href="https://github.com/rise-policy/DQ-RISE">code </a><a class="paper-link-project" href="http://rise-policy.github.io/DQ-RISE">project page </a>
                     </div>
                     <p>
-                       Propose <i>DQ-RISE</i>, which quantizes hand states to simplify hand motion prediction while preserving essential patterns, and applies a continuous relaxation that allows arm actions to diffuse jointly with these compact hand states. This design enables the policy to learn arm-hand coordination from data while preventing hand actions from overwhelming the action space. Experiments show that <i>DQ-RISE</i> achieves more balanced and efficient learning, paving the way toward structured and generalizable dexterous manipulation.
+                       DQ-RISE quantizes dexterous hand states and couples them with arm diffusion through a continuous relaxation for structured arm-hand learning. This balances the action space and yields more efficient learning in dexterous manipulation.
                     </p>
                   </td>
                 </tr>
@@ -272,7 +272,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2502.16420">paper </a><a class="paper-link-code" href="http://github.com/graspnet/anydexgrasp">code </a><a class="paper-link-project" href="https://graspnet.net/anydexgrasp/">project page </a>
                     </div>
                     <p>
-                       Introduce AnyDexGrasp, an efficient approach for learning dexterous grasping with minimal data, advancing robotic manipulation capabilities across different robotic hands. Our results show a grasp success rate of 75-95% across three different robotic hands in real-world cluttered environments with over 150 novel objects, improving to 80-98% with increased training objects.
+                       We introduce AnyDexGrasp, a data-efficient dexterous grasping method that transfers across different robotic hands, built upon the intermediate contact-centric grasp representations. It achieves high real-world success in cluttered scenes with over 150 novel objects, demonstrating scalable cross-hand grasp generalization.
                     </p>
                   </td>
                 </tr>
@@ -304,7 +304,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2503.03081">paper </a><a class="paper-link-code" href="https://github.com/AirExo/AirExo-2">data collection code </a><a class="paper-link-code" href="https://github.com/rise-policy/RISE-2/">policy code </a><a class="paper-link-project" href="https://airexo.tech/airexo2">project page </a>
                     </div>
                     <p>
-                       Develop <i>AirExo</i>-2, an updated low-cost exoskeleton system for large-scale in-the-wild demonstration collection. By transforming the collected in-the-wild demonstrations into pseudo-robot demonstrations, our system addresses key challenges in utilizing in-the-wild demonstrations for downstream imitation learning in the real world. Propose <i>RISE</i>-2, a generalizable imitation policy that integrates 2D and 3D perceptions, outperforming previous imitation learning policies in both in-domain and out-of-domain tasks, even with limited demonstrations. By leveraging in-the-wild demonstrations collected and transformed by the <i>AirExo</i>-2 system, without the need for additional robot demonstrations, <i>RISE</i>-2 achieves comparable or superior performance to policies trained with teleoperated data, highlighting the potential of <i>AirExo</i>-2 for scalable and generalizable imitation learning.
+                       We develop AirExo-2 for low-cost, large-scale in-the-wild collection and convert human demonstrations into pseudo-robot data. Together with the generalizable visuomotor policy RISE-2 that integrates 3D perception and 2D visual foundation models, this pipeline reaches strong performance without teleoperated data.
                     </p>
                   </td>
                 </tr>
@@ -335,7 +335,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2506.21057">paper </a><a class="paper-link-code" href="https://github.com/mioam/KnowledgeIL">code </a><a class="paper-link-project" href="https://knowledge-driven.github.io/">project page </a>
                     </div>
                     <p>
-                       We propose knowledge-driven imitation learning, a framework that leverages external structural semantic knowledge to abstract object representations within the same category during imitation learning. We introduce a novel semantic keypoint graph as a knowledge template and develop a coarse-to-fine template-matching algorithm that optimizes both structural consistency and semantic similarity.
+                       We formulate object-centric knowledge as a semantic keypoint graph template, and use a coarse-to-fine matching strategy to inject them into policy learning. This design improves category-level abstraction and boosts generalization across objects.
                     </p>
                   </td>
                 </tr>
@@ -366,7 +366,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2505.01396">paper </a><a class="paper-link-code" href="https://github.com/EricJin2002/SIME">code </a><a class="paper-link-project" href="https://ericjin2002.github.io/SIME/">project page </a>
                     </div>
                     <p>
-                       We found that with modal-level exploration, the robot can generate more diverse and multi-modal interaction data. By learning from the most valuable trials and high-quality segments from these interactions, the robot can effectively refine its capabilities through self-improvement.
+                       We propose modal-level exploration to generate diverse multi-modal interaction data, then learn from the most informative trials and segments. This self-improvement loop raises data efficiency and steadily strengthens policy capability over time.
                     </p>
                   </td>
                 </tr>
@@ -398,7 +398,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2503.13217">paper </a><a class="paper-link-code" href="https://github.com/Selen-Suyue/DensePolicy">code </a><a class="paper-link-project" href="https://selen-suyue.github.io/DspNet/">project page </a>
                     </div>
                     <p>
-                       Propose a bidirectionally expanded learning approach that enhances auto-regressive policies for robotic manipulation. It employs a lightweight encoder-only architecture to iteratively unfold the action sequence from an initial single frame into the target sequence in a coarse-to-fine manner with logarithmic-time inference.
+                       We propose a bidirectionally expanded action head that unfolds action sequences in a coarse-to-fine manner. This design preserves the capability of policy backbone while enabling logarithmic-time inference for faster manipulation control.
                     </p>
                   </td>
                 </tr>
@@ -433,7 +433,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2411.15753">paper </a><a class="paper-link-code" href="https://github.com/Alan-Heoooh/FoAR">code </a><a class="paper-link-project" href="https://tonyfang.net/FoAR/">project page </a><a class="paper-link-twitter" href="https://x.com/FangGalaxies/status/1861214958517936146">X </a>
                     </div>
                     <p>
-                       Propose FoAR, a force-aware reactive policy that combines high-frequency force/torque sensing with visual inputs to enhance the performance in contact-rich manipulation. Built upon the RISE policy, FoAR incorporates a multimodal feature fusion mechanism guided by a future contact predictor, enabling dynamic adjustment of force/torque data usage between non-contact and contact phases. Its reactive control strategy also allows FoAR to accomplish contact-rich tasks accurately through simple position control.
+                       FoAR is a force-aware policy that fuses vision with high-frequency force/torque sensing using a future-contact-guided gating module. This enables phase-adaptive control and delivers more accurate, robust contact-rich manipulation.
                     </p>
                   </td>
                 </tr>
@@ -469,7 +469,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2411.09658">paper </a><a class="paper-link-code" href="https://github.com/Selen-Suyue/MBA">code </a><a class="paper-link-project" href="https://selen-suyue.github.io/MBApage/">project page </a>
                     </div>
                     <p>
-                       Propose MBA, a novel module that employs two cascaded diffusion processes for object motion generation and robot action generation under object motion guidance. Designed as a plug-and-play component, MBA can be flexibly integrated into existing robotic manipulation policies with diffusion action heads. Extensive experiments in both simulated and real-world environments demonstrate that our approach substantially improves the performance of existing policies across a wide range of manipulation tasks.
+                       MBA is a plug-and-play module that cascades action diffusion for object motion generation and motion-guided robot action generation. Integrated into existing policies, it consistently improves manipulation performance in various tasks.
                     </p>
                   </td>
                 </tr>
@@ -500,7 +500,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2410.14974">paper </a><a class="paper-link-code" href="https://github.com/cage-policy/cage">code </a><a class="paper-link-project" href="https://cage-policy.github.io/">project page </a>
                     </div>
                     <p>
-                       Introduce CAGE, a data-efficient generalizable robotic manipulation policy. With less than 50 demonstrations in the mono-distributed training environment, CAGE can effectively generalize to similar and unseen environments with different levels of distribution shifts (background, object and camera view changes), outperforming previous state-of-the-art policies. This work makes a step forward in developing data-efficient, scalable, and generalizable robotic manipulation policies.
+                      CAGE is a data-efficient generalizable policy utilizing visual foundation models and causal attention. With 50 demonstrations in a single domain, it generalizes to unseen backgrounds, objects, and viewpoints while outperforming prior methods.
                     </p>
                   </td>
                 </tr>
@@ -531,7 +531,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2409.19917">paper </a><a class="paper-link-code" href="https://github.com/junxix/s2i">code </a><a class="paper-link-project" href="https://tonyfang.net/s2i">project page </a>
                     </div>
                     <p>
-                       Introduce S2I, a framework that selects and optimizes mixed-quality demonstration data at the segment level, while ensuring plug-and-play compatibility with existing robotic manipulation policies. With only 3 expert demonstrations for reference, S2I can improve the performance of various downstream policies when trained with mixed-quality demonstrations.
+                      S2I is a segment-level selection and optimization framework for mixed-quality demonstrations that plugs into existing policies. Using only a few expert references, it improves downstream performance and makes suboptimal data more usable.
                     </p>
                   </td>
                 </tr>
@@ -562,7 +562,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2404.12281.pdf">paper </a><a class="paper-link-code" href="https://github.com/rise-policy/RISE">code </a><a class="paper-link-project" href="https://rise-policy.github.io/">project page </a><a class="paper-link-twitter" href="https://x.com/FangGalaxies/status/1792949268179005564">X </a>
                     </div>
                     <p>
-                       Propose <i>RISE</i>, an end-to-end baseline for real-world robot imitation learning, which predicts continuous actions directly from single-view point clouds. Trained with 50 demonstrations for each real-world task, RISE surpasses currently representative 2D and 3D policies by a large margin, showcasing significant advantages in both accuracy and efficiency.
+                       RISE is an end-to-end imitation policy that predicts continuous actions directly from single-view point clouds. With only 50 demonstrations per task, it outperforms representative 2D and 3D baselines in accuracy, efficiency and generalization.
                     </p>
                   </td>
                 </tr>
@@ -594,7 +594,7 @@
                        <a class="paper-link-paper" href="https://robotics-transformer-x.github.io/paper.pdf">paper </a><a class="paper-link-project" href="https://robotics-transformer-x.github.io/">project page </a><a class="paper-link-dataset" href="https://docs.google.com/spreadsheets/d/1rPBD77tk60AEIGZrGSODwyyzs5FgCU9Uz3h-3_t2A9g/edit?usp=sharing">dataset </a>
                     </div>
                     <p>
-                       Introduce the Open X-Embodiment Dataset, the largest robot learning dataset to date with 1M+ real robot trajectories, spanning 22 robot embodiments. Train large, transformer-based policies on the dataset (RT-1-X, RT-2-X) and show that co-training with our diverse dataset substantially improves performance.
+                       We contribute Open X-Embodiment, a 1M+ trajectory real-robot dataset spanning 22 embodiments, plus large RT-X models trained at scale. This breadth enables strong cross-embodiment co-training gains and advances robotic foundation models.
                     </p>
                   </td>
                 </tr>
@@ -625,7 +625,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2309.14975.pdf">paper </a><a class="paper-link-project" href="https://airexo.github.io/">project page </a><a class="paper-link-twitter" href="https://x.com/haoshu_fang/status/1707434624413306955">X </a>
                     </div>
                     <p>
-                       Develop <i>AirExo</i>, a low-cost, adaptable, and portable dual-arm exoskeleton, for joint-level teleoperation and demonstration collection. Further leverage <i>AirExo</i> for learning with cheap demonstrations in the wild to improve sample efficiency and robustness of the policy.
+                       <i>AirExo</i> is a low-cost portable dual-arm exoskeleton for joint-level teleoperation and in-the-wild demonstration collection. Pre-training with scalable in-the-wild data improves sample efficiency and robustness.
                     </p>
                   </td>
                 </tr>
@@ -656,7 +656,7 @@
                        <a class="paper-link-paper" href="https://openreview.net/forum?id=YhRKICWgE9">paper </a><a class="paper-link-code" href="https://github.com/rh20t/rh20t_api">API </a><a class="paper-link-project" href="https://rh20t.github.io/">project page </a><a class="paper-link-twitter" href="https://x.com/haoshu_fang/status/1706881232548814899">X </a>
                     </div>
                     <p>
-                       Collect a dataset comprising over 110k contact-rich robot manipulation sequences across diverse skills, contexts, robots, and camera viewpoints, all collected in the real world. Each sequence in the dataset includes visual, force, audio, and action information, along with a corresponding human demonstration video. Put significant efforts in calibrating all the sensors and ensures a high-quality dataset.
+                       RH20T is a real-world dataset of 110k+ sequences across diverse skills, robots, viewpoints, and contexts with synchronized visual, force, audio, tactile, and action signals. Its scale and multimodal quality make it a great training source for one-shot and generalizable manipulation.
                     </p>
                   </td>
                 </tr>
@@ -687,7 +687,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2308.15622">paper </a>
                     </div>
                     <p>
-                       Propose an approach for effective and robust flexible handover, which enables the robot to grasp moving objects with flexible motion trajectories with a high success rate. The key innovation of our approach is the generation of real-time robust grasp trajectories. Designs a future grasp prediction algorithm to enhance the system's adaptability to dynamic handover scenes.
+                       We propose a flexible handover framework with real-time robust grasp-trajectory generation and future grasp prediction. This improves adaptability to dynamic handover scenes and raises success on moving-object grasps.
                     </p>
                   </td>
                 </tr>
@@ -718,7 +718,7 @@
                        <a class="paper-link-paper" href="https://openaccess.thecvf.com/content/CVPR2023/papers/Liu_Target-Referenced_Reactive_Grasping_for_Dynamic_Objects_CVPR_2023_paper.pdf">paper </a><a class="paper-link-project" href="https://graspnet.net/reactive">project page </a>
                     </div>
                     <p>
-                       Focus on semantic consistency instead of temporal smoothness of the predicted grasp poses during reactive grasping. Solve the reactive grasping problem in a target-referenced setting by tracking through generated grasp spaces.
+                       We reformulate reactive grasping around target-referenced semantic consistency rather than only temporal smoothness. Tracking in generated grasp spaces improves grasp reliability for dynamic objects.
                     </p>
                   </td>
                 </tr>
@@ -754,7 +754,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2212.08333">paper </a><a class="paper-link-code" href="https://github.com/graspnet/anygrasp_sdk">SDK </a><a class="paper-link-project" href="https://graspnet.net/anygrasp/">project page </a>
                     </div>
                     <p>
-                       Propose a powerful <i>AnyGrasp</i> model for general grasping, including static scenes and dynamic scenes. <i>AnyGrasp</i> can generate accurate, full-DoF, dense and temporally-smooth grasp poses efficiently, and it works robustly against large depth sensing noise.
+                       AnyGrasp is a unified model for static and dynamic general grasping that predicts accurate dense full-DoF grasps efficiently. It remains robust under severe depth noise, improving real-world deployment reliability.
                     </p>
                   </td>
                 </tr>
@@ -789,7 +789,7 @@
                        <a class="paper-link-paper" href="https://ieeexplore.ieee.org/document/9796631">paper </a><a class="paper-link-code" href="https://github.com/galaxies99/transcg">code </a><a class="paper-link-project" href="https://graspnet.net/transcg/">project page </a>
                     </div>
                     <p>
-                       Introduce <i>TransCG</i>, a large-scale real-world dataset for transparent object depth completion, and a lightweight depth completion method <i>DFNet</i> based on the dataset.
+                       TransCG is a large-scale real-world transparent object depth completion benchmark. We also propose a lightweight baseline DFNet for depth completion of transparent objects. This closes a key sensing gap and improves perception for transparent objects.
                     </p>
                   </td>
                 </tr>
@@ -820,7 +820,7 @@
                        <a class="paper-link-paper" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Wang_Graspness_Discovery_in_Clutters_for_Fast_and_Accurate_Grasp_Detection_ICCV_2021_paper.pdf">paper </a>
                     </div>
                     <p>
-                       Propose <i>graspness</i>, a quality based on geometry cues that distinguishes graspable area in cluttered scenes, which can be measured by a look-ahead searching method. Propose a <i>graspness</i> model to approximate the <i>graspness</i> value for quickly detect grasps in practice.
+                       We propose <i>graspness</i>, a geometry-driven grasp quality measure for identifying graspable regions in clutter via look-ahead search. A learned <i>graspness</i> predictor enables fast, accurate grasp detection in practice.
                     </p>
                   </td>
                 </tr>
