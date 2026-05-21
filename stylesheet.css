@@ -426,6 +426,26 @@ html[data-theme="dark"] .name-cn {
   letter-spacing: 0.02em;
 }
 
+.paper-venue em a {
+  font: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-decoration: none;
+  display: inline;
+  vertical-align: baseline;
+}
+
+.paper-venue em a:visited,
+.paper-venue em a:hover,
+.paper-venue em a:active,
+.paper-venue em a:focus {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* Journal venues (RA-L, T-RO, ...) -> purple */
 .paper-venue em.venue-journal {
   background: linear-gradient(165deg, #f5f3ff 0%, #ede9fe 100%);

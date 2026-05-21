@@ -1551,6 +1551,41 @@
 
       render();
     })();
+
+    (function() {
+      var conferenceLinks = {
+        'RSS 2026': 'https://roboticsconference.org/',
+        'ICRA 2026': 'https://2026.ieee-icra.org/',
+        'ICRA 2025': 'https://2025.ieee-icra.org/',
+        'ICRA 2024': 'https://2024.ieee-icra.org/',
+        'ICRA 2023': 'https://www.icra2023.org/',
+        'IROS 2025': 'https://www.iros25.org/',
+        'IROS 2024': 'https://www.iros2024-abudhabi.org/',
+        'IROS 2023': 'https://2023.ieee-iros.org/',
+        'CoRL 2025': 'https://2025.corl.org/',
+        'ICCV 2025': 'https://iccv.thecvf.com/',
+        'ICCV 2021': 'https://iccv2021.thecvf.com/',
+        'CVPR 2023': 'https://cvpr2023.thecvf.com/Conferences/2023'
+      };
+
+      document.querySelectorAll('em.venue-conference, em.venue-confference').forEach(function(tag) {
+        if (tag.querySelector('a')) return;
+        var label = (tag.textContent || '').replace(/\s+/g, ' ').trim();
+        if (!label) return;
+        var href = conferenceLinks[label];
+        if (!href) return;
+
+        var link = document.createElement('a');
+        link.href = href;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.textContent = label;
+        link.setAttribute('aria-label', 'Open ' + label + ' conference website');
+
+        tag.textContent = '';
+        tag.appendChild(link);
+      });
+    })();
     </script>
     <script data-goatcounter="https://tonyfang.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
