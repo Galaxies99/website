@@ -1058,6 +1058,73 @@
                 </tr>
               </tbody>
             </table>
+            <table id="section-travels" class="site-section travels-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr>
+                  <td style="padding:20px;width:100%;vertical-align:middle">
+                    <heading>
+                       Travels<span class="travels-globe" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                       </span>
+                    </heading>
+                    <p class="travels-intro">
+                       Beyond research, I love wandering the world — meeting people, tasting food, and chasing skylines. Click a country to browse photos from there.
+                    </p>
+                    <div class="travels-stats" id="travelsStats" aria-live="polite">
+                      <div class="travel-stat">
+                        <span class="travel-stat-num" data-target="0">0</span>
+                        <span class="travel-stat-label">Countries</span>
+                      </div>
+                      <div class="travel-stat-divider" aria-hidden="true"></div>
+                      <div class="travel-stat">
+                        <span class="travel-stat-num" data-target="0">0</span>
+                        <span class="travel-stat-label">Continents</span>
+                      </div>
+                      <div class="travel-stat-divider" aria-hidden="true"></div>
+                      <div class="travel-stat">
+                        <span class="travel-stat-num" data-target="0">0</span>
+                        <span class="travel-stat-label">Cities</span>
+                      </div>
+                      <div class="travel-stat-divider" aria-hidden="true"></div>
+                      <div class="travel-stat">
+                        <span class="travel-stat-num" data-target="0">0</span>
+                        <span class="travel-stat-label">Photos</span>
+                      </div>
+                    </div>
+                    <div class="travels-view-toggle" id="travelsViewToggle" role="tablist" aria-label="Travels view">
+                      <button type="button" class="travel-view-btn is-active" data-view="globe" role="tab" aria-selected="true" aria-controls="travelsViewGlobe">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                        Globe
+                      </button>
+                      <button type="button" class="travel-view-btn" data-view="cards" role="tab" aria-selected="false" aria-controls="travelsViewCards">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                        Cards
+                      </button>
+                    </div>
+                    <div class="travels-view travels-view-globe is-active" id="travelsViewGlobe" role="tabpanel" aria-labelledby="travelsViewToggle">
+                      <div class="travel-globe-wrap" id="travelGlobeWrap">
+                        <div class="travel-globe-status" id="travelGlobeStatus">Loading world map…</div>
+                        <svg class="travel-globe-svg" id="travelGlobe" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive globe of visited countries."></svg>
+                        <div class="travel-globe-tip" id="travelGlobeTip" aria-hidden="true"></div>
+                      </div>
+                      <p class="travel-globe-hint">
+                        <span class="travel-globe-hint-row"><kbd>drag</kbd> spin · <kbd>scroll</kbd> zoom · <kbd>click</kbd> a highlighted country for photos</span>
+                      </p>
+                    </div>
+                    <div class="travels-view travels-view-cards" id="travelsViewCards" role="tabpanel" hidden>
+                      <div class="travels-filter" id="travelsFilter" aria-label="Filter countries by continent">
+                        <span class="travels-filter-label">Continent:</span>
+                        <div class="travels-filter-buttons" id="travelsFilterButtons">
+                          <button type="button" class="travel-filter-btn is-active" data-continent="all">All</button>
+                        </div>
+                      </div>
+                      <div class="travels-grid" id="travelsGrid" role="list"></div>
+                      <p class="travels-empty" id="travelsEmpty" hidden>No countries match this filter yet.</p>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
             <table id="section-notes" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
@@ -1107,6 +1174,38 @@
         <p class="image-modal-caption">
            Scan with WeChat to add me
         </p>
+      </div>
+    </div>
+    <div aria-hidden="true" class="image-modal travel-modal" id="travelModal" role="dialog" aria-labelledby="travelModalTitle">
+      <div class="image-modal-backdrop" data-modal-close=""></div>
+      <div class="image-modal-content travel-modal-content" role="document">
+        <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
+          ×
+        </button>
+        <div class="travel-modal-header">
+          <span class="travel-modal-flag" id="travelModalFlag" aria-hidden="true">🌍</span>
+          <div class="travel-modal-titles">
+            <h3 class="travel-modal-title" id="travelModalTitle">Country</h3>
+            <p class="travel-modal-subtitle" id="travelModalSubtitle"></p>
+          </div>
+        </div>
+        <div class="travel-modal-stage">
+          <button type="button" class="travel-modal-nav travel-modal-nav-prev" id="travelModalPrev" aria-label="Previous photo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg>
+          </button>
+          <div class="travel-modal-frame" id="travelModalFrame">
+            <img alt="" id="travelModalImg"/>
+            <div class="travel-modal-placeholder" id="travelModalPlaceholder">
+              <span class="travel-modal-placeholder-flag" id="travelModalPlaceholderFlag">🌍</span>
+              <span class="travel-modal-placeholder-text">Photos coming soon.</span>
+            </div>
+          </div>
+          <button type="button" class="travel-modal-nav travel-modal-nav-next" id="travelModalNext" aria-label="Next photo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+        </div>
+        <p class="travel-modal-caption" id="travelModalCaption"></p>
+        <div class="travel-modal-dots" id="travelModalDots" aria-hidden="true"></div>
       </div>
     </div>
     <div aria-hidden="true" class="image-modal email-modal" id="emailModal" role="dialog" aria-labelledby="emailModalTitle">
@@ -1229,7 +1328,8 @@
     (function() {
       var modals = {
         wechat: document.getElementById('wechatModal'),
-        email: document.getElementById('emailModal')
+        email: document.getElementById('emailModal'),
+        travel: document.getElementById('travelModal')
       };
 
       function openModal(modal) {
@@ -1550,6 +1650,723 @@
       });
 
       render();
+    })();
+
+    (function() {
+      // ---------------------------------------------------------------
+      // Travels data — edit this array to add/remove countries & photos.
+      // Each `photos` entry references a file under images/travel/.
+      // Leaving `photos: []` shows a styled placeholder card instead.
+      // ---------------------------------------------------------------
+      // `iso` is the ISO 3166-1 numeric code, used to highlight the country on
+      // the globe (world-atlas TopoJSON keys countries by this id).
+      // `names` lists alternative spellings used by various map datasets so
+      // matching stays robust if `iso` is missing for a feature.
+      var TRAVELS = [
+        // Asia
+        { code: 'cn', iso: 156, name: 'China',          flag: '🇨🇳', continent: 'Asia',          names: ['China'],                                       cities: ['Shanghai', 'Beijing', 'Hong Kong', 'Shenzhen', 'Hangzhou'], photos: [] },
+        { code: 'jp', iso: 392, name: 'Japan',          flag: '🇯🇵', continent: 'Asia',          names: ['Japan'],                                       cities: ['Tokyo', 'Yokohama'], photos: [] },
+        { code: 'kr', iso: 410, name: 'South Korea',    flag: '🇰🇷', continent: 'Asia',          names: ['South Korea', 'Republic of Korea', 'Korea, Republic of', 'Korea'], cities: ['Seoul'], photos: [] },
+        { code: 'sg', iso: 702, name: 'Singapore',      flag: '🇸🇬', continent: 'Asia',          names: ['Singapore'],                                   cities: ['Singapore'], photos: [] },
+        { code: 'qa', iso: 634, name: 'Qatar',          flag: '🇶🇦', continent: 'Asia',          names: ['Qatar'],                                       cities: ['Doha'], photos: [] },
+        { code: 'tr', iso: 792, name: 'Türkiye',        flag: '🇹🇷', continent: 'Asia',          names: ['Türkiye', 'Turkey'],                           cities: ['Istanbul'], photos: [] },
+        // Europe
+        { code: 'gb', iso: 826, name: 'United Kingdom', flag: '🇬🇧', continent: 'Europe',        names: ['United Kingdom', 'England'],                   cities: ['London'], photos: [] },
+        { code: 'at', iso:  40, name: 'Austria',        flag: '🇦🇹', continent: 'Europe',        names: ['Austria'],                                     cities: ['Vienna'], photos: [
+          { src: 'images/travel/at-vienna-1.jpg', city: 'Vienna', year: '2026', caption: 'Vienna City Hall' },
+          { src: 'images/travel/at-vienna-2.jpg', city: 'Vienna', year: '2026', caption: 'Austrian Parliament Building' },
+          { src: 'images/travel/at-vienna-3.jpg', city: 'Vienna', year: '2026', caption: 'Inside St. Stephen\'s Cathedral' },
+          { src: 'images/travel/at-vienna-4.jpg', city: 'Vienna', year: '2026', caption: 'Vienna State Opera' },
+          { src: 'images/travel/at-vienna-5.jpg', city: 'Vienna', year: '2026', caption: 'View from Danube Tower' },
+          { src: 'images/travel/at-vienna-6.jpg', city: 'Vienna', year: '2026', caption: 'View from Danube Tower' },
+          { src: 'images/travel/at-vienna-7.jpg', city: 'Vienna', year: '2026', caption: 'Zollamtssteg Bridge (Before Sunrise, 1995)' },
+          { src: 'images/travel/at-vienna-8.jpg', city: 'Vienna', year: '2026', caption: 'Vienna Streetview' },
+          { src: 'images/travel/at-vienna-9.jpg', city: 'Vienna', year: '2026', caption: 'St. Francis of Assisi Church' }
+        ] },
+        { code: 'no', iso: 578, name: 'Norway',         flag: '🇳🇴', continent: 'Europe',        names: ['Norway'],                                      cities: ['Oslo'], photos: [] },
+        { code: 'dk', iso: 208, name: 'Denmark',        flag: '🇩🇰', continent: 'Europe',        names: ['Denmark'],                                     cities: ['Copenhagen'], photos: [] },
+        { code: 'cz', iso: 203, name: 'Czech Republic', flag: '🇨🇿', continent: 'Europe',        names: ['Czechia', 'Czech Republic'],                   cities: ['Prague'], photos: [
+          { src: 'images/travel/cz-prague-1.jpg', city: 'Prague', year: '2026', caption: 'Charles Bridge' },
+          { src: 'images/travel/cz-prague-2.jpg', city: 'Prague', year: '2026', caption: 'Charles Bridge' },
+          { src: 'images/travel/cz-prague-3.jpg', city: 'Prague', year: '2026', caption: 'Prague Castle' },
+          { src: 'images/travel/cz-prague-4.jpg', city: 'Prague', year: '2026', caption: 'View from St. Vitus Cathedral' },
+          { src: 'images/travel/cz-prague-5.jpg', city: 'Prague', year: '2026', caption: 'Prague Streetview' },
+          { src: 'images/travel/cz-prague-6.jpg', city: 'Prague', year: '2026', caption: 'Prague Castle' },
+          { src: 'images/travel/cz-prague-7.jpg', city: 'Prague', year: '2026', caption: '' },
+          { src: 'images/travel/cz-prague-8.jpg', city: 'Prague', year: '2026', caption: '' }
+        ] },
+        { code: 'hu', iso: 348, name: 'Hungary',        flag: '🇭🇺', continent: 'Europe',        names: ['Hungary'],                                     cities: ['Budapest'], photos: [
+          { src: 'images/travel/hu-budapest-1.jpg', city: 'Budapest', year: '2026', caption: 'Hungarian Parliament Building' }
+        ] },
+        // North America
+        { code: 'us', iso: 840, name: 'United States',  flag: '🇺🇸', continent: 'North America', names: ['United States of America', 'United States', 'USA'], cities: [], photos: [] }
+      ];
+
+      // Cosmetic per-continent palette used by the placeholder gradient.
+      var CONTINENT_TINTS = {
+        'Asia':           { from: '#f97316', to: '#ef4444', ink: '#fff7ed' },
+        'Europe':         { from: '#2563eb', to: '#7c3aed', ink: '#eff6ff' },
+        'North America':  { from: '#10b981', to: '#0ea5e9', ink: '#ecfdf5' },
+        'South America':  { from: '#f59e0b', to: '#84cc16', ink: '#fefce8' },
+        'Africa':         { from: '#ea580c', to: '#dc2626', ink: '#fff7ed' },
+        'Oceania':        { from: '#06b6d4', to: '#3b82f6', ink: '#ecfeff' },
+        'Antarctica':     { from: '#64748b', to: '#94a3b8', ink: '#f1f5f9' }
+      };
+
+      var grid = document.getElementById('travelsGrid');
+      var statsBar = document.getElementById('travelsStats');
+      var filterBtnContainer = document.getElementById('travelsFilterButtons');
+      var emptyEl = document.getElementById('travelsEmpty');
+      if (!grid || !statsBar || !filterBtnContainer) return;
+
+      // --- Build aggregate stats -------------------------------------
+      var continentSet = {};
+      var citySet = {};
+      var photoCount = 0;
+      TRAVELS.forEach(function(c) {
+        continentSet[c.continent] = (continentSet[c.continent] || 0) + 1;
+        (c.cities || []).forEach(function(ct) {
+          if (ct) citySet[c.name + '|' + ct] = true;
+        });
+        photoCount += (c.photos || []).length;
+      });
+
+      var continents = Object.keys(continentSet).sort(function(a, b) {
+        return continentSet[b] - continentSet[a];
+      });
+
+      var totals = {
+        countries: TRAVELS.length,
+        continents: continents.length,
+        cities: Object.keys(citySet).length,
+        photos: photoCount
+      };
+
+      // Wire up animated counters
+      var statEls = statsBar.querySelectorAll('.travel-stat-num');
+      var statTargets = [totals.countries, totals.continents, totals.cities, totals.photos];
+      statEls.forEach(function(el, i) {
+        el.setAttribute('data-target', String(statTargets[i]));
+      });
+
+      function animateCounters() {
+        statEls.forEach(function(el) {
+          var target = parseInt(el.getAttribute('data-target'), 10) || 0;
+          var startTime = null;
+          var duration = 900;
+          function step(ts) {
+            if (!startTime) startTime = ts;
+            var p = Math.min(1, (ts - startTime) / duration);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(eased * target);
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        });
+      }
+
+      if ('IntersectionObserver' in window) {
+        var statsObs = new IntersectionObserver(function(entries, obs) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              animateCounters();
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        statsObs.observe(statsBar);
+      } else {
+        animateCounters();
+      }
+
+      // --- Build continent filter buttons ----------------------------
+      continents.forEach(function(name) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'travel-filter-btn';
+        btn.setAttribute('data-continent', name);
+        btn.innerHTML = name + '<span class="travel-filter-count">' + continentSet[name] + '</span>';
+        filterBtnContainer.appendChild(btn);
+      });
+
+      var filterButtons = Array.prototype.slice.call(filterBtnContainer.querySelectorAll('.travel-filter-btn'));
+
+      // --- Build country cards ---------------------------------------
+      function buildCard(country) {
+        var tint = CONTINENT_TINTS[country.continent] || { from: '#475569', to: '#0f172a', ink: '#f8fafc' };
+        var cover = (country.photos && country.photos.length) ? country.photos[0] : null;
+        var hasPhotos = country.photos && country.photos.length > 0;
+
+        var card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'travel-card';
+        card.setAttribute('role', 'listitem');
+        card.setAttribute('data-continent', country.continent);
+        card.setAttribute('data-code', country.code);
+        card.setAttribute('aria-label', 'Open photos from ' + country.name);
+
+        var media = document.createElement('div');
+        media.className = 'travel-card-media';
+        media.style.background = 'linear-gradient(135deg, ' + tint.from + ' 0%, ' + tint.to + ' 100%)';
+
+        if (cover) {
+          var img = document.createElement('img');
+          img.className = 'travel-card-img';
+          // Deferred load: src is set only after the user opens the Cards view
+          // (loadCardImages()). Until then the cover stays as the gradient
+          // placeholder and no network request is made.
+          img.dataset.src = cover.src;
+          img.alt = (cover.caption || (country.name + ' photo'));
+          img.loading = 'lazy';
+          img.decoding = 'async';
+          img.addEventListener('error', function() { img.remove(); });
+          media.appendChild(img);
+        } else {
+          var ph = document.createElement('span');
+          ph.className = 'travel-card-flag';
+          ph.textContent = country.flag;
+          media.appendChild(ph);
+        }
+
+        var badge = document.createElement('span');
+        badge.className = 'travel-card-continent';
+        badge.textContent = country.continent;
+        media.appendChild(badge);
+
+        var photosBadge = document.createElement('span');
+        photosBadge.className = 'travel-card-photos' + (hasPhotos ? '' : ' is-empty');
+        photosBadge.innerHTML = hasPhotos
+          ? '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="13" r="3"/><path d="M8 6l1.5-2h5L16 6"/></svg>' + country.photos.length
+          : 'soon';
+        media.appendChild(photosBadge);
+
+        var body = document.createElement('div');
+        body.className = 'travel-card-body';
+
+        var title = document.createElement('div');
+        title.className = 'travel-card-title';
+        title.innerHTML = '<span class="travel-card-title-flag" aria-hidden="true">' + country.flag + '</span>'
+                       + '<span class="travel-card-title-name">' + country.name + '</span>';
+        body.appendChild(title);
+
+        if (country.cities && country.cities.length) {
+          var cities = document.createElement('div');
+          cities.className = 'travel-card-cities';
+          cities.textContent = country.cities.slice(0, 3).join(' · ')
+            + (country.cities.length > 3 ? ' · +' + (country.cities.length - 3) : '');
+          body.appendChild(cities);
+        }
+
+        card.appendChild(media);
+        card.appendChild(body);
+
+        card.addEventListener('click', function() { openTravelModal(country); });
+
+        return card;
+      }
+
+      TRAVELS.forEach(function(c) { grid.appendChild(buildCard(c)); });
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.travel-card'));
+
+      // Defer card cover network requests until the Cards view is shown.
+      var cardImagesLoaded = false;
+      function loadCardImages() {
+        if (cardImagesLoaded) return;
+        cardImagesLoaded = true;
+        var imgs = grid.querySelectorAll('img.travel-card-img[data-src]');
+        Array.prototype.forEach.call(imgs, function(img) {
+          img.src = img.getAttribute('data-src');
+          img.removeAttribute('data-src');
+        });
+      }
+
+      // --- Filtering --------------------------------------------------
+      var activeContinent = 'all';
+      function applyFilter() {
+        var anyVisible = false;
+        cards.forEach(function(card) {
+          var match = activeContinent === 'all' || card.getAttribute('data-continent') === activeContinent;
+          card.classList.toggle('is-hidden-by-filter', !match);
+          if (match) anyVisible = true;
+        });
+        if (emptyEl) emptyEl.hidden = anyVisible;
+      }
+
+      filterButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          activeContinent = btn.getAttribute('data-continent') || 'all';
+          filterButtons.forEach(function(b) { b.classList.toggle('is-active', b === btn); });
+          applyFilter();
+        });
+      });
+      applyFilter();
+
+      // --- Lightbox ---------------------------------------------------
+      var modal = document.getElementById('travelModal');
+      var modalFlag = document.getElementById('travelModalFlag');
+      var modalTitle = document.getElementById('travelModalTitle');
+      var modalSubtitle = document.getElementById('travelModalSubtitle');
+      var modalFrame = document.getElementById('travelModalFrame');
+      var modalImg = document.getElementById('travelModalImg');
+      var modalPlaceholder = document.getElementById('travelModalPlaceholder');
+      var modalPlaceholderFlag = document.getElementById('travelModalPlaceholderFlag');
+      var modalCaption = document.getElementById('travelModalCaption');
+      var modalPrev = document.getElementById('travelModalPrev');
+      var modalNext = document.getElementById('travelModalNext');
+      var modalDots = document.getElementById('travelModalDots');
+
+      var currentCountry = null;
+      var currentPhotoIdx = 0;
+
+      function renderPhoto() {
+        if (!currentCountry) return;
+        var photos = currentCountry.photos || [];
+        var hasPhotos = photos.length > 0;
+        modalPrev.disabled = !hasPhotos || photos.length <= 1;
+        modalNext.disabled = !hasPhotos || photos.length <= 1;
+        modalPrev.style.visibility = photos.length > 1 ? 'visible' : 'hidden';
+        modalNext.style.visibility = photos.length > 1 ? 'visible' : 'hidden';
+
+        if (!hasPhotos) {
+          if (modalFrame) modalFrame.classList.add('is-placeholder');
+          modalImg.style.display = 'none';
+          modalImg.removeAttribute('src');
+          modalPlaceholder.style.display = 'flex';
+          modalPlaceholderFlag.textContent = currentCountry.flag;
+          modalCaption.textContent = (currentCountry.cities && currentCountry.cities.length)
+            ? currentCountry.cities.join(' · ')
+            : 'Photos will appear here once uploaded.';
+        } else {
+          var p = photos[currentPhotoIdx];
+          if (modalFrame) modalFrame.classList.remove('is-placeholder');
+          modalPlaceholder.style.display = 'none';
+          modalImg.style.display = 'block';
+          modalImg.src = p.src;
+          // Preload the adjacent photos so prev/next nav feels instant.
+          if (photos.length > 1) {
+            var nextI = (currentPhotoIdx + 1) % photos.length;
+            var prevI = (currentPhotoIdx - 1 + photos.length) % photos.length;
+            [nextI, prevI].forEach(function(i) {
+              if (i === currentPhotoIdx) return;
+              var pre = new Image();
+              pre.decoding = 'async';
+              pre.src = photos[i].src;
+            });
+          }
+          modalImg.alt = p.caption || (currentCountry.name + ' photo');
+          var captionParts = [];
+          if (p.city) captionParts.push(p.city);
+          if (p.year) captionParts.push(p.year);
+          var prefix = captionParts.length ? captionParts.join(' · ') : '';
+          modalCaption.textContent = (prefix ? prefix + (p.caption ? ' — ' + p.caption : '') : (p.caption || ''));
+        }
+
+        // Render dots
+        modalDots.innerHTML = '';
+        if (photos.length > 1) {
+          photos.forEach(function(_, i) {
+            var d = document.createElement('span');
+            d.className = 'travel-modal-dot' + (i === currentPhotoIdx ? ' is-active' : '');
+            modalDots.appendChild(d);
+          });
+        }
+      }
+
+      function openTravelModal(country) {
+        currentCountry = country;
+        currentPhotoIdx = 0;
+        modalFlag.textContent = country.flag;
+        modalTitle.textContent = country.name;
+        modalSubtitle.textContent = country.continent
+          + (country.cities && country.cities.length ? ' · ' + country.cities.join(', ') : '');
+        renderPhoto();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function step(dir) {
+        if (!currentCountry) return;
+        var photos = currentCountry.photos || [];
+        if (photos.length <= 1) return;
+        currentPhotoIdx = (currentPhotoIdx + dir + photos.length) % photos.length;
+        renderPhoto();
+      }
+
+      modalPrev.addEventListener('click', function() { step(-1); });
+      modalNext.addEventListener('click', function() { step(1); });
+
+      document.addEventListener('keydown', function(e) {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      });
+
+      // ================================================================
+      // View toggle + interactive globe
+      // ================================================================
+      var viewToggle = document.getElementById('travelsViewToggle');
+      var viewGlobe = document.getElementById('travelsViewGlobe');
+      var viewCards = document.getElementById('travelsViewCards');
+      var globeSvg = document.getElementById('travelGlobe');
+      var globeWrap = document.getElementById('travelGlobeWrap');
+      var globeTip = document.getElementById('travelGlobeTip');
+      var globeStatus = document.getElementById('travelGlobeStatus');
+
+      // View switching --------------------------------------------------
+      if (viewToggle && viewGlobe && viewCards) {
+        var viewButtons = Array.prototype.slice.call(viewToggle.querySelectorAll('.travel-view-btn'));
+        function setView(name) {
+          viewButtons.forEach(function(b) {
+            var active = b.getAttribute('data-view') === name;
+            b.classList.toggle('is-active', active);
+            b.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          var showGlobe = name === 'globe';
+          viewGlobe.classList.toggle('is-active', showGlobe);
+          viewCards.classList.toggle('is-active', !showGlobe);
+          viewGlobe.hidden = !showGlobe;
+          viewCards.hidden = showGlobe;
+          if (showGlobe) {
+            ensureGlobeInit();
+            // Globe size depends on layout; nudge a redraw on first show.
+            requestAnimationFrame(function() { if (renderGlobe) renderGlobe(); });
+          } else {
+            loadCardImages();
+          }
+        }
+        viewButtons.forEach(function(btn) {
+          btn.addEventListener('click', function() {
+            setView(btn.getAttribute('data-view') || 'globe');
+          });
+        });
+      }
+
+      // Globe ------------------------------------------------------------
+      var globeInitStarted = false;
+      var renderGlobe = null;
+
+      function loadScript(src) {
+        return new Promise(function(resolve, reject) {
+          var existing = document.querySelector('script[data-src="' + src + '"]');
+          if (existing) {
+            if (existing.dataset.loaded === '1') return resolve();
+            existing.addEventListener('load', function() { resolve(); });
+            existing.addEventListener('error', function() { reject(new Error(src)); });
+            return;
+          }
+          var s = document.createElement('script');
+          s.src = src;
+          s.async = false;
+          s.dataset.src = src;
+          s.onload = function() { s.dataset.loaded = '1'; resolve(); };
+          s.onerror = function() { reject(new Error('Failed to load ' + src)); };
+          document.head.appendChild(s);
+        });
+      }
+
+      function ensureGlobeInit() {
+        if (globeInitStarted || !globeSvg) return;
+        globeInitStarted = true;
+
+        // Use IntersectionObserver to defer the actual fetch until in view.
+        if ('IntersectionObserver' in window) {
+          var obs = new IntersectionObserver(function(entries, o) {
+            entries.forEach(function(e) {
+              if (e.isIntersecting) { o.disconnect(); initGlobe(); }
+            });
+          }, { threshold: 0.05 });
+          obs.observe(globeSvg);
+        } else {
+          initGlobe();
+        }
+      }
+
+      function setGlobeStatus(text) {
+        if (!globeStatus) return;
+        if (!text) { globeStatus.hidden = true; return; }
+        globeStatus.hidden = false;
+        globeStatus.textContent = text;
+      }
+
+      function initGlobe() {
+        setGlobeStatus('Loading world map…');
+        // Load d3 v7 (bundles d3-selection, d3-geo, d3-drag, d3-array, …) first,
+        // then topojson-client which has no other runtime dependency.
+        loadScript('https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js')
+          .then(function() {
+            return loadScript('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js');
+          })
+          .then(function() {
+            return fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r) {
+              if (!r.ok) throw new Error('atlas fetch failed: ' + r.status);
+              return r.json();
+            });
+          })
+          .then(function(world) {
+            if (!window.d3 || !window.topojson) {
+              throw new Error('d3 or topojson global is missing after load');
+            }
+            setGlobeStatus('');
+            buildGlobe(world);
+          })
+          .catch(function(err) {
+            console.error('Globe init failed:', err);
+            setGlobeStatus('Could not load the globe. Switch to the Cards view to browse.');
+          });
+      }
+
+      function buildGlobe(world) {
+        if (!window.d3 || !window.topojson) return;
+        var d3 = window.d3;
+        var topojson = window.topojson;
+
+        // Build visited-country lookups.
+        var visitedById = {};
+        var visitedByName = {};
+        TRAVELS.forEach(function(c) {
+          if (c.iso != null) visitedById[String(c.iso)] = c;
+          (c.names || [c.name]).forEach(function(n) {
+            if (n) visitedByName[n.toLowerCase()] = c;
+          });
+        });
+        function visitedFor(feature) {
+          if (!feature) return null;
+          var byId = visitedById[String(+feature.id)] || visitedById[String(feature.id)];
+          if (byId) return byId;
+          var name = feature.properties && feature.properties.name;
+          return name ? (visitedByName[name.toLowerCase()] || null) : null;
+        }
+
+        var WIDTH = 460, HEIGHT = 460;
+        var INITIAL_SCALE = 215;
+        var MIN_SCALE = 120;
+        var MAX_SCALE = 700;
+
+        var projection = d3.geoOrthographic()
+          .scale(INITIAL_SCALE)
+          .translate([WIDTH / 2, HEIGHT / 2])
+          .clipAngle(90)
+          .rotate([-90, -25]); // start centered roughly on Asia/Europe
+        var pathGen = d3.geoPath(projection);
+
+        var svg = d3.select(globeSvg)
+          .attr('viewBox', '0 0 ' + WIDTH + ' ' + HEIGHT);
+        svg.selectAll('*').remove();
+
+        // SVG defs for a subtle radial shading on the sphere
+        var defs = svg.append('defs');
+        var ocean = defs.append('radialGradient')
+          .attr('id', 'travel-globe-ocean')
+          .attr('cx', '35%').attr('cy', '32%').attr('r', '75%');
+        ocean.append('stop').attr('offset', '0%').attr('stop-color', 'var(--travel-globe-ocean-hi, #e6f1ff)');
+        ocean.append('stop').attr('offset', '100%').attr('stop-color', 'var(--travel-globe-ocean-lo, #b9d3f0)');
+
+        var shade = defs.append('radialGradient')
+          .attr('id', 'travel-globe-shade')
+          .attr('cx', '70%').attr('cy', '75%').attr('r', '70%');
+        shade.append('stop').attr('offset', '0%').attr('stop-color', 'rgba(0,0,0,0.18)');
+        shade.append('stop').attr('offset', '60%').attr('stop-color', 'rgba(0,0,0,0)');
+
+        // Drop shadow filter for the globe
+        var filter = defs.append('filter')
+          .attr('id', 'travel-globe-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
+        filter.append('feGaussianBlur').attr('in', 'SourceAlpha').attr('stdDeviation', 6);
+        filter.append('feOffset').attr('dx', 0).attr('dy', 6).attr('result', 'offsetBlur');
+        var feMerge = filter.append('feMerge');
+        feMerge.append('feMergeNode').attr('in', 'offsetBlur');
+        feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+
+        var globeG = svg.append('g').attr('class', 'travel-globe-root');
+
+        // Ocean sphere
+        var sphere = globeG.append('path')
+          .datum({ type: 'Sphere' })
+          .attr('class', 'travel-globe-sphere')
+          .attr('fill', 'url(#travel-globe-ocean)')
+          .attr('filter', 'url(#travel-globe-shadow)');
+
+        // Graticule
+        var graticule = globeG.append('path')
+          .datum(d3.geoGraticule10())
+          .attr('class', 'travel-globe-graticule');
+
+        // Country features
+        var countries = topojson.feature(world, world.objects.countries).features;
+
+        var countryG = globeG.append('g').attr('class', 'travel-globe-countries');
+        var countryPaths = countryG.selectAll('path')
+          .data(countries)
+          .enter().append('path')
+            .attr('class', function(d) { return 'travel-globe-country' + (visitedFor(d) ? ' is-visited' : ''); });
+
+        // Shading overlay on top to give 3D feel
+        var shadeOverlay = globeG.append('path')
+          .datum({ type: 'Sphere' })
+          .attr('class', 'travel-globe-shade')
+          .attr('fill', 'url(#travel-globe-shade)')
+          .attr('pointer-events', 'none');
+
+        renderGlobe = function() {
+          sphere.attr('d', pathGen);
+          graticule.attr('d', pathGen);
+          countryPaths.attr('d', pathGen);
+          shadeOverlay.attr('d', pathGen);
+        };
+        renderGlobe();
+
+        // -------- Drag to spin (lat/lon style, simple & dependency-free)
+        var isDragging = false;
+        var rotateStart = null;
+        var dragStart = null;
+        var SENSITIVITY = 0.30;
+
+        function pointerXY(event) {
+          // event has clientX/clientY through d3-drag's sourceEvent or directly
+          var src = event.sourceEvent || event;
+          return [src.clientX, src.clientY];
+        }
+
+        svg.call(d3.drag()
+          .on('start', function(event) {
+            isDragging = true;
+            stopAutoRotate();
+            rotateStart = projection.rotate();
+            dragStart = pointerXY(event);
+            globeSvg.classList.add('is-dragging');
+            hideTip();
+          })
+          .on('drag', function(event) {
+            if (!rotateStart || !dragStart) return;
+            var p = pointerXY(event);
+            var dx = p[0] - dragStart[0];
+            var dy = p[1] - dragStart[1];
+            // Scale sensitivity with zoom so closer view rotates slower visually.
+            var k = SENSITIVITY * (INITIAL_SCALE / projection.scale());
+            var yaw = rotateStart[0] + dx * k;
+            var pitch = Math.max(-85, Math.min(85, rotateStart[1] - dy * k));
+            projection.rotate([yaw, pitch, rotateStart[2] || 0]);
+            renderGlobe();
+          })
+          .on('end', function() {
+            isDragging = false;
+            globeSvg.classList.remove('is-dragging');
+            scheduleAutoRotate();
+          })
+        );
+
+        // -------- Wheel zoom
+        globeSvg.addEventListener('wheel', function(event) {
+          event.preventDefault();
+          var factor = event.deltaY > 0 ? 0.88 : 1.14;
+          var s = Math.max(MIN_SCALE, Math.min(MAX_SCALE, projection.scale() * factor));
+          projection.scale(s);
+          renderGlobe();
+          hideTip();
+          stopAutoRotate();
+          scheduleAutoRotate();
+        }, { passive: false });
+
+        // -------- Hover tooltip
+        function showTip(html, clientX, clientY) {
+          if (!globeTip) return;
+          globeTip.innerHTML = html;
+          var wrapRect = globeWrap.getBoundingClientRect();
+          var tipX = clientX - wrapRect.left + 14;
+          var tipY = clientY - wrapRect.top + 14;
+          // Keep tip inside the wrap
+          var maxX = wrapRect.width - 10;
+          var maxY = wrapRect.height - 10;
+          globeTip.style.left = Math.min(tipX, maxX) + 'px';
+          globeTip.style.top = Math.min(tipY, maxY) + 'px';
+          globeTip.classList.add('is-visible');
+        }
+        function hideTip() {
+          if (globeTip) globeTip.classList.remove('is-visible');
+        }
+
+        countryPaths
+          .on('mousemove', function(event, d) {
+            if (isDragging) return;
+            var v = visitedFor(d);
+            var name = (d && d.properties && d.properties.name) || '';
+            if (!name) return;
+            var html;
+            if (v) {
+              var photoBit = v.photos && v.photos.length ? ' · ' + v.photos.length + ' photo' + (v.photos.length === 1 ? '' : 's') : '';
+              html = '<span class="travel-globe-tip-flag">' + v.flag + '</span>'
+                + '<span class="travel-globe-tip-text"><b>' + v.name + '</b><br/>' + v.continent + photoBit + '</span>';
+            } else {
+              html = '<span class="travel-globe-tip-text travel-globe-tip-muted">' + name + '</span>';
+            }
+            showTip(html, event.clientX, event.clientY);
+            globeSvg.style.cursor = v ? 'pointer' : (isDragging ? 'grabbing' : 'grab');
+          })
+          .on('mouseleave', function() {
+            hideTip();
+            globeSvg.style.cursor = '';
+          })
+          .on('click', function(event, d) {
+            var v = visitedFor(d);
+            if (v) { hideTip(); openTravelModal(v); }
+          });
+
+        // Hide tip when pointer leaves the entire globe area
+        globeSvg.addEventListener('mouseleave', hideTip);
+
+        // -------- Auto-rotate when idle
+        var autoRotateRAF = null;
+        var autoRotateTimer = null;
+        var lastTs = null;
+        var SPEED = 4.5; // degrees per second
+        function tickAutoRotate(ts) {
+          if (!ts) ts = performance.now();
+          if (lastTs == null) lastTs = ts;
+          var dt = Math.min(0.1, (ts - lastTs) / 1000);
+          lastTs = ts;
+          var r = projection.rotate();
+          projection.rotate([r[0] + SPEED * dt, r[1], r[2] || 0]);
+          renderGlobe();
+          autoRotateRAF = requestAnimationFrame(tickAutoRotate);
+        }
+        function startAutoRotate() {
+          if (autoRotateRAF || isDragging) return;
+          if (document.hidden) return;
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+          lastTs = null;
+          autoRotateRAF = requestAnimationFrame(tickAutoRotate);
+        }
+        function stopAutoRotate() {
+          if (autoRotateRAF) { cancelAnimationFrame(autoRotateRAF); autoRotateRAF = null; }
+          if (autoRotateTimer) { clearTimeout(autoRotateTimer); autoRotateTimer = null; }
+          lastTs = null;
+        }
+        function scheduleAutoRotate() {
+          if (autoRotateTimer) clearTimeout(autoRotateTimer);
+          autoRotateTimer = setTimeout(startAutoRotate, 2500);
+        }
+        globeWrap.addEventListener('mouseenter', stopAutoRotate);
+        globeWrap.addEventListener('mouseleave', function() { if (!isDragging) scheduleAutoRotate(); });
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) stopAutoRotate();
+          else scheduleAutoRotate();
+        });
+
+        // Start auto-rotation after a short delay
+        scheduleAutoRotate();
+
+        // Pause auto-rotation if globe view is hidden (e.g., user switches to Cards)
+        if ('MutationObserver' in window && viewGlobe) {
+          var mo = new MutationObserver(function() {
+            if (viewGlobe.hidden) stopAutoRotate();
+            else scheduleAutoRotate();
+          });
+          mo.observe(viewGlobe, { attributes: true, attributeFilter: ['hidden', 'class'] });
+        }
+      }
+
+      // Kick off the globe (lazy fetches once visible)
+      ensureGlobeInit();
     })();
 
     (function() {
