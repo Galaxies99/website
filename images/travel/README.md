@@ -35,6 +35,10 @@ and edit it. Each country looks like:
 {
   code: 'tr', name: 'Türkiye', flag: '🇹🇷', continent: 'Asia',
   cities: ['Istanbul'],
+  // Optional. Pick which photo is used as the card cover.
+  // Accepts either a full path or just the filename.
+  // If omitted, the first photo in `photos` is used.
+  cover: 'tr-istanbul-bosphorus.jpg',
   photos: [
     { src: 'images/travel/tr-istanbul-bosphorus.jpg',
       city: 'Istanbul', year: '2024',

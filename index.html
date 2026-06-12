@@ -1662,10 +1662,33 @@
       // the globe (world-atlas TopoJSON keys countries by this id).
       // `names` lists alternative spellings used by various map datasets so
       // matching stays robust if `iso` is missing for a feature.
+      // `cover` (optional) picks which photo is used as the card cover.
+      //   Either the full path ('images/travel/jp-tokyo-3.jpg') or just the
+      //   filename ('jp-tokyo-3.jpg'). If omitted, the first photo is used.
       var TRAVELS = [
         // Asia
-        { code: 'cn', iso: 156, name: 'China',          flag: '🇨🇳', continent: 'Asia',          names: ['China', 'Taiwan'],                             cities: ['Shanghai', 'Beijing', 'Shenzhen', 'Hangzhou', 'Fuzhou', 'Taipei'], photos: [] },
-        { code: 'jp', iso: 392, name: 'Japan',          flag: '🇯🇵', continent: 'Asia',          names: ['Japan'],                                       cities: ['Tokyo', 'Yokohama'], photos: [] },
+        { code: 'cn', iso: 156, name: 'China',          flag: '🇨🇳', continent: 'Asia',          names: ['China', 'Taiwan'],                             cities: ['Shanghai', 'Beijing', 'Shenzhen', 'Hangzhou', 'Fuzhou', 'Wuhan', 'Ningbo', 'Guiyang', 'Hohhot'], photos: [] },
+        { code: 'jp', iso: 392, name: 'Japan',          flag: '🇯🇵', continent: 'Asia',          names: ['Japan'],                                       cities: ['Tokyo', 'Yokohama', 'Kamakura'], cover: 'images/travel/jp-kamakura-2.jpg', photos: [
+          { src: 'images/travel/jp-tokyo-1.jpg',    city: 'Tokyo',    year: '2024', caption: 'Sensō-ji' },
+          { src: 'images/travel/jp-tokyo-2.jpg',    city: 'Tokyo',    year: '2024', caption: 'Ueno Park' },
+          { src: 'images/travel/jp-tokyo-3.jpg',    city: 'Tokyo',    year: '2024', caption: 'Ueno Park' },
+          { src: 'images/travel/jp-tokyo-4.jpg',    city: 'Tokyo',    year: '2024', caption: 'Shibuya Station' },
+          { src: 'images/travel/jp-tokyo-5.jpg',    city: 'Tokyo',    year: '2024', caption: 'Shibuya Crossing' },
+          { src: 'images/travel/jp-tokyo-6.jpg',    city: 'Tokyo',    year: '2024', caption: 'Shibuya Crossing' },
+          { src: 'images/travel/jp-yokohama-1.jpg', city: 'Yokohama', year: '2024', caption: 'Yokohama Railway Bridge' },
+          { src: 'images/travel/jp-yokohama-2.jpg', city: 'Yokohama', year: '2024', caption: 'Yokohama Red Brick Warehouse' },
+          { src: 'images/travel/jp-yokohama-3.jpg', city: 'Yokohama', year: '2024', caption: 'Yokohama Red Brick Warehouse' },
+          { src: 'images/travel/jp-yokohama-4.jpg', city: 'Yokohama', year: '2024', caption: 'Cosmo Clock 21' },
+          { src: 'images/travel/jp-yokohama-5.jpg', city: 'Yokohama', year: '2024', caption: 'Yokohama Railway Station' },
+          { src: 'images/travel/jp-yokohama-6.jpg', city: 'Yokohama', year: '2024', caption: 'Yokohama Chinatown' },
+          { src: 'images/travel/jp-kamakura-1.jpg', city: 'Kamakura', year: '2024', caption: 'Mt. Fuji from Shichirigahama Beach' },
+          { src: 'images/travel/jp-kamakura-2.jpg', city: 'Kamakura', year: '2024', caption: 'Mt. Fuji from Enoshima' },
+          { src: 'images/travel/jp-kamakura-3.jpg', city: 'Kamakura', year: '2024', caption: 'Mt. Fuji from Kamakura High School Station' },
+          { src: 'images/travel/jp-kamakura-4.jpg', city: 'Kamakura', year: '2024', caption: 'Enoden Electric Railway' },
+          { src: 'images/travel/jp-kamakura-5.jpg', city: 'Kamakura', year: '2024', caption: 'Enoden Electric Railway' },
+          { src: 'images/travel/jp-kamakura-6.jpg', city: 'Kamakura', year: '2024', caption: 'The Great Buddha at Kōtoku-in' },
+          { src: 'images/travel/jp-kamakura-7.jpg', city: 'Kamakura', year: '2024', caption: 'Sea View from Kamakura High School Station (Slam Dunk)' }
+        ] },
         { code: 'kr', iso: 410, name: 'South Korea',    flag: '🇰🇷', continent: 'Asia',          names: ['South Korea', 'Republic of Korea', 'Korea, Republic of', 'Korea'], cities: ['Seoul'], photos: [
           { src: 'images/travel/kr-seoul-1.jpg', city: 'Seoul', year: '2025', caption: 'Gyeongbokgung Palace' },
           { src: 'images/travel/kr-seoul-2.jpg', city: 'Seoul', year: '2025', caption: 'Cheongdam Reservoir Park' },
@@ -1675,7 +1698,13 @@
           { src: 'images/travel/kr-seoul-6.jpg', city: 'Seoul', year: '2025', caption: 'Seoul Station' }
         ] },
         { code: 'sg', iso: 702, name: 'Singapore',      flag: '🇸🇬', continent: 'Asia',          names: ['Singapore'],                                   cities: ['Singapore'], photos: [] },
-        { code: 'qa', iso: 634, name: 'Qatar',          flag: '🇶🇦', continent: 'Asia',          names: ['Qatar'],                                       cities: ['Doha'], photos: [] },
+        { code: 'qa', iso: 634, name: 'Qatar',          flag: '🇶🇦', continent: 'Asia',          names: ['Qatar'],                                       cities: ['Doha'],  cover: "images/travel/qa-doha-3.jpg", photos: [
+          { src: 'images/travel/qa-doha-1.jpg', city: 'Doha', year: '2025', caption: 'Hamad International Airport' },
+          { src: 'images/travel/qa-doha-2.jpg', city: 'Doha', year: '2025', caption: 'Souq Waqif' },
+          { src: 'images/travel/qa-doha-3.jpg', city: 'Doha', year: '2025', caption: 'National Museum of Qatar' },
+          { src: 'images/travel/qa-doha-4.jpg', city: 'Doha', year: '2025', caption: 'Katara Cultural Village' },
+          { src: 'images/travel/qa-doha-5.jpg', city: 'Doha', year: '2025', caption: 'Doha Street View' }
+        ] },
         { code: 'tr', iso: 792, name: 'Türkiye',        flag: '🇹🇷', continent: 'Asia',          names: ['Türkiye', 'Turkey'],                           cities: ['Istanbul'], photos: [
           { src: 'images/travel/tr-istanbul-1.jpg', city: 'Istanbul', year: '2025', caption: 'Taksim Square' },
           { src: 'images/travel/tr-istanbul-2.jpg', city: 'Istanbul', year: '2025', caption: 'İstiklal Avenue' },
@@ -1686,7 +1715,26 @@
           { src: 'images/travel/tr-istanbul-7.jpg', city: 'Istanbul', year: '2025', caption: 'Mosque' }
         ] },
         // Europe
-        { code: 'gb', iso: 826, name: 'United Kingdom', flag: '🇬🇧', continent: 'Europe',        names: ['United Kingdom', 'England'],                   cities: ['London'], photos: [] },
+        { code: 'gb', iso: 826, name: 'United Kingdom', flag: '🇬🇧', continent: 'Europe',        names: ['United Kingdom', 'England'],                   cities: ['London'], photos: [
+          { src: 'images/travel/gb-london-1.jpg',  city: 'London', year: '2023', caption: 'London Towerbridge' },
+          { src: 'images/travel/gb-london-2.jpg',  city: 'London', year: '2023', caption: 'Buckingham Palace' },
+          { src: 'images/travel/gb-london-3.jpg',  city: 'London', year: '2023', caption: 'Westminster Abbey' },
+          { src: 'images/travel/gb-london-4.jpg',  city: 'London', year: '2023', caption: 'Westminster Abbey' },
+          { src: 'images/travel/gb-london-5.jpg',  city: 'London', year: '2023', caption: 'Big Ben (12:00 pm)' },
+          { src: 'images/travel/gb-london-6.jpg',  city: 'London', year: '2023', caption: 'Tower of London' },
+          { src: 'images/travel/gb-london-7.jpg',  city: 'London', year: '2023', caption: 'London Eye' },
+          { src: 'images/travel/gb-london-8.jpg',  city: 'London', year: '2023', caption: 'Paliament Square Garden' },
+          { src: 'images/travel/gb-london-9.jpg',  city: 'London', year: '2023', caption: 'The Shard' },
+          { src: 'images/travel/gb-london-10.jpg', city: 'London', year: '2023', caption: 'St. Pauls\' Cathedral' },
+          { src: 'images/travel/gb-london-11.jpg', city: 'London', year: '2023', caption: 'St. Pauls\' Cathedral' },
+          { src: 'images/travel/gb-london-12.jpg', city: 'London', year: '2023', caption: 'Inside St. Pauls\' Cathedral' },
+          { src: 'images/travel/gb-london-13.jpg', city: 'London', year: '2023', caption: 'Inside St. Pauls\' Cathedral (Harry Porter\'s Stairs)' },
+          { src: 'images/travel/gb-london-14.jpg', city: 'London', year: '2023', caption: 'View from St. Pauls\' Cathedral' },
+          { src: 'images/travel/gb-london-15.jpg', city: 'London', year: '2023', caption: 'View from St. Pauls\' Cathedral' },
+          { src: 'images/travel/gb-london-16.jpg', city: 'London', year: '2023', caption: 'View from ExCeL, London' },
+          { src: 'images/travel/gb-london-17.jpg', city: 'London', year: '2023', caption: 'London Street View' },
+          { src: 'images/travel/gb-london-18.jpg', city: 'London', year: '2023', caption: 'Stamford Bridge Stadium' }
+        ] },
         { code: 'at', iso:  40, name: 'Austria',        flag: '🇦🇹', continent: 'Europe',        names: ['Austria'],                                     cities: ['Vienna'], photos: [
           { src: 'images/travel/at-vienna-1.jpg', city: 'Vienna', year: '2026', caption: 'Vienna City Hall' },
           { src: 'images/travel/at-vienna-2.jpg', city: 'Vienna', year: '2026', caption: 'Austrian Parliament Building' },
@@ -1698,7 +1746,7 @@
           { src: 'images/travel/at-vienna-8.jpg', city: 'Vienna', year: '2026', caption: 'Vienna Street View' },
           { src: 'images/travel/at-vienna-9.jpg', city: 'Vienna', year: '2026', caption: 'St. Francis of Assisi Church' }
         ] },
-        { code: 'no', iso: 578, name: 'Norway',         flag: '🇳🇴', continent: 'Europe',        names: ['Norway'],                                      cities: ['Oslo', 'Lofoten', 'Tromsø'], photos: [
+        { code: 'no', iso: 578, name: 'Norway',         flag: '🇳🇴', continent: 'Europe',        names: ['Norway'],                                      cities: ['Oslo', 'Lofoten', 'Tromsø'], cover: 'images/travel/no-lofoten-2.jpg', photos: [
           { src: 'images/travel/no-oslo-1.jpg',    city: 'Oslo',    year: '2025', caption: 'National Museum' },
           { src: 'images/travel/no-oslo-2.jpg',    city: 'Oslo',    year: '2025', caption: 'Vigeland Sculpture Park' },
           { src: 'images/travel/no-oslo-3.jpg',    city: 'Oslo',    year: '2025', caption: 'Royal Palace' },
@@ -1852,9 +1900,26 @@
       var filterButtons = Array.prototype.slice.call(filterBtnContainer.querySelectorAll('.travel-filter-btn'));
 
       // --- Build country cards ---------------------------------------
+      // Resolve which photo to use as the card cover. Accepts either a full
+      // path (matches `photo.src`) or just the filename (matches the trailing
+      // segment of `photo.src`). Falls back to the first photo.
+      function resolveCover(country) {
+        var photos = country.photos || [];
+        if (!photos.length) return null;
+        var pick = country.cover;
+        if (pick) {
+          var found = photos.find(function(p) {
+            return p.src === pick || p.src.endsWith('/' + pick);
+          });
+          if (found) return found;
+          console.warn('Travels: cover "' + pick + '" not found for ' + country.name + '; using first photo.');
+        }
+        return photos[0];
+      }
+
       function buildCard(country) {
         var tint = CONTINENT_TINTS[country.continent] || { from: '#475569', to: '#0f172a', ink: '#f8fafc' };
-        var cover = (country.photos && country.photos.length) ? country.photos[0] : null;
+        var cover = resolveCover(country);
         var hasPhotos = country.photos && country.photos.length > 0;
 
         var card = document.createElement('button');
