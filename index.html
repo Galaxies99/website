@@ -134,7 +134,7 @@
                   </td>
                   <td style="padding:20px;width:75%;vertical-align:middle">
                     <div class="paper-venue">
-                      <em class="venue-confference">
+                      <em class="venue-conference">
                         RSS 2026
                       </em>
                     </div>
@@ -165,8 +165,8 @@
                   </td>
                   <td style="padding:20px;width:75%;vertical-align:middle">
                     <div class="paper-venue">
-                      <em class="venue-preprint">
-                        arXiv 2026
+                      <em class="venue-conference">
+                        IROS 2026
                       </em>
                     </div>
                     <papertitle>
@@ -2571,6 +2571,7 @@
       var conferenceLinks = {
         'RSS 2026': 'https://roboticsconference.org/',
         'ICRA 2026': 'https://2026.ieee-icra.org/',
+        'IROS 2026': 'https://2026.ieee-iros.org/',
         'ICRA 2025': 'https://2025.ieee-icra.org/',
         'ICRA 2024': 'https://2024.ieee-icra.org/',
         'ICRA 2023': 'https://ewh.ieee.org/soc/ras/conf/fullysponsored/icra/ICRA%202023/www.icra2023.org/',
@@ -2583,7 +2584,7 @@
         'CVPR 2023': 'https://cvpr2023.thecvf.com/Conferences/2023'
       };
 
-      document.querySelectorAll('em.venue-conference, em.venue-confference').forEach(function(tag) {
+      document.querySelectorAll('em.venue-conference, em.venue-conference').forEach(function(tag) {
         if (tag.querySelector('a')) return;
         var label = (tag.textContent || '').replace(/\s+/g, ' ').trim();
         if (!label) return;
