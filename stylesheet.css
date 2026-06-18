@@ -744,6 +744,31 @@ html[data-theme="dark"] .name-cn {
   background: #f8fafc;
 }
 
+.paper-teaser-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+  background:
+    linear-gradient(135deg, rgba(23, 114, 208, 0.08) 0%, rgba(240, 146, 40, 0.08) 100%),
+    #f8fafc;
+  color: #64748b;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  text-align: center;
+}
+
+.paper-teaser-placeholder span {
+  padding: 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
 /* Tags sit below image/video (class name kept for HTML) */
 .publications-table .paper-tags-overlay {
   margin-top: 0;
@@ -2352,6 +2377,15 @@ html[data-theme="dark"] .publications-table .paper-media-stack video {
   background: #182338;
   border-color: rgba(148, 163, 184, 0.22);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+}
+
+html[data-theme="dark"] .paper-teaser-placeholder {
+  background:
+    linear-gradient(135deg, rgba(96, 165, 250, 0.12) 0%, rgba(251, 191, 36, 0.09) 100%),
+    #182338;
+  border-color: rgba(148, 163, 184, 0.28);
+  color: var(--ink-600);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.36);
 }
 
 /* Selected row cells — override the light cream gradient so selected rows
