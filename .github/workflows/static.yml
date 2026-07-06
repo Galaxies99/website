@@ -38,6 +38,7 @@ jobs:
           mkdir -p _site
           cp -R CNAME index.html stylesheet.css data images history notes s2i FoAR _site/
           touch _site/.nojekyll
+          test -s _site/data/cv.pdf
           chmod -R a+rX _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
