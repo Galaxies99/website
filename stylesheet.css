@@ -1299,16 +1299,52 @@ p.publications-legend {
 }
 
 .mentoring-group-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.mentoring-group[open] .mentoring-group-head {
   margin-bottom: 10px;
 }
 
-.mentoring-group-head h3 {
+.mentoring-group-head::-webkit-details-marker {
+  display: none;
+}
+
+.mentoring-group-head::after {
+  width: 7px;
+  height: 7px;
+  margin-right: 3px;
+  border-right: 2px solid var(--ink-500);
+  border-bottom: 2px solid var(--ink-500);
+  content: "";
+  transform: rotate(45deg) translate(-1px, -1px);
+  transition: transform 0.18s ease, border-color 0.15s ease;
+}
+
+.mentoring-group[open] .mentoring-group-head::after {
+  transform: rotate(225deg) translate(-1px, -1px);
+}
+
+.mentoring-group-head:hover::after {
+  border-color: var(--accent);
+}
+
+.mentoring-group-head:focus-visible {
+  border-radius: 6px;
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+.mentoring-group-title {
   margin: 0;
   font-size: 14px;
+  font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.04em;
   text-transform: uppercase;
