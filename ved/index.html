@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rethinking Visual Embodiment Dependence in Visuomotor Policies: structuring visual embodiment information for human-to-robot transfer and robust configuration generalization.">
+  <title>Rethinking Visual Embodiment Dependence in Visuomotor Policies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #222;
+      --muted: #666;
+      --link: #1367a7;
+      --line: #e3e7eb;
+      --heading-font: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font-family: "Crimson Text", Georgia, serif;
+      font-size: 19px;
+      line-height: 1.55;
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: #208799; text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--link); outline-offset: 5px; }
+    [id] { scroll-margin-top: calc(var(--nav-height, 90px) + 24px); }
+
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 16px;
+      z-index: 30;
+      padding: 8px 16px;
+      background: #fff;
+    }
+    .skip-link:focus { top: 12px; }
+
+    .page-header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 54px 24px 26px;
+      text-align: center;
+    }
+
+    h1, h2, h3, h4 { font-family: var(--heading-font); line-height: 1.2; }
+    h1 { margin: 0 0 25px; font-size: 44px; font-weight: 700; }
+    h1 span { display: block; }
+    h2 { margin: 0 0 24px; font-size: 32px; font-weight: 400; text-align: center; }
+    h3 { margin: 28px 0 12px; font-size: 24px; font-weight: 600; }
+    p { margin: 0 0 18px; }
+
+    .authors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      column-gap: 26px;
+      row-gap: 5px;
+      max-width: 1000px;
+      margin: 0 auto 8px;
+      padding: 0;
+      list-style: none;
+      font-size: 25px;
+      color: var(--link);
+    }
+    .authors li { white-space: nowrap; }
+    .authors sup, .affiliations sup { font-family: var(--heading-font); }
+    .authors sup { margin-left: 2px; font-size: .55em; line-height: 0; }
+    .affiliations {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 4px 18px;
+      margin-bottom: 18px;
+      font-size: 20px;
+    }
+    .affiliations span { white-space: nowrap; }
+    .affiliations sup { margin-right: 3px; font-size: .65em; line-height: 0; }
+    .resource-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 28px;
+      font-size: 23px;
+    }
+    .resource-placeholder { color: var(--muted); }
+    .resource-placeholder small { font-size: 16px; }
+
+    .section-nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+      font-family: var(--heading-font);
+      font-size: 18px;
+      line-height: 1.5;
+    }
+    .section-nav-content {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 12px;
+      width: min(1000px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 6px 0;
+    }
+    .section-nav a, .research-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 9px;
+      border: 0;
+      border-radius: 6px;
+      background: transparent;
+      color: #000;
+      font: inherit;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .section-nav a:hover, .research-toggle:hover,
+    .research-toggle[aria-expanded="true"] { background: #f4f4f4; }
+    .research-toggle:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+    .research-menu { position: relative; }
+    .research-toggle { gap: 7px; }
+    .research-toggle svg { width: 12px; height: 12px; }
+    .research-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .research-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      z-index: 21;
+      min-width: 150px;
+      margin: 0;
+      padding: 6px 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, .08);
+      list-style: none;
+    }
+    .research-dropdown[hidden] { display: none; }
+    .research-dropdown a { display: block; padding: 8px 12px; border-radius: 0; }
+
+    main, .page-footer { width: min(900px, calc(100% - 40px)); margin: 0 auto; }
+    .content-section p:not(.lead):not(.citation-note), .content-section figcaption, .method-points li {
+      text-align: justify;
+      text-justify: inter-word;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+    .content-section { padding: 34px 0 12px; }
+    .content-section::before {
+      content: "";
+      display: block;
+      height: 1px;
+      margin-bottom: 32px;
+      background: linear-gradient(to right, transparent, #929292, transparent);
+    }
+
+    figure { margin: 26px 0; }
+    figure img { display: block; width: 100%; height: auto; margin: 0 auto; }
+    .figure-link { display: block; }
+    .figure-link:focus-visible { outline-offset: 6px; }
+    figcaption, caption {
+      padding: 10px 14px;
+      border-top: 1px solid var(--line);
+      background: #fafbfc;
+      color: #626b75;
+      font-family: var(--heading-font);
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    figcaption { margin: 12px auto 0; }
+    .caption-label {
+      margin-right: .35em;
+      color: #454e59;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .teaser { margin-top: 8px; margin-bottom: 8px; }
+    .teaser-question, .highlight-statement {
+      font-family: var(--heading-font);
+      line-height: 1.4;
+      text-align: center;
+      text-wrap: balance;
+    }
+    .teaser-question {
+      margin: 0 0 24px;
+      color: #145887;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    p.highlight-statement {
+      max-width: 850px;
+      margin: 22px auto 0;
+      padding: 16px 22px;
+      border-radius: 6px;
+      background: #eef5fa;
+      font-size: 22px;
+    }
+    .highlight-statement strong { color: #145887; }
+    .abstract-text { max-width: 800px; margin: 0 auto; }
+    .sensitivity-figure { max-width: 650px; margin-right: auto; margin-left: auto; }
+    .lead { text-align: center; font-size: 21px; }
+    .method-points { padding-left: 25px; }
+    .method-points li { padding-left: 4px; margin-bottom: 10px; }
+
+    .result-summary {
+      margin: 24px 0;
+      padding: 18px 22px;
+      border-left: 3px solid var(--link);
+      background: #f6f8fa;
+    }
+    .result-summary p { margin: 0; }
+    .result-summary strong { color: #145887; }
+    .protocol-note { color: var(--muted); font-size: 17px; }
+
+    .table-wrap { margin: 22px 0; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 17px; text-align: left; }
+    caption { border-bottom: 1px solid var(--line); text-align: left; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid var(--line); }
+    th { font-weight: 600; }
+    thead { background: #f6f8fa; }
+    td:last-child, th:last-child { white-space: nowrap; }
+
+    .result-videos { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .result-videos + h3 { margin-top: 46px; padding-top: 32px; border-top: 1px solid var(--line); }
+    .task-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 30px; }
+    .task { display: flex; flex-direction: column; min-width: 0; }
+    .task h4 { margin: 0 0 8px; font-size: 22px; font-weight: 600; }
+    .content-section .result-videos .task p {
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-family: var(--heading-font);
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: left;
+      -webkit-hyphens: none;
+      hyphens: none;
+    }
+    .task-context {
+      display: block;
+      margin-bottom: 6px;
+      font-family: var(--heading-font);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: .03em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .video-placeholder, .task-video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      margin-top: auto;
+      border-radius: 4px;
+      background: #f7f8fa;
+    }
+    .video-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 76px;
+      aspect-ratio: auto;
+      padding: 16px;
+      border: 1px dashed #d5dbe1;
+      color: #757e88;
+      text-align: center;
+      font-family: var(--heading-font);
+      font-size: 14px;
+    }
+    .task-video { object-fit: contain; background: #111; }
+
+    .configuration-task-list { display: grid; gap: 28px; }
+    .comparison-task { display: block; }
+    .task-heading-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      margin-bottom: 12px;
+    }
+    .task-heading-row h4 { margin: 0; }
+    .content-section .result-videos .task .comparison-note {
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    .comparison-switch {
+      display: inline-flex;
+      flex: 0 0 auto;
+      gap: 2px;
+      margin: 0 0 1px;
+      padding: 3px;
+      border: 0;
+      border-radius: 7px;
+      background: #eef1f4;
+      font-family: var(--heading-font);
+      font-size: 14px;
+      line-height: 1.25;
+    }
+    .comparison-tab {
+      min-height: 34px;
+      padding: 6px 8px;
+      border: 0;
+      border-radius: 5px;
+      background: transparent;
+      color: #57616c;
+      font: inherit;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .comparison-tab:hover { color: var(--ink); }
+    .comparison-tab[aria-selected="true"] {
+      background: #fff;
+      color: #145887;
+      font-weight: 600;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .09);
+    }
+    .comparison-tab:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+    .comparison-panel[hidden] { display: none; }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 0;
+    }
+    .comparison-video-frame {
+      min-width: 0;
+      overflow: hidden;
+      border-radius: 5px;
+      background: #111;
+    }
+    .comparison-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 9 / 8;
+      object-fit: cover;
+      background: #111;
+    }
+    .comparison-task + .comparison-task { padding-top: 24px; border-top: 1px solid var(--line); }
+
+    .citation-note { color: var(--muted); text-align: center; font-size: 17px; }
+    pre {
+      max-width: 100%;
+      margin: 22px 0 12px;
+      padding: 22px;
+      overflow-x: auto;
+      background: #f6f8fa;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    .page-footer { padding: 34px 0 40px; color: var(--muted); font-size: 16px; text-align: right; }
+    .page-footer p { margin: 0; }
+
+    @media (min-width: 641px) and (max-width: 900px) {
+      .task-heading-row { column-gap: 12px; }
+      .comparison-switch { font-size: 13px; }
+      .comparison-tab { padding-right: 6px; padding-left: 6px; }
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 18px; }
+      .page-header { padding: 32px 20px 22px; }
+      h1 { font-size: 32px; }
+      h2 { font-size: 27px; }
+      h3 { font-size: 22px; }
+      .authors { column-gap: 20px; font-size: 23px; }
+      .affiliations { font-size: 18px; }
+      .resource-links { gap: 8px 18px; font-size: 20px; }
+      .section-nav { font-size: 16px; }
+      .section-nav-content { gap: 4px 6px; }
+      .section-nav a, .research-toggle { min-height: 36px; padding: 0 8px; }
+      .research-dropdown a { padding: 8px 12px; }
+      .content-section { padding-top: 24px; }
+      .content-section::before { margin-bottom: 26px; }
+      .teaser-question { margin-bottom: 18px; font-size: 22px; }
+      p.highlight-statement { margin-top: 18px; padding: 14px 16px; font-size: 20px; }
+      figcaption, caption { padding: 9px 11px; font-size: 15px; }
+      .result-videos { margin-top: 24px; padding-top: 20px; }
+      .result-videos + h3 { margin-top: 34px; padding-top: 26px; }
+      .task-grid { grid-template-columns: 1fr; gap: 24px; }
+      .comparison-grid { grid-template-columns: 1fr; gap: 12px; }
+      .task-heading-row { align-items: center; gap: 9px 12px; }
+      .comparison-switch { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); width: 100%; font-size: 13px; }
+      .comparison-tab { min-height: 44px; padding: 5px 4px; white-space: normal; text-wrap: balance; }
+      .configuration-task-list { gap: 24px; }
+      .task h4 { font-size: 21px; }
+      .comparison-task + .comparison-task { padding-top: 20px; }
+      .result-summary { padding: 15px 17px; }
+      th, td { padding: 8px; }
+      pre { padding: 16px; font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <nav class="section-nav" aria-label="Page sections">
+    <div class="section-nav-content">
+      <a href="#top">Home</a>
+      <a href="#abstract">Abstract</a>
+      <a href="#diagnosis">Diagnosis</a>
+      <a href="#method">Method</a>
+      <a href="#experiments">Experiments</a>
+      <a href="#analysis">Analysis</a>
+      <a href="#bibtex">BibTeX</a>
+      <div class="research-menu">
+        <button class="research-toggle" type="button" aria-expanded="false" aria-controls="research-links">
+          More Research
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m2 4 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <!-- Add or edit related project links here. -->
+        <ul class="research-dropdown" id="research-links" hidden>
+          <li><a href="https://rise-policy.github.io/">RISE</a></li>
+          <li><a href="https://airexo.tech/airexo2">RISE-2</a></li>
+          <li><a href="https://tonyfang.net/FoAR/">FoAR</a></li>
+          <li><a href="https://tonyfang.net/history/">HistRISE</a></li>
+          <li><a href="https://force-policy.github.io/">Force Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <header class="page-header" id="top">
+    <h1>Rethinking Visual Embodiment Dependence <span>in Visuomotor Policies</span></h1>
+    <ul class="authors" aria-label="Authors and affiliations">
+      <li><a href="https://tonyfang.net/">Hongjie Fang</a><sup>1,2,3</sup></li>
+      <li><a href="https://github.com/whistlingIsTheOcean">Yuxuan Lu</a><sup>1</sup></li>
+      <li><a href="https://scholar.google.com/citations?user=bK1fWXcAAAAJ">Chenxi Wang</a><sup>3</sup></li>
+      <li><a href="https://github.com/1JI0O">Haoxiang Qin</a><sup>1</sup></li>
+      <li><a href="https://www.linkedin.com/in/shiruntang/">Shirun Tang</a><sup>2,3</sup></li>
+      <li><a href="https://alan-heoooh.github.io/">Zihao He</a><sup>1</sup></li>
+      <li><a href="https://github.com/Xiashangning/">Shangning Xia</a><sup>3</sup></li>
+      <li><a href="mailto:jjchen20@sjtu.edu.cn">Jingjing Chen</a><sup>1</sup></li>
+      <li><a href="mailto:wanxi.liu@flexiv.com">Wanxi Liu</a><sup>2,3,4</sup></li>
+      <li><a href="mailto:shiquan.wang@flexiv.com">Shiquan Wang</a><sup>2,3,4</sup></li>
+      <li><a href="https://www.mvig.org/">Cewu Lu</a><sup>1,2,3,4,5</sup></li>
+    </ul>
+    <p class="affiliations" aria-label="Affiliations">
+      <span><sup>1</sup>Shanghai Jiao Tong University</span>
+      <span><sup>2</sup>FORTE Lab</span>
+      <span><sup>3</sup>Noematrix</span>
+      <span><sup>4</sup>Flexiv</span>
+      <span><sup>5</sup>Shanghai Innovation Institute</span>
+    </p>
+    <!-- TODO: Replace these spans with links when the public Paper and Code URLs are ready.
+         The reference manuscript is intentionally not included as a public download. -->
+    <div class="resource-links" aria-label="Project resources">
+      <span class="resource-placeholder">[Paper <small>&mdash; coming soon</small>]</span>
+      <span class="resource-placeholder">[Code <small>&mdash; coming soon</small>]</span>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Figure 1, manuscript page 1. Figure links open the full-resolution image. -->
+    <figure class="teaser" id="overview">
+      <p class="teaser-question">Which embodiment information should a visuomotor policy depend on?</p>
+      <a class="figure-link" href="resources/image/overview.webp" target="_blank" rel="noopener" aria-label="Open the visual embodiment dependence overview at full resolution">
+        <img src="resources/image/overview.webp" width="1515" height="480" fetchpriority="high" alt="The same task state produces different policy predictions when the visible embodiment changes. Masking plus a canonical end-effector representation preserves control grounding, is shared across embodiments, and is editable.">
+      </a>
+      <p class="teaser-answer highlight-statement">We structure visual embodiment information to be <strong>control-grounded, shared across embodiments, and editable.</strong></p>
+    </figure>
+
+    <section class="content-section" id="abstract" aria-labelledby="abstract-heading">
+      <h2 id="abstract-heading">Abstract</h2>
+      <p class="abstract-text">
+        Visuomotor policies observe both the task scene and the acting embodiment, allowing embodiment-specific visual cues to influence action prediction. We study this phenomenon as visual embodiment dependence (VED) and show, through cue-conflict interventions across representative policies, that visible robot configuration can become a shortcut to task progress. Rather than eliminating VED, we argue that it should be structured around embodiment information that supports control and generalization. We realize this through embodiment canonicalization in 3D point clouds, replacing the original embodiment with a canonical end-effector representation (CER) that preserves control-relevant geometry while abstracting embodiment-specific morphology. Its editable form further enables configuration-decorrelation augmentation for unfamiliar robot configurations. Experiments show that embodiment canonicalization substantially improves human-to-robot policy transfer without robot demonstrations, while simply removing the embodiment is insufficient without preserving control-relevant geometry. We further find that CER itself can become a configuration shortcut when robot configuration becomes decoupled from task progress; configuration-decorrelation augmentation mitigates this failure mode and restores robust recovery without sacrificing performance on seen configurations. Together, these results show that robust visuomotor learning benefits from structuring, rather than removing, visual embodiment information.
+      </p>
+    </section>
+
+    <section class="content-section" id="diagnosis" aria-labelledby="diagnosis-heading">
+      <h2 id="diagnosis-heading">Diagnosing Visual Embodiment Dependence</h2>
+      <p>
+        A policy observes both the task scene and the acting hand or robot. This can introduce two forms of dependence: <em>morphology dependence</em>, which limits transfer between visually different embodiments, and <em>configuration dependence</em>, in which the visible robot configuration becomes a proxy for task progress.
+      </p>
+      <p>
+        To isolate configuration dependence, we construct <em>cue-conflict observations</em>: the task state comes from one stage, while the visible embodiment configuration comes from another. We evaluate BC-RNN and Diffusion Policy in simulated <em>Pick Place Can</em>, and ACT and RISE in real-world <em>Rotate Plate</em>. All diagnostic policies predict absolute actions and receive no proprioceptive robot state, so configuration is available only through vision.
+      </p>
+      <!-- Figure 2, manuscript page 3: task panels cropped and arranged side by side. -->
+      <figure>
+        <a class="figure-link" href="resources/image/cue-conflict.webp" target="_blank" rel="noopener" aria-label="Open the cue-conflict diagnostic figure at full resolution">
+          <img src="resources/image/cue-conflict.webp" width="1984" height="693" loading="lazy" decoding="async" alt="Side-by-side cue-conflict examples: Pick Place Can on the left and Rotate Plate on the right, with embodiment-following rates for BC-RNN, Diffusion Policy, ACT, and RISE across different task stages.">
+        </a>
+        <figcaption>
+          <span class="caption-label">Figure 2.</span> The Embodiment-Following Rate (EFR) measures how often a prediction makes greater progress toward the embodiment-implied action than the task-implied action. The results reveal strongly state-dependent reliance on visible robot configuration.
+        </figcaption>
+      </figure>
+      <div class="result-summary">
+        <p><strong>Visible robot configuration can become a state-dependent shortcut to task progress.</strong> On <em>Rotate Plate</em>, RISE reaches 100% EFR when an approach-stage task state is paired with a place-stage robot configuration. Reliance on configuration varies across task stages, but can dominate task-state evidence even without proprioceptive input.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="method" aria-labelledby="method-heading">
+      <h2 id="method-heading">Structuring Visual Embodiment Information</h2>
+      <p class="lead highlight-statement"><strong>Preserve</strong> the task scene. <strong>Canonicalize</strong> the embodiment. <strong>Diversify</strong> its configuration.</p>
+      <!-- Figure 3, manuscript page 4. -->
+      <figure>
+        <a class="figure-link" href="resources/image/method.webp" target="_blank" rel="noopener" aria-label="Open the method overview at full resolution">
+          <img src="resources/image/method.webp" width="1509" height="420" loading="lazy" decoding="async" alt="Human and robot point clouds are masked and given the same canonical gripper. The canonical gripper is then perturbed at recovery-eligible states and paired with a recovery trajectory.">
+        </a>
+        <figcaption>
+          <span class="caption-label">Figure 3.</span> Embodiment canonicalization replaces the original hand or robot geometry with a shared canonical end-effector representation (CER). Its editable 3D form supports configuration-decorrelation augmentation without re-rendering the robot or changing the task scene.
+        </figcaption>
+      </figure>
+      <ol class="method-points">
+        <li><strong>Remove embodiment-specific morphology.</strong> Mask the acting hand or robot in the 3D point cloud while preserving the surrounding task scene.</li>
+        <li><strong>Retain control-relevant geometry.</strong> Insert a compact, line-based canonical gripper. Two distal segments represent the gripper tips and opening width; a proximal segment supplies additional orientation information. The same representation is instantiated from human hand landmarks or the robot gripper pose.</li>
+        <li><strong>Decouple configuration from task progress.</strong> At recovery-eligible states, perturb the CER pose and pair it with a valid recovery trajectory back to the demonstrated pose, followed by the original trajectory. Contact-constrained states are excluded when a pose change would also require changing the scene.</li>
+      </ol>
+      <p>
+        Both operations are defined in 3D, and we use <a href="https://rise-policy.github.io/">RISE</a> as the policy backbone. Configuration-decorrelation augmentation is applied on the fly with probability 0.5 at eligible states, retaining only perturbations and recovery trajectories that satisfy workspace and collision constraints.
+      </p>
+    </section>
+
+    <section class="content-section" id="experiments" aria-labelledby="experiments-heading">
+      <h2 id="experiments-heading">Experiments</h2>
+      <h3>Human-to-Robot Policy Transfer</h3>
+      <p>
+        We collect <strong>50 human demonstrations per task</strong> for four real-world tasks: <em>Collect Block</em>, <em>Close Box</em>, <em>Open Drawer</em>, and <em>Pour Balls</em>. Policies are trained from scratch using only these human demonstrations, with <strong>no robot demonstrations</strong>. Controlled variants share the same RISE backbone and action-processing pipeline.
+      </p>
+      <!-- Figure 4, manuscript page 5. Pour-stage completion is the fraction of balls poured. -->
+      <figure>
+        <a class="figure-link" href="resources/image/human-to-robot.webp" target="_blank" rel="noopener" aria-label="Open the human-to-robot task and result figure at full resolution">
+          <img src="resources/image/human-to-robot.webp" width="2016" height="540" loading="lazy" decoding="async" alt="Human-to-robot transfer results for four tasks. Overall success/completion is 20 percent for Vanilla, 31 percent for Mask Only, 64 percent for CER Only, and 91 percent for Mask plus CER.">
+        </a>
+        <figcaption>
+          <span class="caption-label">Figure 4.</span> Four manipulation behaviors: pick-and-place, non-prehensile pushing, articulated-object manipulation, and orientation-intensive manipulation. Masking plus CER achieves the best overall performance on all four tasks.
+        </figcaption>
+      </figure>
+      <div class="result-summary">
+        <p><strong>Embodiment canonicalization improves human-to-robot transfer by suppressing morphology-specific cues while preserving control-relevant geometry.</strong> Overall task performance increases from <strong>20% to 91%</strong>, compared with 31% for masking alone and 64% for CER alone. Preserving end-effector geometry is particularly important for precise or sustained control.</p>
+      </div>
+
+      <div class="result-videos task-grid" aria-label="Human-to-robot transfer task videos">
+        <article class="task" id="collect-block" aria-labelledby="collect-block-heading">
+          <h4 id="collect-block-heading"><span class="task-context">Real world &middot; Pick and place</span>Collect Block</h4>
+          <p>Pick up the block and place it in the container.</p>
+          <!-- TODO(video): Replace this Collect Block placeholder with its task video. -->
+          <div class="video-placeholder" data-task="collect-block" role="img" aria-label="Collect Block video placeholder">
+            <span>Video coming soon</span>
+          </div>
+        </article>
+        <article class="task" id="close-box" aria-labelledby="close-box-heading">
+          <h4 id="close-box-heading"><span class="task-context">Real world &middot; Non-prehensile pushing</span>Close Box</h4>
+          <p>Push the lid into position and press it closed.</p>
+          <!-- TODO(video): Replace this Close Box placeholder with its task video. -->
+          <div class="video-placeholder" data-task="close-box" role="img" aria-label="Close Box video placeholder">
+            <span>Video coming soon</span>
+          </div>
+        </article>
+        <article class="task" id="open-drawer" aria-labelledby="open-drawer-heading">
+          <h4 id="open-drawer-heading"><span class="task-context">Real world &middot; Articulated object</span>Open Drawer</h4>
+          <p>Grasp the drawer handle and pull the drawer open.</p>
+          <!-- TODO(video): Replace this Open Drawer placeholder with its task video. -->
+          <div class="video-placeholder" data-task="open-drawer" role="img" aria-label="Open Drawer video placeholder">
+            <span>Video coming soon</span>
+          </div>
+        </article>
+        <article class="task" id="pour-balls" aria-labelledby="pour-balls-heading">
+          <h4 id="pour-balls-heading"><span class="task-context">Real world &middot; Orientation-intensive control</span>Pour Balls</h4>
+          <p>Grasp the cup, pour its balls into the bowl, and place it down. </p>
+          <!-- TODO(video): Replace this Pour Balls placeholder with its human-to-robot transfer video. -->
+          <div class="video-placeholder" data-task="pour-balls" role="img" aria-label="Pour Balls human-to-robot transfer video placeholder">
+            <span>Video coming soon</span>
+          </div>
+        </article>
+      </div>
+
+      <h3 id="configuration-heading">Generalization to Novel Robot Configurations</h3>
+      <p>
+        We separately collect <strong>50 teleoperated robot demonstrations per task</strong> for <em>Rotate Plate</em> and <em>Pour Balls</em>. At evaluation, robot configurations are paired with the initial task state to break the configuration&ndash;progress associations seen during training. Rotate Plate includes mild and large shifts; Pour Balls uses a novel configuration-state shift. Policies share the same 20 object initializations and robot configurations for each task.
+      </p>
+      <!-- Figure 5, manuscript page 6. This setting uses robot demonstrations, unlike transfer above. -->
+      <figure>
+        <a class="figure-link" href="resources/image/configuration-generalization.webp" target="_blank" rel="noopener" aria-label="Open the novel-configuration results at full resolution">
+          <img src="resources/image/configuration-generalization.webp" width="1976" height="760" loading="lazy" decoding="async" alt="Rotate Plate and Pour Balls under seen and novel robot configurations. Configuration augmentation increases large-shift plate placement from 60 to 85 percent and novel-configuration pouring completion from 43 to 88 percent compared with the method without augmentation.">
+        </a>
+        <figcaption>
+          <span class="caption-label">Figure 5.</span> Canonicalizing morphology alone does not resolve configuration dependence: CER can still correlate with demonstrated task progress. Configuration-decorrelation augmentation restores recovery under unfamiliar configurations while preserving seen-configuration performance.
+        </figcaption>
+      </figure>
+      <div class="result-summary">
+        <p><strong>Configuration-decorrelation augmentation improves robustness to unfamiliar robot configurations.</strong> Embodiment canonicalization alone can remain brittle because CER can still correlate with task progress. Augmentation raises large-shift <em>Rotate Plate</em> placement success from 60% to 85% and novel-configuration <em>Pour Balls</em> pouring completion from 43% to 88%, compared with the same method without augmentation, while preserving seen-configuration performance.</p>
+      </div>
+
+      <!-- Videos follow the finding for the same experimental setting.
+           Keep task IDs unchanged and use browser-optimized files under resources/videos/.
+           Hidden comparison panels use data-src, preload="none", and no autoplay;
+           selecting a tab loads and plays its videos, and pauses the other panels. -->
+      <div class="result-videos configuration-task-list" aria-label="Novel-configuration comparison videos">
+        <article class="task comparison-task" id="rotate-plate" aria-labelledby="rotate-plate-heading">
+          <span class="task-context">Real world &middot; Seen versus shifted configurations</span>
+          <div class="task-heading-row">
+            <h4 id="rotate-plate-heading">Rotate Plate</h4>
+            <div class="comparison-switch" role="tablist" aria-label="Rotate Plate configuration change">
+              <button class="comparison-tab" id="plate-mild-tab" type="button" role="tab" aria-selected="true" aria-controls="plate-mild-comparison">Mild Configuration Change</button>
+              <button class="comparison-tab" id="plate-large-1-tab" type="button" role="tab" aria-selected="false" aria-controls="plate-large-1-comparison" tabindex="-1">Large Configuration Change 1</button>
+              <button class="comparison-tab" id="plate-large-2-tab" type="button" role="tab" aria-selected="false" aria-controls="plate-large-2-comparison" tabindex="-1">Large Configuration Change 2</button>
+            </div>
+          </div>
+          <p class="comparison-note">Seen configuration (left) versus novel configuration (right), shown at 2&times; speed for each method.</p>
+          <div class="comparison-panel" id="plate-mild-comparison" role="tabpanel" aria-labelledby="plate-mild-tab">
+            <div class="comparison-grid" aria-label="Rotate Plate seen versus novel mild comparisons">
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/plate/web/plate-mild-rise.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Vanilla RISE: Rotate Plate seen versus novel mild comparison">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/plate/web/plate-mild-mask.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Mask Only: Rotate Plate seen versus novel mild comparison">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/plate/web/plate-mild-noaug.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Ours without augmentation: Rotate Plate seen versus novel mild comparison">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/plate/web/plate-mild-aug.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Ours with augmentation: Rotate Plate seen versus novel mild comparison">Your browser does not support embedded video.</video>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-panel" id="plate-large-1-comparison" role="tabpanel" aria-labelledby="plate-large-1-tab" hidden>
+            <div class="comparison-grid" aria-label="Rotate Plate seen versus novel large comparisons, sample 1">
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-rise-1.mp4" loop muted playsinline preload="none" aria-label="Vanilla RISE: Rotate Plate seen versus novel large comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-mask-1.mp4" loop muted playsinline preload="none" aria-label="Mask Only: Rotate Plate seen versus novel large comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-noaug-1.mp4" loop muted playsinline preload="none" aria-label="Ours without augmentation: Rotate Plate seen versus novel large comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-aug-1.mp4" loop muted playsinline preload="none" aria-label="Ours with augmentation: Rotate Plate seen versus novel large comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-panel" id="plate-large-2-comparison" role="tabpanel" aria-labelledby="plate-large-2-tab" hidden>
+            <div class="comparison-grid" aria-label="Rotate Plate seen versus novel large comparisons, sample 2">
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-rise-2.mp4" loop muted playsinline preload="none" aria-label="Vanilla RISE: Rotate Plate seen versus novel large comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-mask-2.mp4" loop muted playsinline preload="none" aria-label="Mask Only: Rotate Plate seen versus novel large comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-noaug-2.mp4" loop muted playsinline preload="none" aria-label="Ours without augmentation: Rotate Plate seen versus novel large comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/plate/web/plate-large-aug-2.mp4" loop muted playsinline preload="none" aria-label="Ours with augmentation: Rotate Plate seen versus novel large comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="task comparison-task" id="pour-balls-novel-configurations" aria-labelledby="pour-balls-novel-configurations-heading">
+          <span class="task-context">Real world &middot; Seen versus shifted configurations</span>
+          <div class="task-heading-row">
+            <h4 id="pour-balls-novel-configurations-heading">Pour Balls</h4>
+            <div class="comparison-switch" role="tablist" aria-label="Pour Balls configuration change">
+              <button class="comparison-tab" id="pour-1-tab" type="button" role="tab" aria-selected="true" aria-controls="pour-1-comparison">Configuration Change 1</button>
+              <button class="comparison-tab" id="pour-2-tab" type="button" role="tab" aria-selected="false" aria-controls="pour-2-comparison" tabindex="-1">Configuration Change 2</button>
+            </div>
+          </div>
+          <p>Grasp the cup, pour its balls into the bowl, and place it down.</p>
+          <p class="comparison-note">Seen configuration (left) versus novel configuration (right), shown at 2&times; speed for each method.</p>
+          <!-- Configuration Change 1 uses source sample 4; Configuration Change 2 uses source sample 20. -->
+          <div class="comparison-panel" id="pour-1-comparison" role="tabpanel" aria-labelledby="pour-1-tab">
+            <div class="comparison-grid" aria-label="Pour Balls seen versus novel configuration comparisons, sample 1">
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/pour/web/pour-vanilla-4.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Vanilla RISE: Pour Balls seen versus novel configuration comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/pour/web/pour-mask-4.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Mask Only: Pour Balls seen versus novel configuration comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/pour/web/pour-noaug-4.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Ours without augmentation: Pour Balls seen versus novel configuration comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" src="resources/videos/pour/web/pour-aug-4.mp4" autoplay loop muted playsinline preload="metadata" aria-label="Ours with augmentation: Pour Balls seen versus novel configuration comparison, sample 1">Your browser does not support embedded video.</video>
+              </div>
+            </div>
+          </div>
+          <div class="comparison-panel" id="pour-2-comparison" role="tabpanel" aria-labelledby="pour-2-tab" hidden>
+            <div class="comparison-grid" aria-label="Pour Balls seen versus novel configuration comparisons, sample 2">
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/pour/web/pour-vanilla-20.mp4" loop muted playsinline preload="none" aria-label="Vanilla RISE: Pour Balls seen versus novel configuration comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/pour/web/pour-mask-20.mp4" loop muted playsinline preload="none" aria-label="Mask Only: Pour Balls seen versus novel configuration comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/pour/web/pour-noaug-20.mp4" loop muted playsinline preload="none" aria-label="Ours without augmentation: Pour Balls seen versus novel configuration comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+              <div class="comparison-video-frame">
+                <video class="comparison-video" data-src="resources/videos/pour/web/pour-aug-20.mp4" loop muted playsinline preload="none" aria-label="Ours with augmentation: Pour Balls seen versus novel configuration comparison, sample 2">Your browser does not support embedded video.</video>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="content-section" id="analysis" aria-labelledby="analysis-heading">
+      <h2 id="analysis-heading">Ablations and Analysis</h2>
+      <h3>Which Embodiment Geometry Matters?</h3>
+      <p>
+        On <em>Collect Block</em>, we compare masking and CER designs ranging from coarse position and pose cues to gripper tips and the full canonical gripper. An oracle representation, obtained by replaying trajectories on the robot and capturing its full geometry, tests whether the compact CER loses control-relevant information.
+      </p>
+      <!-- Table I (representation illustrations and results), manuscript page 7. -->
+      <figure>
+        <a class="figure-link" href="resources/image/cer-ablation.webp" target="_blank" rel="noopener" aria-label="Open the mask and canonical geometry ablation at full resolution">
+          <img src="resources/image/cer-ablation.webp" width="2000" height="476" loading="lazy" decoding="async" alt="Collect Block ablations of masking and CER design. The full masked canonical gripper and oracle robot representation both achieve 96 percent pick and place success, outperforming position-only, pose, and gripper-tip-only variants.">
+        </a>
+        <figcaption><span class="caption-label">Table 1.</span> Suppressing original morphology and preserving sufficiently expressive end-effector geometry are both important for human-to-robot transfer.</figcaption>
+      </figure>
+      <div class="result-summary">
+        <p><strong>Suppressing original morphology and preserving expressive end-effector geometry are both important for cross-embodiment transfer.</strong> On <em>Collect Block</em>, the full canonical gripper achieves 96% success in both picking and placement, matching the oracle representation with full robot morphology. Coarse position or pose cues are less effective, showing that compact but sufficiently expressive geometry preserves the information needed for control.</p>
+      </div>
+
+      <h3>Masking at Training and Deployment</h3>
+      <p>
+        We compare masking during training and deployment on <em>Collect Block</em>, reporting both task success and inference latency. Deployment variants use SAM2 segmentation, a mask rendered from the robot model and camera calibration, or no mask; all retain CER.
+      </p>
+      <!-- Table II, manuscript page 7. Latencies are the reported inference measurements. -->
+      <div class="table-wrap" role="region" aria-label="Deployment masking results" tabindex="0">
+        <table>
+          <caption><span class="caption-label">Table 2.</span> Collect Block: deployment masking and inference latency</caption>
+          <thead>
+            <tr><th scope="col">Training</th><th scope="col">Deployment</th><th scope="col">Deployment Mask source</th><th scope="col">Success</th><th scope="col">Latency</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mask + CER</td><td>Mask + CER</td><td>SAM2</td><td>96%</td><td>237 ms</td></tr>
+            <tr><td>Mask + CER</td><td>Mask + CER</td><td>Robot model (URDF) rendering</td><td>96%</td><td>190 ms</td></tr>
+            <tr><td>Mask + CER</td><td>CER only</td><td>&mdash;</td><td>92%</td><td>182 ms</td></tr>
+            <tr><td>CER only</td><td>CER only</td><td>&mdash;</td><td>72%</td><td>182 ms</td></tr>
+            <tr><td>Vanilla</td><td>&mdash;</td><td>&mdash;</td><td>40%</td><td>181 ms</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="result-summary">
+        <p><strong>Deployment-time masking is not strictly required to retain most of the transfer benefit.</strong> On <em>Collect Block</em>, a policy trained with masking retains 92% success without deployment masking (182 ms), compared with 72% when masking is omitted throughout and 181 ms of vanilla policy inference. When a deployment mask is used, robot-model rendering maintains 96% success while reducing inference latency from 237 ms with SAM2 to 190 ms.</p>
+      </div>
+
+      <h3>What Does the Learned Representation Depend On?</h3>
+      <p>
+        Controlled interventions on held-out robot observations from <em>Collect Block</em> and <em>Pour Balls</em> independently remove the original embodiment or CER while keeping the task scene fixed. We measure changes in the final representation before the action decoder using cosine distance to examine which embodiment cues the policy depends on.
+      </p>
+      <!-- Figure 6, manuscript page 7. -->
+      <figure class="sensitivity-figure">
+        <a class="figure-link" href="resources/image/representation-sensitivity.webp" target="_blank" rel="noopener" aria-label="Open the representation sensitivity analysis at full resolution">
+          <img src="resources/image/representation-sensitivity.webp" width="988" height="344" loading="lazy" decoding="async" alt="Training with Mask plus CER reduces sensitivity to original embodiment morphology by 25 percent on Collect Block and 42 percent on Pour Balls, while representation sensitivity to the control-relevant geometry provided by CER remains substantial.">
+        </a>
+        <figcaption><span class="caption-label">Figure 6.</span> Training-time masking reduces sensitivity to the original morphology while preserving substantial sensitivity to the control-relevant CER.</figcaption>
+      </figure>
+      <div class="result-summary">
+        <p><strong>Training-time masking reduces dependence on the original morphology while preserving dependence on CER.</strong> Sensitivity to the original morphology decreases by 25% on <em>Collect Block</em> and 42% on <em>Pour Balls</em>, while sensitivity to the control-relevant geometry provided by CER remains substantial.</p>
+      </div>
+    </section>
+
+    <section class="content-section" id="bibtex" aria-labelledby="bibtex-heading">
+      <h2 id="bibtex-heading">BibTeX</h2>
+      <pre><code>@article{fang2026ved,
+  title  = {Rethinking Visual Embodiment Dependence in Visuomotor Policies},
+  author = {Fang, Hongjie and Lu, Yuxuan and Wang, Chenxi and
+            Qin, Haoxiang and Tang, Shirun and He, Zihao and
+            Xia, Shangning and Chen, Jingjing and Liu, Wanxi and
+            Wang, Shiquan and Lu, Cewu},
+  journal = {arXiv preprint arXiv:},
+  year = {2026}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <p>Website template: <a href="https://bland.website/">Allan Zhou</a></p>
+    <p>Adapted from <a href="https://tonyzhaozh.github.io/aloha/">ALOHA</a>.</p>
+  </footer>
+
+  <script>
+    (() => {
+      const navigation = document.querySelector('.section-nav');
+      const menu = navigation.querySelector('.research-menu');
+      const toggle = menu.querySelector('.research-toggle');
+      const links = menu.querySelector('.research-dropdown');
+      let openedByHover = false;
+
+      // Keep anchor targets clear of the navigation, including when its rows wrap.
+      const updateNavigationHeight = () => {
+        document.documentElement.style.setProperty('--nav-height', `${navigation.getBoundingClientRect().height}px`);
+      };
+      new ResizeObserver(updateNavigationHeight).observe(navigation);
+      updateNavigationHeight();
+
+      const setOpen = (open) => {
+        links.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+        if (!open) openedByHover = false;
+      };
+
+      toggle.addEventListener('click', () => {
+        // A first mouse click keeps a hover-opened menu open; subsequent clicks toggle it.
+        setOpen(openedByHover || links.hidden);
+        openedByHover = false;
+      });
+      menu.addEventListener('pointerenter', (event) => {
+        if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches && links.hidden) {
+          setOpen(true);
+          openedByHover = true;
+        }
+      });
+      menu.addEventListener('pointerleave', (event) => {
+        if (event.pointerType === 'mouse' && !links.contains(document.activeElement)) setOpen(false);
+      });
+      menu.addEventListener('focusout', (event) => {
+        if (!menu.contains(event.relatedTarget)) setOpen(false);
+      });
+      toggle.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          setOpen(true);
+          openedByHover = false;
+          links.querySelector('a').focus();
+        }
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !links.hidden) {
+          setOpen(false);
+          toggle.focus();
+        }
+      });
+      document.addEventListener('click', (event) => {
+        if (!menu.contains(event.target) || event.target.closest('a')) setOpen(false);
+      });
+
+      document.querySelectorAll('.comparison-switch').forEach((tablist) => {
+        const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+        const activateTab = (activeTab, moveFocus = false) => {
+          tabs.forEach((tab) => {
+            const selected = tab === activeTab;
+            tab.setAttribute('aria-selected', String(selected));
+            tab.tabIndex = selected ? 0 : -1;
+            const panel = document.getElementById(tab.getAttribute('aria-controls'));
+            panel.hidden = !selected;
+            panel.querySelectorAll('video').forEach((video) => {
+              if (selected) {
+                // Load comparison videos only when their tab is first selected.
+                if (video.dataset.src) {
+                  video.src = video.dataset.src;
+                  delete video.dataset.src;
+                }
+                video.play().catch(() => {});
+              } else {
+                video.pause();
+              }
+            });
+          });
+          if (moveFocus) activeTab.focus();
+        };
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener('click', () => activateTab(tab));
+          tab.addEventListener('keydown', (event) => {
+            let nextIndex;
+            if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+            else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+            else if (event.key === 'Home') nextIndex = 0;
+            else if (event.key === 'End') nextIndex = tabs.length - 1;
+            if (nextIndex !== undefined) {
+              event.preventDefault();
+              activateTab(tabs[nextIndex], true);
+            }
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
