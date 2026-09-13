@@ -38,6 +38,7 @@ jobs:
           mkdir -p _site
           cp -R CNAME index.html stylesheet.css data images history notes s2i FoAR ved _site/
           find _site/ved/resources/videos/plate -maxdepth 1 -type f -name '*.mp4' -delete
+          find _site/ved/resources/videos/human -mindepth 2 -maxdepth 2 -type f -name '*.mp4' ! -path '*/web/*' -delete
           touch _site/.nojekyll
           test -s _site/data/cv.pdf
           test -s _site/ved/index.html
@@ -51,6 +52,13 @@ jobs:
             for sample in 4 20; do
               test -s "_site/ved/resources/videos/pour/web/pour-${method}-${sample}.mp4"
             done
+          done
+          for video in \
+            collect-block-8 collect-block-10 collect-block-13 \
+            close-box-11 close-box-24 close-box-25 \
+            open-drawer-7 open-drawer-14 open-drawer-22 \
+            pour-balls-1 pour-balls-11 pour-balls-20; do
+            test -s "_site/ved/resources/videos/human/web/${video}.mp4"
           done
           chmod -R a+rX _site
       - name: Upload artifact
