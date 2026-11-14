@@ -1,77 +1,93 @@
-<!DOCTYPE HTML>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-  <title>Notes</title>
-  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Course Notes | Hongjie Fang</title>
   <meta name="author" content="Tony Fang">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" type="text/css" href="../stylesheet.css">
-	<link rel="icon" href="images/icon.ico">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (saved === 'dark' || (!saved && prefersDark)) {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="../stylesheet.css?v=15">
+  <link rel="stylesheet" href="notes.css?v=1">
+  <link rel="icon" href="../images/icon.ico">
 </head>
-<body>
-  <tr style="padding:0px">
-    <td style="padding:0px">
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-        <p style="text-align:center">
-          <name>My Notes</name>
-        </p>
-        <p style="text-align:center">
-          <a href="https://tonyfang.net/">[Back to Homepage]</a>
-        </p>
-      </table>
+<body class="notes-page" id="notes-top">
+  <nav class="site-nav" aria-label="Page navigation">
+    <div class="site-nav-inner">
+      <a class="notes-home-link" href="../"><span aria-hidden="true">←</span> Homepage</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </nav>
 
+  <main class="notes-main">
+    <header class="notes-intro">
+      <h1>My Notes</h1>
+      <p>I share some of my notes in the university courses in this page. The notes for the courses following with [CHN] are written in Chinese, while [ENG] stands for English notes. Feel free to use my notes for any purposes. If you found typos or mistakes in the notes, it would be very nice if you could <a href="mailto:galaxies@sjtu.edu.cn">drop an email to me</a>.</p>
+    </header>
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <p>
-              I share some of my notes in the university courses in this page. The notes for the courses following with [CHN] are written in Chinese, while [ENG] stands for English notes. Feel free to use my notes for any purposes. If you found typos or mistakes in the notes, it would be very nice if you could <a href="mailto:galaxies@sjtu.edu.cn">drop an email to me</a>.
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
+    <section class="notes-course" aria-labelledby="cryptography-title">
+      <div class="notes-course-heading">
+        <h2 id="cryptography-title">Advanced Cryptography</h2>
+        <span class="notes-language" aria-label="Notes in Chinese">CHN</span>
+      </div>
+      <p class="notes-course-meta">Taught by <a href="http://202.120.38.205/">Prof. Shengli Liu</a> @ Shanghai Jiao Tong University, Spring 2023.</p>
+      <ul class="notes-lectures">
+        <li><a href="cryptography/lec1.html"><span class="lecture-number">Lecture 1.</span> <span>PKE to TDP</span></a></li>
+        <li><a href="cryptography/lec2.html"><span class="lecture-number">Lecture 2.</span> <span>Hybrid Argument</span></a></li>
+        <li><a href="cryptography/lec3.html"><span class="lecture-number">Lecture 3.</span> <span>Efficient PKE with Security</span></a></li>
+        <li><a href="cryptography/lec4.html"><span class="lecture-number">Lecture 4.</span> <span>PKE with CCA1 Security</span></a></li>
+        <li><a href="cryptography/lec5.html"><span class="lecture-number">Lecture 5.</span> <span>PKE with CCA2 Security</span></a></li>
+        <li><a href="cryptography/lec6.html"><span class="lecture-number">Lecture 6.</span> <span>One-Time Signature and Adaptive NIZK</span></a></li>
+        <li><a href="cryptography/lec7.html"><span class="lecture-number">Lecture 7.</span> <span>CS-PKE and CCA2 Security</span></a></li>
+      </ul>
+    </section>
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Advanced Cryptography [CHN]</heading>
-            <p>
-              Taught by <a href="http://202.120.38.205/">Prof. Shengli Liu</a> @ Shanghai Jiao Tong University, Spring 2023.
-              <ul>
-              <li><a href="cryptography/lec1.html"><b>Lecture 1</b>. PKE to TDP</a></li>
-              <li><a href="cryptography/lec2.html"><b>Lecture 2</b>. Hybrid Argument</a></li>
-              <li><a href="cryptography/lec3.html"><b>Lecture 3</b>. Efficient PKE with Security</a></li>
-              <li><a href="cryptography/lec4.html"><b>Lecture 4</b>. PKE with CCA1 Security</a></li>
-              <li><a href="cryptography/lec5.html"><b>Lecture 5</b>. PKE with CCA2 Security</a></li>
-              <li><a href="cryptography/lec6.html"><b>Lecture 6</b>. One-Time Signature and Adaptive NIZK</a></li>
-              <li><a href="cryptography/lec7.html"><b>Lecture 7</b>. CS-PKE and CCA2 Security</a></li>
-              </ul>
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
+    <section class="notes-course" aria-labelledby="graph-title">
+      <div class="notes-course-heading">
+        <h2 id="graph-title">Graph and Networks</h2>
+        <span class="notes-language" aria-label="Notes in Chinese">CHN</span>
+      </div>
+      <p class="notes-course-meta">Taught by <a href="https://math.sjtu.edu.cn/Default/teachershow/tags/MDAwMDAwMDAwMLJ4nN0">Prof. Dameng Deng</a> @ Shanghai Jiao Tong University, Spring 2023.</p>
+      <ul class="notes-lectures">
+        <li><a href="graph/lec1.html"><span class="lecture-number">Lecture 1.</span> <span>Basic Concepts of Graph</span></a></li>
+        <li><a href="graph/lec2.html"><span class="lecture-number">Lecture 2.</span> <span>Double Counting</span></a></li>
+        <li><a href="graph/lec3.html"><span class="lecture-number">Lecture 3.</span> <span>Probabilistic Method</span></a></li>
+        <li><a href="graph/lec4.html"><span class="lecture-number">Lecture 4.</span> <span>Heuristic Method</span></a></li>
+        <li><a href="graph/lec5.html"><span class="lecture-number">Lecture 5.</span> <span>Greedy Algorithm</span></a></li>
+      </ul>
+    </section>
 
-      <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
-        <tr>
-          <td style="padding:20px;width:100%;vertical-align:middle">
-            <heading>Graph and Networks [CHN]</heading>
-            <p>
-              Taught by <a href="https://math.sjtu.edu.cn/Default/teachershow/tags/MDAwMDAwMDAwMLJ4nN0">Prof. Dameng Deng</a> @ Shanghai Jiao Tong University, Spring 2023.
-              <ul>
-              <li><a href="graph/lec1.html"><b>Lecture 1</b>. Basic Concepts of Graph</a></li>
-              <li><a href="graph/lec2.html"><b>Lecture 2</b>. Double Counting</a></li>
-              <li><a href="graph/lec3.html"><b>Lecture 3</b>. Probabilistic Method</a></li>
-              <li><a href="graph/lec4.html"><b>Lecture 4</b>. Heuristic Method</a></li>
-              <li><a href="graph/lec5.html"><b>Lecture 5</b>. Greedy Algorithm</a></li>
-              </ul>
-            </p>
-          </td>
-        </tr>
-      </tbody></table>
-    </td>
-  </tr>
-  </table>
+    <footer class="notes-footer">
+      <span>Hongjie Fang</span>
+      <a href="#notes-top">Back to top ↑</a>
+    </footer>
+  </main>
+
+  <script>
+    (function() {
+      var button = document.getElementById('themeToggle');
+      button.addEventListener('click', function() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          document.documentElement.removeAttribute('data-theme');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+        try { localStorage.setItem('theme', isDark ? 'light' : 'dark'); } catch (e) {}
+      });
+    })();
+  </script>
 </body>
-
 </html>

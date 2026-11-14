@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2" crossorigin/>
-    <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+    <link href="stylesheet.css?v=21" rel="stylesheet" type="text/css"/>
     <link href="images/icon.ico" rel="icon"/>
     <script>
       (function() {
@@ -24,11 +24,22 @@
     </script>
   </head>
   <body>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-    </button>
-    <table id="top" style="width:100%;max-width:800px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <nav class="site-nav" aria-label="Page navigation">
+      <div class="site-nav-inner">
+        <div class="site-nav-links">
+          <a href="#top">About</a>
+          <a href="#section-news">News</a>
+          <a href="#section-publications">Publications</a>
+          <a href="#section-talks">Talks</a>
+          <a href="#section-misc">Miscellaneous</a>
+        </div>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </nav>
+    <table id="top" style="width:100%;max-width:900px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
       <tbody>
         <tr style="padding:0px">
           <td style="padding:0px">
@@ -38,11 +49,11 @@
                   <td class="profile-text-col" style="padding:2.5%;vertical-align:middle">
                     <p class="profile-name-row" style="text-align:center">
                       <name>
-                        <span class="name-en">Hongjie (Tony) Fang</span> <span class="name-cn">方泓杰</span>
+                        <span class="name-en">Hongjie (Tony) Fang</span> <a class="name-cn name-pronunciation" id="namePronunciationLink" href="#pronunciationModal" data-modal="pronunciation" aria-haspopup="dialog" aria-controls="pronunciationModal" title="How to pronounce my name" lang="zh-Hans">方泓杰</a>
                       </name>
                     </p>
                     <p class="profile-intro">
-                       I am a fifth-year Ph.D. student @ Computer Science in Wu Wenjun Honorable Class, <a href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University (SJTU)</a> and <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory</a>, advised by Prof. <a href="https://www.mvig.org/">Cewu Lu</a>. Previously, I got my B. Eng. degree @ Computer Science and Engineering, and B. Ec. degree @ Finance from SJTU in 2022. I'm expected to graduate in 2027.<br/><br/>My research interests mainly lie on robotics fields, specifically, robotic manipulation, robot learning, data collection, and grasping. My ultimate goal is to enable robots to perform various tasks in the real world under any circumstances, improving the quality of human life.
+                       I am a fifth-year Ph.D. student @ Computer Science in Wu Wenjun Honorable Class, <a href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University (SJTU)</a> and <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory</a>, advised by Prof. <a href="https://www.mvig.org/">Cewu Lu</a>. I got my B. Eng. degree @ Computer Science and Engineering, and B. Ec. degree @ Finance from SJTU in 2022. <br/><br/>My research interests mainly lie in the robotics fields; specifically, robotic manipulation, robot learning, data collection, dexterous hands, and grasping. My ultimate goal is to enable robots to perform various tasks in the real world under any circumstances with human-level dexterity, improving the quality of human life.
                     </p>
                   </td>
                   <td class="profile-photo-col" style="padding:2.5% 0;vertical-align:middle;">
@@ -55,7 +66,7 @@
                 <tr>
                   <td class="profile-links-cell" colspan="2" style="padding:0 2.5% 2.5%;">
                     <p class="profile-links">
-                       <a class="profile-link profile-link-email" data-modal="email" href="mailto:tony.fang.galaxies@gmail.com">Email</a> <a class="profile-link profile-link-scholar" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ">Google Scholar</a> <a class="profile-link profile-link-github" href="https://github.com/galaxies99/">GitHub</a> <a class="profile-link profile-link-twitter" href="https://x.com/FangGalaxies">X</a> <a class="profile-link profile-link-wechat" data-modal="wechat" href="images/profile/wechat.jpg">WeChat</a> <a class="profile-link profile-link-cv" href="data/cv.pdf">CV (11/2026)</a>
+                       <a class="profile-link profile-link-email" data-modal="email" href="mailto:tony.fang.galaxies@gmail.com">Email</a> <a class="profile-link profile-link-scholar" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ">Google Scholar</a> <a class="profile-link profile-link-github" href="https://github.com/galaxies99/">GitHub</a> <a class="profile-link profile-link-linkedin" href="https://www.linkedin.com/in/hongjie-fang-38b807309/">LinkedIn</a> <a class="profile-link profile-link-twitter" href="https://x.com/FangGalaxies">X</a> <a class="profile-link profile-link-wechat" data-modal="wechat" href="images/profile/wechat.jpg">WeChat</a> <a class="profile-link profile-link-cv" href="data/cv.pdf">CV (11/2026)</a>
                     </p>
                   </td>
                 </tr>
@@ -68,7 +79,7 @@
                     <heading>
                        News
                     </heading>
-                    <ul class="news-list" id="newsList" data-collapsed="true" data-initial="5">                      
+                    <ul class="news-list" id="newsList" data-collapsible-list="news" data-initial="5">
                       <li><span class="news-date">Sept. 2026</span><span class="news-body"><a href="https://chenxi-wang.github.io/projects/anydexrt"><b>AnyDexRT</b></a> is accepted by CoRL 2026.</span></li>
                       <li><span class="news-date">Jun. 2026</span><span class="news-body"><a href="https://yifuxu1127.github.io/LIDEA/"><b>LIDEA</b></a> is accepted by IROS 2026, and <a href="https://arxiv.org/pdf/2606.31493"><b>ChronoFlow Policy</b></a> is accepted by ECCV 2026.</span></li>
                       <li><span class="news-date">Apr. 2026</span><span class="news-body"><a href="http://force-policy.github.io/"><b>Force Policy</b></a> is accepted by RSS 2026.</span></li>
@@ -85,8 +96,8 @@
                       <li><span class="news-date">Apr. 2023</span><span class="news-body"><a href="https://graspnet.net/anygrasp/"><b>AnyGrasp</b></a> is accepted by T-RO.</span></li>
                       <li><span class="news-date">Jun. 2022</span><span class="news-body"><a href="https://ieeexplore.ieee.org/document/9796631"><b>TransCG</b></a> is accepted by RA-L.</span></li>
                     </ul>
-                    <button type="button" class="news-toggle" id="newsToggle" aria-controls="newsList" aria-expanded="false">
-                      <span class="news-toggle-label"></span>
+                    <button type="button" class="news-toggle" id="newsToggle" aria-controls="newsList" aria-expanded="false" hidden>
+                      <span class="news-toggle-label">Earlier news</span>
                       <svg class="news-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                   </td>
@@ -97,29 +108,44 @@
               <tbody>
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
-                       Publications<span class="pub-total-count" id="pubTotalCount" aria-label="total publications"></span>
-                    </heading>
+                    <div class="publications-heading-row">
+                      <heading>
+                         Publications<span class="pub-total-count" id="pubTotalCount" aria-label="total publications"></span>
+                      </heading>
+                      <!-- scholar-stats:start -->
+                      <a class="scholar-stats" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ&amp;hl=en" title="Google Scholar · All-time metrics · Updated 2026-11-14 18:24 UTC"><span class="scholar-stat"><strong>5,662</strong> citations</span> <span class="scholar-stats-separator" aria-hidden="true">·</span> <span class="scholar-stat">h-index <strong>17</strong></span></a>
+                      <!-- scholar-stats:end -->
+                    </div>
                     <p class="publications-legend">
                        * denotes equal contribution. # denotes corresponding author(s).
                        <span class="publications-summary" id="publicationsSummary" aria-live="polite"></span>
                     </p>
-                    <div class="publications-filter" id="publicationsFilter" aria-label="Filter publications by topic">
-                      <span class="publications-filter-label">Filter by topic:</span>
-                      <div class="publications-filter-buttons">
-                        <button type="button" class="pub-filter-btn is-active" data-filter="all">All</button>
-                        <button type="button" class="pub-filter-btn pub-filter-btn-selected" data-filter="selected">Selected</button>
-                        <button type="button" class="pub-filter-btn" data-category="policy" data-filter="Imitation Learning">Imitation Learning</button>
-                        <button type="button" class="pub-filter-btn" data-category="policy" data-filter="Multimodal Learning">Multimodal Learning</button>
-                        <button type="button" class="pub-filter-btn" data-category="manipulation" data-filter="Contact-Rich Manipulation">Contact-Rich Manipulation</button>
-                        <button type="button" class="pub-filter-btn" data-category="manipulation" data-filter="Dexterous Manipulation">Dexterous Manipulation</button>
-                        <button type="button" class="pub-filter-btn" data-category="grasping" data-filter="Grasping">Grasping</button>
-                        <button type="button" class="pub-filter-btn" data-category="data" data-filter="Teleoperation">Teleoperation</button>
-                        <button type="button" class="pub-filter-btn" data-category="data" data-filter="In-the-Wild Collection">In-the-Wild Collection</button>
-                        <button type="button" class="pub-filter-btn" data-category="data" data-filter="Human Video">Human Video</button>
-                        <button type="button" class="pub-filter-btn" data-category="data" data-filter="Dataset">Dataset</button>
-                        <button type="button" class="pub-filter-btn" data-category="other" data-filter="Generalization">Generalization</button>
-                      </div>
+                    <div class="publications-filter" id="publicationsFilter" aria-label="Filter publications">
+                      <span class="publications-filter-label">Filter by:</span>
+                      <button type="button" class="pub-filter-btn pub-filter-btn-selected" data-filter="selected" aria-pressed="false">Selected</button>
+                      <details class="pub-topic-dropdown" id="pubTopicDropdown">
+                        <summary>Topics <span class="pub-topic-summary" id="pubTopicSummary">All topics</span></summary>
+                        <div class="publications-filter-buttons" aria-label="Topics (multiple selections allowed)">
+                          <button type="button" class="pub-filter-btn is-active" data-filter="all" aria-pressed="true">All topics</button>
+                          <button type="button" class="pub-filter-btn" data-category="policy" data-filter="Imitation Learning">Imitation Learning</button>
+                          <button type="button" class="pub-filter-btn" data-category="policy" data-filter="Multimodal Learning">Multimodal Learning</button>
+                          <button type="button" class="pub-filter-btn" data-category="manipulation" data-filter="Contact-Rich Manipulation">Contact-Rich Manipulation</button>
+                          <button type="button" class="pub-filter-btn" data-category="manipulation" data-filter="Dexterous Manipulation">Dexterous Manipulation</button>
+                          <button type="button" class="pub-filter-btn" data-category="grasping" data-filter="Grasping">Grasping</button>
+                          <button type="button" class="pub-filter-btn" data-category="data" data-filter="Teleoperation">Teleoperation</button>
+                          <button type="button" class="pub-filter-btn" data-category="data" data-filter="In-the-Wild Collection">In-the-Wild Collection</button>
+                          <button type="button" class="pub-filter-btn" data-category="data" data-filter="Human Video">Human Video</button>
+                          <button type="button" class="pub-filter-btn" data-category="data" data-filter="Dataset">Dataset</button>
+                          <button type="button" class="pub-filter-btn" data-category="other" data-filter="Generalization">Generalization</button>
+                        </div>
+                      </details>
+                      <label class="pub-role-field" for="pubRoleFilter">Authorship
+                        <select id="pubRoleFilter">
+                          <option value="all">Any role</option>
+                          <option value="first">First Author</option>
+                          <option value="corresponding">Corresponding Author</option>
+                        </select>
+                      </label>
                     </div>
                   </td>
                 </tr>
@@ -219,7 +245,7 @@
                         Shihao Jin</a>, <a href="https://github.com/SelfGala">Zibo Dai</a>, <a href="https://github.com/Clement1na">Qihao Cheng</a>, <a href="mailto:3240103193@zju.edu.cn">Zhengrui Lv</a>, <b>Hongjie Fang</b>, <a href="https://www.linkedin.com/in/shiruntang/">Shirun Tang</a>, <a href="mailto:icomputing@126.com">Guang Chen</a>, <a href="mailto:mzhaoxinyue@zju.edu.cn">Xinyue Zhao</a>, <a href="https://person.zju.edu.cn/en/shenhl">Huiliang Shen</a>, <a href="https://person.zju.edu.cn/en/zaixinghe">Zaixing He#</a>
                     </div>
                     <div class="paper-links">
-                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2609.02653">paper </a><span class="paper-link-note">code coming soon</span> <a class="paper-link-project" href="https://robot-hint.github.io/">project page </a>
+                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2609.02653">paper </a><a class="paper-link-code" href="https://github.com/robot-hint/HINT">code </a><a class="paper-link-project" href="https://robot-hint.github.io/">project page </a>
                     </div>
                     <p>
                       We present HINT, an agentic framework inspired by human manipulation: semantic intent changes sparsely at manipulation-pattern transitions, whereas continuous control depends on the evolving object-hand relationship. HINT invokes semantic reasoning only at those transitions to resolve the current subtask and target, then maintains this commitment through multi-view grounding and visual tracking. The intention is injected into the downstream VLA policy via image-space highlighting and attention-prior injection.
@@ -250,7 +276,7 @@
                        <a href="https://alan-heoooh.github.io/">Zihao He*</a>, <b>Hongjie Fang*</b>, <a href="https://www.linkedin.com/in/shiruntang/">Shirun Tang</a>, <a href="https://www.mvig.org/">Cewu Lu#</a>, <a href="https://fang-haoshu.github.io/">Hao-Shu Fang#</a>
                     </div>
                     <div class="paper-links">
-                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2607.17257">paper </a><a class="paper-link-code" href="https://github.com/Alan-Heoooh/MATE">code </a><a class="paper-link-project" href="https://lag-fusion.github.io/">project page </a>
+                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2607.17257">paper </a><a class="paper-link-code" href="https://github.com/Alan-Heoooh/MATE">code </a><a class="paper-link-project" href="https://lag-fusion.github.io/">project page </a><a class="paper-link-twitter" href="https://x.com/zihao_alan/status/2119763427203948578">X </a>
                     </div>
                     <p>
                       We propose MATE, a framework for asynchronous multi-rate diffusion policy composition that combines independently trained policies across modalities and viewpoints without joint retraining. Each policy operates at its native inference rate, reusing slower predictions while incorporating fresh guidance from faster policies. MATE aligns overlapping predictions in time and reference frame through diffusion-variable rebasing before fusing their denoising guidance. We demonstrate vision-force composition for contact-rich manipulation and global-wrist vision composition for occluded pick-and-place.
@@ -288,7 +314,7 @@
                        <a href="https://scholar.google.com/citations?user=bK1fWXcAAAAJ">Chenxi Wang*</a>, <a href="mailto:fyyy0407@sjtu.edu.cn">Ying Feng*</a>, <b>Hongjie Fang#</b>, <a href="https://github.com/Xiashangning">Shangning Xia</a>, <a href="https://lixiny.github.io/">Lixin Yang</a>, <a href="https://alvinwen428.github.io/">Chuan Wen</a>, <a href="https://www.mvig.org/">Cewu Lu#</a>
                     </div>
                     <div class="paper-links">
-                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2607.08341">paper </a><span class="paper-link-note">code coming soon</span> <a class="paper-link-project" href="https://chenxi-wang.github.io/projects/anydexrt">project page </a>
+                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2607.08341">paper </a><a class="paper-link-code" href="https://github.com/chenxi-wang/anydexrt">code </a><a class="paper-link-project" href="https://chenxi-wang.github.io/projects/anydexrt">project page </a>
                     </div>
                     <p>
                        We propose AnyDexRT, a calibration-free retargeting method for intuitive dexterous teleoperation across human-like hands. AnyDexRT combines self-supervised fingertip correspondence learning with few-shot human guidance to anchor the mapping in task-relevant regions, and further refines pinch-related poses using a contact classifier.
@@ -381,7 +407,7 @@
                        <a href="https://github.com/YifuXu1127">Yifu Xu*</a>, <a href="https://github.com/The-kamisato-Sii">Bokai Lin*</a>, <a href="https://github.com/kelvin34501">Xinyu Zhan</a>, <b>Hongjie Fang</b>, <a href="https://dirtyharrylyl.github.io/">Yong-Lu Li</a>, <a href="https://www.mvig.org/">Cewu Lu</a>, <a href="https://lixiny.github.io/">Lixin Yang# </a>
                     </div>
                     <div class="paper-links">
-                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2604.10677">paper </a> <span class="paper-link-note">code somming soon</span> <a class="paper-link-project" href="https://yifuxu1127.github.io/LIDEA/">project page </a>
+                       <a class="paper-link-paper" href="https://arxiv.org/pdf/2604.10677">paper </a> <a class="paper-link-project" href="https://yifuxu1127.github.io/LIDEA/">project page </a>
                     </div>
                     <p>
                        LIDEA transfers human demonstrations through dual-stage 2D feature distillation and embodiment-agnostic 3D geometry alignment. This cross-embodiment design makes human-to-robot imitation more reliable and improves generalization to new setups.
@@ -726,6 +752,7 @@
                       <em class="venue-conference">
                         ICRA 2025
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://cage-policy.github.io/">CAGE: Causal Attention Enables Data-Efficient Generalizable Robotic Manipulation </a>
@@ -757,6 +784,7 @@
                       <em class="venue-conference">
                         ICRA 2025
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://tonyfang.net/s2i">Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization </a>
@@ -788,6 +816,7 @@
                       <em class="venue-conference">
                         IROS 2024
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral Pitch</span>
                     </div>
                     <papertitle>
                        <a href="https://rise-policy.github.io/">RISE: 3D Perception Makes Real-World Robot Imitation Simple and Effective </a>
@@ -819,6 +848,7 @@
                       <em class="venue-conference">
                         ICRA 2024
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                        <span class="paper-honor paper-honor-best">Best Paper</span>
                     </div>
                     <papertitle>
@@ -851,6 +881,7 @@
                       <em class="venue-conference">
                         ICRA 2024
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://airexo.github.io/">AirExo: Low-Cost Exoskeletons for Learning Whole-Arm Manipulation in the Wild </a>
@@ -882,6 +913,7 @@
                       <em class="venue-conference">
                         ICRA 2024
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://rh20t.github.io/">RH20T: A Comprehensive Robotic Dataset for Learning Diverse Skills in One-Shot </a>
@@ -913,6 +945,7 @@
                       <em class="venue-conference">
                         IROS 2023
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral Pitch</span>
                     </div>
                     <papertitle>
                        <a href="https://arxiv.org/abs/2308.15622">Flexible Handover with Real-Time Robust Dynamic Grasp Trajectory Generation </a>
@@ -980,6 +1013,7 @@
                       <em class="venue-conference">
                         ICRA 2024
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://graspnet.net/anygrasp/">AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains </a>
@@ -1015,6 +1049,7 @@
                       <em class="venue-conference">
                         ICRA 2023
                       </em>
+                       <span class="paper-honor paper-honor-oral">Oral</span>
                     </div>
                     <papertitle>
                        <a href="https://graspnet.net/transcg/">TransCG: A Large-Scale Real-World Dataset for Transparent Object Depth Completion and a Grasping Baseline </a>
@@ -1063,6 +1098,7 @@
                 </tr>
               </tbody>
             </table>
+            <!-- Selected Projects is retained here for future use.
             <table id="section-projects" class="site-section projects-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr class="publications-head-row">
@@ -1138,6 +1174,7 @@
                 </tr>
               </tbody>
             </table>
+            -->
             <table id="section-services" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
@@ -1145,57 +1182,38 @@
                     <heading>
                        Academic Services
                     </heading>
-                    <p>
-                       <b> Conference Committee </b>:
-                      <ul>
-                        <li>
-                           <b>Associate Editor (AE)</b>, IEEE International Conference on Robotics and Automation (ICRA), 2027
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, IEEE International Conference on Robotics and Automation (ICRA), 2023 - 2027
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2023 - 2026
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, Conference on Robot Learning (CoRL), 2025 - 2026
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, Robotics: Science and Systems (RSS), 2027
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, Advances in Neural Information Processing Systems (NeurIPS), 2025 - 2026 <br>
-                           <i>Recognized as a <b>Top Reviewer</b> in 2026</i>
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR), 2026
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, European Conference on Computer Vision (ECCV), 2026
-                        </li>
-                        <li>
-                           <b>Reviewer</b>, International Conference on Learning Representations (ICLR), 2025
-                        </li>
-                      </ul>
-                       <br/><b> Reviewer for Journals </b>:
-                      <ul>
-                        <li>
-                          IEEE Transactions on Robotics (T-RO)
-                        </li>
-                        <li>
-                          IEEE Robotics and Automation Letters (RA-L)
-                        </li>
-                        <li>
-                          IEEE Transactions on Cybernetics (T-CYB)
-                        </li>
-                        <li>
-                          IEEE/ASME Transactions on Mechatronics (T-MECH)
-                        </li>
-                        <li>
-                          IEEE Transactions on Automation Science and Engineering (T-ASE)
-                        </li>
-                      </ul>
-                    </p>
+                    <div class="service-editorial">
+                      <div>
+                        <h3 class="section-eyebrow">Editorial service</h3>
+                        <p><b>Associate Editor (AE)</b><br/>IEEE International Conference on Robotics and Automation (ICRA)</p>
+                      </div>
+                      <span class="service-period">2027</span>
+                    </div>
+                    <div class="services-grid">
+                      <section class="service-group" aria-labelledby="conference-reviewing-title">
+                        <h3 class="section-eyebrow" id="conference-reviewing-title">Conference reviewer</h3>
+                        <ul class="service-list">
+                          <li><span>IEEE International Conference on Robotics and Automation <b>(ICRA)</b></span><span class="service-period">2023–2027</span></li>
+                          <li><span>IEEE/RSJ International Conference on Intelligent Robots and Systems <b>(IROS)</b></span><span class="service-period">2023–2026</span></li>
+                          <li><span>Conference on Robot Learning <b>(CoRL)</b></span><span class="service-period">2025–2026</span></li>
+                          <li><span>Robotics: Science and Systems <b>(RSS)</b></span><span class="service-period">2027</span></li>
+                          <li><span>Advances in Neural Information Processing Systems <b>(NeurIPS)</b><span class="service-recognition">Top Reviewer · 2026</span></span><span class="service-period">2025–2026</span></li>
+                          <li><span>IEEE/CVF Conference on Computer Vision and Pattern Recognition <b>(CVPR)</b></span><span class="service-period">2026</span></li>
+                          <li><span>European Conference on Computer Vision <b>(ECCV)</b></span><span class="service-period">2026</span></li>
+                          <li><span>International Conference on Learning Representations <b>(ICLR)</b></span><span class="service-period">2025</span></li>
+                        </ul>
+                      </section>
+                      <section class="service-group" aria-labelledby="journal-reviewing-title">
+                        <h3 class="section-eyebrow" id="journal-reviewing-title">Journal reviewer</h3>
+                        <ul class="service-list service-list-journals">
+                          <li>IEEE Transactions on Robotics <b>(T-RO)</b></li>
+                          <li>IEEE Robotics and Automation Letters <b>(RA-L)</b></li>
+                          <li>IEEE Transactions on Cybernetics <b>(T-CYB)</b></li>
+                          <li>IEEE/ASME Transactions on Mechatronics <b>(T-MECH)</b></li>
+                          <li>IEEE Transactions on Automation Science and Engineering <b>(T-ASE)</b></li>
+                        </ul>
+                      </section>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -1207,37 +1225,83 @@
                     <heading>
                        Talks
                     </heading>
-                    <p>
-                      <ul>
-                        <li>
-                           <b> [Mar. 2024] </b><a href="https://www.echoaitalk.com/work/s1e07">Echo AI Talk </a>. Towards Efficient Robot Imitation Learning from Human Demonstrations. Thanks <a href="https://yinzhenfei.github.io/">Zhenfei Yin </a>for invitation. <a href="https://www.youtube.com/watch?v=46YvkX_a1Ig">[Replay] </a>
-                        </li>
-                        <li>
-                           <b> [Nov. 2024] </b><a href="https://course.zhidx.com/">Zhixingxing (智猩猩) </a>. Towards Efficient Robot Imitation Learning from Human Demonstrations. <a href="https://www.bilibili.com/video/BV1gwiBYXErh">[Replay] </a>
-                        </li>
-                        <li>
-                           <b> [Mar. 2025] </b><a href="https://people.iiis.tsinghua.edu.cn/~gaoyang/yang-gao.weebly.com/index.html">THU Yang Gao Group </a>. Towards Generalizable Imitation Learning from Human Demonstrations. Thanks <a href="https://alvinwen428.github.io/">Chuan Wen </a>for invitation.
-                        </li>
-                        <li>
-                           <b> [Aug. 2025] </b><a href="https://www.3dcver.com/">3DCVer (3D视觉工坊) </a>. Towards Generalizable Imitation Learning from Human Demonstrations. <a href="https://www.bilibili.com/video/BV1uwtPz1EzZ">[Replay] </a>
-                        </li>
-                        <li>
-                           <b> [Aug. 2025] </b><a href="https://www.sharpa.com/">Sharpa </a>. Towards Generalizable Imitation via Scalable Data and Robust Policy. Thanks <a href="https://openreview.net/profile?id=~Kaifeng_Zhang1">Kaifeng Zhang </a>for invitation.
-                        </li>
-                        <li>
-                           <b> [Sept. 2025] </b><a href="https://www.galbot.com/">Galbot </a>. Building Capable and Generalizable Policies for Robotic Manipulation. Thanks Caowei Meng for invitation.
-                        </li>
-                        <li>
-                           <b> [Sept. 2025] </b><a href="https://www.shenlanxueyuan.com/open/course/295">Shenlanxueyuan (深蓝学院) </a>. Towards Generalizable Imitation via Scalable Data and Robust Policy.
-                        </li>
-                        <li>
-                           <b> [Oct. 2025] </b><a href="https://robotdexteritylab.com/">The Robot Dexterity Lab @ Duke University </a>. AirExo-2: Scaling up Generalizable Robotic Imitation Learning with Low-Cost Exoskeletons. Thanks <a href="https://kingchou007.github.io/">Jinzhou Li </a>for invitation.
-                        </li>
-                        <li>
-                          <b> [Sept. 2026] </b><a href="https://www.ecust.edu.cn/en/main.psp">East China University of Science and Technology</a>. Imitation Learning for Manipulation: Past, Present and Future. Thanks Haoyuan Feng for invitation.
-                        </li>
-                      </ul>
-                    </p>
+                    <ul class="talks-list" id="talksList" data-collapsible-list="talks" data-initial="4">
+                      <li>
+                        <time class="update-date" datetime="2026-09">Sept. 2026</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.ecust.edu.cn/en/main.psp">East China University of Science and Technology</a>
+                          <p class="talk-title">Imitation Learning for Manipulation: Past, Present and Future.</p>
+                          <p class="talk-meta">Thanks Haoyuan Feng for invitation.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-10">Oct. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://robotdexteritylab.com/">The Robot Dexterity Lab @ Duke University</a>
+                          <p class="talk-title">AirExo-2: Scaling up Generalizable Robotic Imitation Learning with Low-Cost Exoskeletons.</p>
+                          <p class="talk-meta">Thanks <a href="https://kingchou007.github.io/">Jinzhou Li</a> for invitation.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-09">Sept. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.shenlanxueyuan.com/open/course/295">Shenlanxueyuan (深蓝学院)</a>
+                          <p class="talk-title">Towards Generalizable Imitation via Scalable Data and Robust Policy.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-09">Sept. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.galbot.com/">Galbot</a>
+                          <p class="talk-title">Building Capable and Generalizable Policies for Robotic Manipulation.</p>
+                          <p class="talk-meta">Thanks Caowei Meng for invitation.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-08">Aug. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.sharpa.com/">Sharpa</a>
+                          <p class="talk-title">Towards Generalizable Imitation via Scalable Data and Robust Policy.</p>
+                          <p class="talk-meta">Thanks <a href="https://openreview.net/profile?id=~Kaifeng_Zhang1">Kaifeng Zhang</a> for invitation.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-08">Aug. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.3dcver.com/">3DCVer (3D视觉工坊)</a>
+                          <p class="talk-title">Towards Generalizable Imitation Learning from Human Demonstrations.</p>
+                          <p class="talk-meta"><a class="talk-replay" href="https://www.bilibili.com/video/BV1uwtPz1EzZ">Replay ↗</a></p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2025-03">Mar. 2025</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://people.iiis.tsinghua.edu.cn/~gaoyang/yang-gao.weebly.com/index.html">THU Yang Gao Group</a>
+                          <p class="talk-title">Towards Generalizable Imitation Learning from Human Demonstrations.</p>
+                          <p class="talk-meta">Thanks <a href="https://alvinwen428.github.io/">Chuan Wen</a> for invitation.</p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2024-11">Nov. 2024</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://course.zhidx.com/">Zhixingxing (智猩猩)</a>
+                          <p class="talk-title">Towards Efficient Robot Imitation Learning from Human Demonstrations.</p>
+                          <p class="talk-meta"><a class="talk-replay" href="https://www.bilibili.com/video/BV1gwiBYXErh">Replay ↗</a></p>
+                        </div>
+                      </li>
+                      <li>
+                        <time class="update-date" datetime="2024-03">Mar. 2024</time>
+                        <div class="talk-body">
+                          <a class="talk-host" href="https://www.echoaitalk.com/work/s1e07">Echo AI Talk</a>
+                          <p class="talk-title">Towards Efficient Robot Imitation Learning from Human Demonstrations.</p>
+                          <p class="talk-meta">Thanks <a href="https://yinzhenfei.github.io/">Zhenfei Yin</a> for invitation. <a class="talk-replay" href="https://www.youtube.com/watch?v=46YvkX_a1Ig">Replay ↗</a></p>
+                        </div>
+                      </li>
+                    </ul>
+                    <button type="button" class="news-toggle" id="talksToggle" aria-controls="talksList" aria-expanded="false" hidden>
+                      <span class="news-toggle-label">Earlier talks</span>
+                      <svg class="news-toggle-chevron" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -1379,83 +1443,87 @@
                 </tr>
               </tbody>
             </table>
-            <table id="section-travels" class="site-section travels-table" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+            <table id="section-misc" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
                     <heading>
-                       Travels<span class="travels-globe" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-                       </span>
+                       Miscellaneous
                     </heading>
-                    <p class="travels-intro">
-                       Beyond research, I am a passionate traveler who loves immersing myself in new experiences. From chasing skylines and tasting diverse cuisines to meeting locals, I document my journey through photography. Click a country to see the world through my lens.
-                    </p>
-                    <div class="travels-stats" id="travelsStats" aria-live="polite">
-                      <div class="travel-stat">
-                        <span class="travel-stat-num" data-target="0">0</span>
-                        <span class="travel-stat-label">Countries</span>
-                      </div>
-                      <div class="travel-stat-divider" aria-hidden="true"></div>
-                      <div class="travel-stat">
-                        <span class="travel-stat-num" data-target="0">0</span>
-                        <span class="travel-stat-label">Continents</span>
-                      </div>
-                      <div class="travel-stat-divider" aria-hidden="true"></div>
-                      <div class="travel-stat">
-                        <span class="travel-stat-num" data-target="0">0</span>
-                        <span class="travel-stat-label">Cities</span>
-                      </div>
-                      <div class="travel-stat-divider" aria-hidden="true"></div>
-                      <div class="travel-stat">
-                        <span class="travel-stat-num" data-target="0">0</span>
-                        <span class="travel-stat-label">Photos</span>
-                      </div>
-                    </div>
-                    <div class="travels-view-toggle" id="travelsViewToggle" role="tablist" aria-label="Travels view">
-                      <button type="button" class="travel-view-btn is-active" data-view="globe" role="tab" aria-selected="true" aria-controls="travelsViewGlobe">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
-                        Globe
-                      </button>
-                      <button type="button" class="travel-view-btn" data-view="cards" role="tab" aria-selected="false" aria-controls="travelsViewCards">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-                        Cards
-                      </button>
-                    </div>
-                    <div class="travels-view travels-view-globe is-active" id="travelsViewGlobe" role="tabpanel" aria-labelledby="travelsViewToggle">
-                      <div class="travel-globe-wrap" id="travelGlobeWrap">
-                        <div class="travel-globe-status" id="travelGlobeStatus">Loading world map…</div>
-                        <svg class="travel-globe-svg" id="travelGlobe" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive globe of visited countries."></svg>
-                        <div class="travel-globe-tip" id="travelGlobeTip" aria-hidden="true"></div>
-                      </div>
-                      <p class="travel-globe-hint">
-                        <span class="travel-globe-hint-row"><kbd>drag</kbd> spin · <kbd>scroll</kbd> zoom · <kbd>click</kbd> a highlighted country for photos/details</span>
+                    <section id="section-travels" class="misc-subsection" aria-labelledby="misc-travels-title">
+                      <h3 class="misc-subtitle" id="misc-travels-title"><span aria-hidden="true">🌍</span> Travels</h3>
+                      <p class="travels-intro">
+                         Beyond research, I am a passionate traveler who loves immersing myself in new experiences. From chasing skylines and tasting diverse cuisines to meeting locals, I document my journey through photography. Click a country to see the world through my lens.
                       </p>
-                    </div>
-                    <div class="travels-view travels-view-cards" id="travelsViewCards" role="tabpanel" hidden>
-                      <div class="travels-filter" id="travelsFilter" aria-label="Filter countries by continent">
-                        <span class="travels-filter-label">Continent:</span>
-                        <div class="travels-filter-buttons" id="travelsFilterButtons">
-                          <button type="button" class="travel-filter-btn is-active" data-continent="all">All</button>
+                      <div class="travels-stats" id="travelsStats" aria-live="polite">
+                        <div class="travel-stat">
+                          <span class="travel-stat-num" data-target="0">0</span>
+                          <span class="travel-stat-label">Countries</span>
+                        </div>
+                        <div class="travel-stat-divider" aria-hidden="true"></div>
+                        <div class="travel-stat">
+                          <span class="travel-stat-num" data-target="0">0</span>
+                          <span class="travel-stat-label">Continents</span>
+                        </div>
+                        <div class="travel-stat-divider" aria-hidden="true"></div>
+                        <div class="travel-stat">
+                          <span class="travel-stat-num" data-target="0">0</span>
+                          <span class="travel-stat-label">Cities</span>
+                        </div>
+                        <div class="travel-stat-divider" aria-hidden="true"></div>
+                        <div class="travel-stat">
+                          <span class="travel-stat-num" data-target="0">0</span>
+                          <span class="travel-stat-label">Photos</span>
                         </div>
                       </div>
-                      <div class="travels-grid" id="travelsGrid" role="list"></div>
-                      <p class="travels-empty" id="travelsEmpty" hidden>No countries match this filter yet.</p>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table id="section-notes" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
-              <tbody>
-                <tr>
-                  <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
-                       Course Notes
-                    </heading>
-                    <p>
-                       I share some of my notes in the courses I took at graduate school in <a href="https://tonyfang.net/notes">this page</a>. More notes during my undergraduate study can be found in <a href="https://github.com/galaxies99/SJTU-course-notes">this repository</a>.
-                    </p>
+                      <div class="travels-view-toggle" id="travelsViewToggle" role="tablist" aria-label="Travels view">
+                        <button type="button" class="travel-view-btn is-active" data-view="globe" role="tab" aria-selected="true" aria-controls="travelsViewGlobe">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                          Globe
+                        </button>
+                        <button type="button" class="travel-view-btn" data-view="cards" role="tab" aria-selected="false" aria-controls="travelsViewCards">
+                          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                          Cards
+                        </button>
+                      </div>
+                      <div class="travels-view travels-view-globe is-active" id="travelsViewGlobe" role="tabpanel" aria-labelledby="travelsViewToggle">
+                        <div class="travel-globe-wrap" id="travelGlobeWrap">
+                          <div class="travel-globe-status" id="travelGlobeStatus">Loading world map…</div>
+                          <svg class="travel-globe-svg" id="travelGlobe" viewBox="0 0 460 460" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Interactive globe of visited countries."></svg>
+                          <div class="travel-globe-tip" id="travelGlobeTip" aria-hidden="true"></div>
+                        </div>
+                        <p class="travel-globe-hint">
+                          <span class="travel-globe-hint-row"><kbd>drag</kbd> spin · <kbd>scroll</kbd> zoom · <kbd>click</kbd> a highlighted country for photos/details</span>
+                        </p>
+                      </div>
+                      <div class="travels-view travels-view-cards" id="travelsViewCards" role="tabpanel" hidden>
+                        <div class="travels-filter" id="travelsFilter" aria-label="Filter countries by continent">
+                          <span class="travels-filter-label">Continent:</span>
+                          <div class="travels-filter-buttons" id="travelsFilterButtons">
+                            <button type="button" class="travel-filter-btn is-active" data-continent="all">All</button>
+                          </div>
+                        </div>
+                        <div class="travels-grid" id="travelsGrid" role="list"></div>
+                        <p class="travels-empty" id="travelsEmpty" hidden>No countries match this filter yet.</p>
+                      </div>
+                    </section>
+                    <section id="section-billiards" class="misc-subsection" aria-labelledby="misc-billiards-title">
+                      <h3 class="misc-subtitle" id="misc-billiards-title"><span aria-hidden="true">🎱</span> Billiards</h3>
+                      <p class="misc-intro">I'm a fan of billiards (8-ball, 9-ball, 10-ball, and snooker).</p>
+                      <ul class="misc-achievements">
+                        <li><time class="update-date" datetime="2026">2026</time><span><b>🥈 Runner-up</b>, Shanghai Jiao Tong University Team Billiards Tournament (8-ball).</span></li>
+                        <li><time class="update-date" datetime="2025">2025</time><span><b>🥇 Champion</b>, Shanghai Jiao Tong University Team Billiards Tournament (8-ball).</span></li>
+                        <li><time class="update-date" datetime="2025">2025</time><span><b>🥈 Runner-up</b>, Shanghai Jiao Tong University Billiards Tournament (8-ball).</span></li>
+                        <li><time class="update-date" datetime="2024">2024</time><span><b>🥇 Champion</b>, Shanghai Jiao Tong University Team Billiards Tournament (8-ball).</span></li>
+                        <li><time class="update-date" datetime="2024">2024</time><span><b>🥇 Champion</b>, Shanghai Artificial Intelligence Laboratory Chinese 8-ball Tournament.</span></li>
+                      </ul>
+                    </section>
+                    <section id="section-notes" class="misc-subsection" aria-labelledby="misc-notes-title">
+                      <h3 class="misc-subtitle" id="misc-notes-title"><span aria-hidden="true">✍️</span> Course Notes</h3>
+                      <p>
+                         I share some of my notes in the courses I took at graduate school in <a href="https://tonyfang.net/notes">this page</a>. More notes during my undergraduate study can be found in <a href="https://github.com/galaxies99/SJTU-course-notes">this repository</a>.
+                      </p>
+                    </section>
                   </td>
                 </tr>
               </tbody>
@@ -1470,14 +1538,13 @@
                     <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 15 12 9 18 15"/></svg>
                     <span>Back to top</span>
                   </a>
+                </div>
+                <div class="site-footer-col site-footer-col-right">
                   <span class="footer-views" id="footerViews" aria-live="polite" hidden>
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
                     <span class="footer-views-count">—</span>
                     <span class="footer-views-label">views</span>
                   </span>
-                </div>
-                <div class="site-footer-col site-footer-col-right">
-                  Built on <a href="https://github.com/jonbarron/jonbarron_website">this template</a>
                 </div>
               </div>
             </footer>
@@ -1485,13 +1552,41 @@
         </tr>
       </tbody>
     </table>
-    <div aria-hidden="true" class="image-modal" id="wechatModal" role="dialog">
+    <div aria-hidden="true" class="image-modal" id="pronunciationModal" role="dialog" aria-modal="true" aria-labelledby="pronunciationModalTitle">
       <div class="image-modal-backdrop" data-modal-close=""></div>
-      <div class="image-modal-content" role="document">
+      <div class="image-modal-content pronunciation-content" role="document">
+        <button aria-label="Close pronunciation guide" class="image-modal-close" data-modal-close="" type="button">×</button>
+        <h3 class="image-modal-title" id="pronunciationModalTitle">How to pronounce my name</h3>
+        <p class="pronunciation-pinyin"><span lang="zh-Hans">方泓杰</span> · <span lang="zh-Latn">Fāng Hóngjié</span></p>
+        <div class="pronunciation-guide">
+          <p class="pronunciation-label">English approximation · three syllables</p>
+          <p class="pronunciation-approx">fahng hoong jyeh</p>
+        </div>
+        <dl class="pronunciation-syllables">
+          <div>
+            <dt><span lang="zh-Latn">Fāng</span> <span lang="zh-Hans">方</span></dt>
+            <dd>“fahng” — “ah” as in <em>father</em>, ending in “ng” as in <em>sing</em>. Keep the tone high and level.</dd>
+          </div>
+          <div>
+            <dt><span lang="zh-Latn">Hóng</span> <span lang="zh-Hans">泓</span></dt>
+            <dd>“hoong” — use the short “oo” in <em>book</em>, ending in “ng.” Let the tone rise.</dd>
+          </div>
+          <div>
+            <dt><span lang="zh-Latn">Jié</span> <span lang="zh-Hans">杰</span></dt>
+            <dd>“jyeh” — “j” + “yeh,” said as one syllable with a rising tone.</dd>
+          </div>
+        </dl>
+        <p class="pronunciation-note">Fang is my family name; Hongjie is my given name. These English spellings are an approximation of the Mandarin pronunciation.</p>
+      </div>
+    </div>
+    <div aria-hidden="true" class="image-modal" id="wechatModal" role="dialog" aria-labelledby="wechatModalTitle">
+      <div class="image-modal-backdrop" data-modal-close=""></div>
+      <div class="image-modal-content wechat-modal-content" role="document">
         <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
           ×
         </button>
-         <img alt="WeChat QR code" src="images/profile/wechat.jpg"/>
+        <h3 class="image-modal-title" id="wechatModalTitle">WeChat</h3>
+        <img alt="WeChat QR code" src="images/profile/wechat.jpg"/>
         <p class="image-modal-caption">
            Scan with WeChat to add me
         </p>
@@ -1648,22 +1743,41 @@
 
     (function() {
       var modals = {
+        pronunciation: document.getElementById('pronunciationModal'),
         wechat: document.getElementById('wechatModal'),
         email: document.getElementById('emailModal'),
         travel: document.getElementById('travelModal')
       };
+      var pronunciationTrigger = document.getElementById('namePronunciationLink');
 
       function openModal(modal) {
         if (!modal) return;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        if (modal === modals.pronunciation) {
+          modal.querySelector('button[data-modal-close]').focus({ preventScroll: true });
+        }
       }
       function closeModal(modal) {
         if (!modal) return;
+        var wasOpen = modal.classList.contains('is-open');
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (wasOpen && modal === modals.pronunciation && pronunciationTrigger) {
+          pronunciationTrigger.focus({ preventScroll: true });
+        }
+      }
+
+      // This guide has one interactive control; keep keyboard focus inside it.
+      if (modals.pronunciation) {
+        modals.pronunciation.addEventListener('keydown', function(e) {
+          if (e.key === 'Tab') {
+            e.preventDefault();
+            modals.pronunciation.querySelector('button[data-modal-close]').focus({ preventScroll: true });
+          }
+        });
       }
 
       document.querySelectorAll('[data-modal]').forEach(function(trigger) {
@@ -1773,6 +1887,20 @@
       var rowSelected = paperRows.map(function(row) {
         return row.classList.contains('paper-row-selected');
       });
+      var rowRoles = paperRows.map(function(row) {
+        var authors = row.querySelector('.paper-authors');
+        var ownName = authors && Array.prototype.slice.call(authors.querySelectorAll('b, strong'))
+          .find(function(el) { return /Hongjie\s+Fang/.test(el.textContent || ''); });
+        var ownText = ownName ? ownName.textContent.trim() : '';
+        var firstName = authors ? (authors.textContent || '').split(',')[0].trim() : '';
+        var first = /Hongjie\s+Fang/.test(firstName);
+        return {
+          first: first || /\*/.test(ownText),
+          corresponding: /#/.test(ownText)
+        };
+      });
+      var roleFilter = document.getElementById('pubRoleFilter');
+      var topicSummary = document.getElementById('pubTopicSummary');
 
       var totalPapers = paperRows.length;
 
@@ -1819,8 +1947,17 @@
       var selectedOnly = false;
 
       function applyFilters() {
-        var noFilter = activeTopics.size === 0 && !selectedOnly;
-        if (allButton) allButton.classList.toggle('is-active', noFilter);
+        var activeRole = roleFilter ? roleFilter.value : 'all';
+        var noFilter = activeTopics.size === 0 && !selectedOnly && activeRole === 'all';
+        if (allButton) allButton.classList.toggle('is-active', activeTopics.size === 0);
+        if (topicSummary) {
+          topicSummary.textContent = activeTopics.size === 0 ? 'All topics'
+            : activeTopics.size === 1 ? Array.from(activeTopics)[0]
+            : activeTopics.size + ' topics';
+        }
+        buttons.forEach(function(btn) {
+          btn.setAttribute('aria-pressed', btn.classList.contains('is-active') ? 'true' : 'false');
+        });
 
         if (noFilter) {
           paperRows.forEach(function(row) {
@@ -1838,7 +1975,8 @@
             return rowTags[idx].some(function(tag) { return tag.indexOf(needle) !== -1; });
           });
           var selectedMatch = !selectedOnly || rowSelected[idx];
-          row.classList.toggle('is-hidden-by-filter', !(topicMatch && selectedMatch));
+          var roleMatch = activeRole === 'all' || rowRoles[idx][activeRole];
+          row.classList.toggle('is-hidden-by-filter', !(topicMatch && selectedMatch && roleMatch));
         });
         updateSummary();
       }
@@ -1848,8 +1986,9 @@
           var filter = btn.getAttribute('data-filter');
           if (filter === 'all') {
             activeTopics.clear();
-            selectedOnly = false;
-            buttons.forEach(function(b) { b.classList.remove('is-active'); });
+            buttons.forEach(function(b) {
+              if (b !== selectedButton) b.classList.remove('is-active');
+            });
           } else if (filter === 'selected') {
             selectedOnly = !selectedOnly;
             btn.classList.toggle('is-active', selectedOnly);
@@ -1865,6 +2004,8 @@
           applyFilters();
         });
       });
+      if (roleFilter) roleFilter.addEventListener('change', applyFilters);
+      applyFilters();
     })();
 
     (function() {
@@ -1932,45 +2073,39 @@
     })();
 
     (function() {
-      var list = document.getElementById('newsList');
-      var toggle = document.getElementById('newsToggle');
-      if (!list || !toggle) return;
-      var label = toggle.querySelector('.news-toggle-label');
-      var items = Array.prototype.slice.call(list.children).filter(function(n) {
-        return n.tagName === 'LI';
-      });
-      var initial = parseInt(list.getAttribute('data-initial'), 10) || 5;
-      if (items.length <= initial) {
-        toggle.style.display = 'none';
-        return;
-      }
-      var hiddenCount = items.length - initial;
-
-      function render() {
-        var collapsed = list.getAttribute('data-collapsed') === 'true';
-        items.forEach(function(li, idx) {
-          li.classList.remove('is-news-collapsed', 'is-news-last-visible');
-          if (idx >= initial) {
-            if (collapsed) li.classList.add('is-news-collapsed');
-          } else if (idx === initial - 1 && collapsed) {
-            li.classList.add('is-news-last-visible');
-          }
+      document.querySelectorAll('[data-collapsible-list]').forEach(function(list) {
+        var toggle = document.querySelector('button[aria-controls="' + list.id + '"]');
+        if (!toggle) return;
+        var label = toggle.querySelector('.news-toggle-label');
+        var items = Array.prototype.slice.call(list.children).filter(function(n) {
+          return n.tagName === 'LI';
         });
-        toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
-        if (label) {
-          label.textContent = collapsed
-            ? 'Show ' + hiddenCount + ' more'
-            : 'Show less';
-        }
-      }
+        var initial = parseInt(list.getAttribute('data-initial'), 10) || 5;
+        if (items.length <= initial) return;
+        var hiddenCount = items.length - initial;
+        var listName = list.getAttribute('data-collapsible-list');
+        var collapsed = true;
 
-      toggle.addEventListener('click', function() {
-        var collapsed = list.getAttribute('data-collapsed') === 'true';
-        list.setAttribute('data-collapsed', collapsed ? 'false' : 'true');
+        function render() {
+          items.forEach(function(li, idx) {
+            li.hidden = collapsed && idx >= initial;
+          });
+          toggle.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+          if (label) {
+            label.textContent = collapsed
+              ? 'Earlier ' + listName + ' (' + hiddenCount + ')'
+              : 'Show recent ' + listName;
+          }
+        }
+
+        toggle.addEventListener('click', function() {
+          collapsed = !collapsed;
+          render();
+        });
+
+        toggle.hidden = false;
         render();
       });
-
-      render();
     })();
 
     (function() {
@@ -2655,8 +2790,8 @@
         var ocean = defs.append('radialGradient')
           .attr('id', 'travel-globe-ocean')
           .attr('cx', '35%').attr('cy', '32%').attr('r', '75%');
-        ocean.append('stop').attr('offset', '0%').attr('stop-color', 'var(--travel-globe-ocean-hi, #e6f1ff)');
-        ocean.append('stop').attr('offset', '100%').attr('stop-color', 'var(--travel-globe-ocean-lo, #b9d3f0)');
+        ocean.append('stop').attr('offset', '0%').attr('stop-color', 'var(--travel-globe-ocean-hi, #fbf9f5)');
+        ocean.append('stop').attr('offset', '100%').attr('stop-color', 'var(--travel-globe-ocean-lo, #e7e1d8)');
 
         var shade = defs.append('radialGradient')
           .attr('id', 'travel-globe-shade')
@@ -2667,11 +2802,9 @@
         // Drop shadow filter for the globe
         var filter = defs.append('filter')
           .attr('id', 'travel-globe-shadow').attr('x', '-20%').attr('y', '-20%').attr('width', '140%').attr('height', '140%');
-        filter.append('feGaussianBlur').attr('in', 'SourceAlpha').attr('stdDeviation', 6);
-        filter.append('feOffset').attr('dx', 0).attr('dy', 6).attr('result', 'offsetBlur');
-        var feMerge = filter.append('feMerge');
-        feMerge.append('feMergeNode').attr('in', 'offsetBlur');
-        feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+        filter.append('feDropShadow')
+          .attr('dx', 0).attr('dy', 4).attr('stdDeviation', 5)
+          .attr('flood-color', '#27231f').attr('flood-opacity', 0.14);
 
         var globeG = svg.append('g').attr('class', 'travel-globe-root');
 

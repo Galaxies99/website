@@ -6,6 +6,10 @@ on:
   push:
     branches: ["main"]
 
+  # Refresh Scholar metrics daily at 06:17 China Standard Time (22:17 UTC).
+  schedule:
+    - cron: "17 22 * * *"
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -22,7 +26,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Refresh metrics and deploy; generated metrics never create source commits.
   deploy:
     environment:
       name: github-pages
@@ -31,6 +35,27 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test Scholar updater
+        run: python -m unittest discover -s scripts -p 'test_scholar_stats.py'
+      - name: Restore last successful Scholar metrics
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/scholar-stats.json
+          key: scholar-stats-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            scholar-stats-v1-
+      - name: Refresh Scholar metrics
+        run: python scripts/update_scholar_stats.py
+      - name: Preserve last successful Scholar metrics
+        if: ${{ hashFiles('.cache/scholar-stats.json') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/scholar-stats.json
+          key: scholar-stats-v1-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Prepare static site
