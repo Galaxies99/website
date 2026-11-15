@@ -7,10 +7,27 @@
     </title>
     <meta content="Hongjie Fang" name="author"/>
     <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta name="description" content="Hongjie (Tony) Fang is a Ph.D. student at Shanghai Jiao Tong University researching robotic manipulation, robot learning, data collection, and dexterous hands."/>
+    <link rel="canonical" href="https://tonyfang.net/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Hongjie Fang"/>
+    <meta property="og:title" content="Hongjie Fang | Robotics &amp; Robot Learning"/>
+    <meta property="og:description" content="Research in robotic manipulation, robot learning, data collection, and dexterous hands at Shanghai Jiao Tong University."/>
+    <meta property="og:url" content="https://tonyfang.net/"/>
+    <meta property="og:image" content="https://tonyfang.net/images/profile/social-card.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Hongjie Fang — Robotics &amp; Robot Learning, Shanghai Jiao Tong University"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:creator" content="@FangGalaxies"/>
+    <meta name="twitter:title" content="Hongjie Fang | Robotics &amp; Robot Learning"/>
+    <meta name="twitter:description" content="Research in robotic manipulation, robot learning, data collection, and dexterous hands at Shanghai Jiao Tong University."/>
+    <meta name="twitter:image" content="https://tonyfang.net/images/profile/social-card.jpg"/>
+    <meta name="twitter:image:alt" content="Hongjie Fang — Robotics &amp; Robot Learning, Shanghai Jiao Tong University"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2" crossorigin/>
-    <link href="stylesheet.css?v=21" rel="stylesheet" type="text/css"/>
+    <link href="stylesheet.css?v=24" rel="stylesheet" type="text/css"/>
     <link href="images/icon.ico" rel="icon"/>
     <script>
       (function() {
@@ -24,14 +41,30 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav class="site-nav" aria-label="Page navigation">
       <div class="site-nav-inner">
-        <div class="site-nav-links">
-          <a href="#top">About</a>
-          <a href="#section-news">News</a>
-          <a href="#section-publications">Publications</a>
-          <a href="#section-talks">Talks</a>
-          <a href="#section-misc">Miscellaneous</a>
+        <div class="site-nav-primary">
+          <div class="site-nav-scroll">
+            <div class="site-nav-links" id="siteNavLinks">
+              <a href="#top">About</a>
+              <a href="#section-news">News</a>
+              <a href="#section-publications">Publications</a>
+              <a href="#section-talks">Talks</a>
+            </div>
+            <span class="site-nav-scroll-hint" aria-hidden="true">›</span>
+          </div>
+          <details class="site-nav-more" id="siteNavMore">
+            <summary aria-controls="siteNavMoreLinks">
+              More
+              <svg class="site-nav-chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="m3 4.5 3 3 3-3"/></svg>
+            </summary>
+            <div class="site-nav-more-links" id="siteNavMoreLinks">
+              <a href="#section-services">Academic Services</a>
+              <a href="#section-collab">Collaboration &amp; Mentoring</a>
+              <a href="#section-misc">Miscellaneous</a>
+            </div>
+          </details>
         </div>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
           <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -39,7 +72,8 @@
         </button>
       </div>
     </nav>
-    <table id="top" style="width:100%;max-width:900px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+    <main id="main-content" tabindex="-1">
+    <table id="top" role="presentation" style="width:100%;max-width:900px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
       <tbody>
         <tr style="padding:0px">
           <td style="padding:0px">
@@ -47,18 +81,18 @@
               <tbody>
                 <tr style="padding:0px">
                   <td class="profile-text-col" style="padding:2.5%;vertical-align:middle">
-                    <p class="profile-name-row" style="text-align:center">
-                      <name>
+                    <div class="profile-name-row" style="text-align:center">
+                      <h1 class="profile-name">
                         <span class="name-en">Hongjie (Tony) Fang</span> <a class="name-cn name-pronunciation" id="namePronunciationLink" href="#pronunciationModal" data-modal="pronunciation" aria-haspopup="dialog" aria-controls="pronunciationModal" title="How to pronounce my name" lang="zh-Hans">方泓杰</a>
-                      </name>
-                    </p>
+                      </h1>
+                    </div>
                     <p class="profile-intro">
                        I am a fifth-year Ph.D. student @ Computer Science in Wu Wenjun Honorable Class, <a href="https://en.sjtu.edu.cn/">Shanghai Jiao Tong University (SJTU)</a> and <a href="https://www.shlab.org.cn/">Shanghai Artificial Intelligence Laboratory</a>, advised by Prof. <a href="https://www.mvig.org/">Cewu Lu</a>. I got my B. Eng. degree @ Computer Science and Engineering, and B. Ec. degree @ Finance from SJTU in 2022. <br/><br/>My research interests mainly lie in the robotics fields; specifically, robotic manipulation, robot learning, data collection, dexterous hands, and grasping. My ultimate goal is to enable robots to perform various tasks in the real world under any circumstances with human-level dexterity, improving the quality of human life.
                     </p>
                   </td>
                   <td class="profile-photo-col" style="padding:2.5% 0;vertical-align:middle;">
-                     <img alt="profile photo" class="hoverZoomLink" id="profileImg" src="images/profile/profile5.png"/>
-                    <p id="profileCaption">
+                     <img alt="Hongjie Fang at Port Campbell, Australia" class="hoverZoomLink" id="profileImg" src="images/profile/profile5-480.webp" srcset="images/profile/profile5-240.webp 240w, images/profile/profile5-480.webp 480w, images/profile/profile5-720.webp 720w" sizes="(max-width: 640px) 190px, 240px" width="720" height="720" fetchpriority="high" decoding="async"/>
+                    <p id="profileCaption" aria-live="polite" aria-atomic="true">
                        Photo @ Port Campbell, Australia 🇦🇺 (2026)<br/>Credit to Mingyu Mei
                     </p>
                   </td>
@@ -76,9 +110,9 @@
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        News
-                    </heading>
+                    </h2>
                     <ul class="news-list" id="newsList" data-collapsible-list="news" data-initial="5">
                       <li><span class="news-date">Sept. 2026</span><span class="news-body"><a href="https://chenxi-wang.github.io/projects/anydexrt"><b>AnyDexRT</b></a> is accepted by CoRL 2026.</span></li>
                       <li><span class="news-date">Jun. 2026</span><span class="news-body"><a href="https://yifuxu1127.github.io/LIDEA/"><b>LIDEA</b></a> is accepted by IROS 2026, and <a href="https://arxiv.org/pdf/2606.31493"><b>ChronoFlow Policy</b></a> is accepted by ECCV 2026.</span></li>
@@ -109,9 +143,9 @@
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
                     <div class="publications-heading-row">
-                      <heading>
+                      <h2 class="section-title">
                          Publications<span class="pub-total-count" id="pubTotalCount" aria-label="total publications"></span>
-                      </heading>
+                      </h2>
                       <!-- scholar-stats:start -->
                       <a class="scholar-stats" href="https://scholar.google.com/citations?user=Kyio_RAAAAAJ&amp;hl=en" title="Google Scholar · All-time metrics · Updated 2026-11-14 18:24 UTC"><span class="scholar-stat"><strong>5,662</strong> citations</span> <span class="scholar-stats-separator" aria-hidden="true">·</span> <span class="scholar-stat">h-index <strong>17</strong></span></a>
                       <!-- scholar-stats:end -->
@@ -146,6 +180,11 @@
                           <option value="corresponding">Corresponding Author</option>
                         </select>
                       </label>
+                      <button type="button" class="pub-filter-clear" id="pubClearFilters" data-clear-publication-filters="" hidden>Clear filters</button>
+                    </div>
+                    <div class="publications-empty" id="publicationsEmpty" hidden>
+                      <p>No publications match these filters. Try another topic or authorship role.</p>
+                      <button type="button" class="pub-filter-clear" data-clear-publication-filters="">Clear filters</button>
                     </div>
                   </td>
                 </tr>
@@ -1103,9 +1142,9 @@
               <tbody>
                 <tr class="publications-head-row">
                   <td class="publications-head-cell" colspan="2" style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        Selected Projects
-                    </heading>
+                    </h2>
                   </td>
                 </tr>
                 <tr>
@@ -1179,9 +1218,9 @@
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        Academic Services
-                    </heading>
+                    </h2>
                     <div class="service-editorial">
                       <div>
                         <h3 class="section-eyebrow">Editorial service</h3>
@@ -1222,9 +1261,9 @@
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        Talks
-                    </heading>
+                    </h2>
                     <ul class="talks-list" id="talksList" data-collapsible-list="talks" data-initial="4">
                       <li>
                         <time class="update-date" datetime="2026-09">Sept. 2026</time>
@@ -1310,9 +1349,9 @@
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        Collaboration & Mentoring
-                    </heading>
+                    </h2>
                     <p>
                        I collaborate closely with <a href="https://fang-haoshu.github.io/">Hao-Shu Fang</a>, <a href="https://scholar.google.com/citations?user=bK1fWXcAAAAJ">Chenxi Wang</a>, <a href="https://www.linkedin.com/in/shiruntang/">Shirun Tang</a>, <a href="https://github.com/Xiashangning">Shangning Xia</a>, <a href="https://lixiny.github.io/">Lixin Yang</a>  and <a href="mailto:shiquan.wang@flexiv.com">Shiquan Wang</a>. I welcome opportunities for discussions and potential collaborations, and I am particularly interested in working with highly motivated undergraduate and master's students. Please feel free to contact me via email. I'm fortunate to work with the following students:
                     </p>
@@ -1447,9 +1486,9 @@
               <tbody>
                 <tr>
                   <td style="padding:20px;width:100%;vertical-align:middle">
-                    <heading>
+                    <h2 class="section-title">
                        Miscellaneous
-                    </heading>
+                    </h2>
                     <section id="section-travels" class="misc-subsection" aria-labelledby="misc-travels-title">
                       <h3 class="misc-subtitle" id="misc-travels-title"><span aria-hidden="true">🌍</span> Travels</h3>
                       <p class="travels-intro">
@@ -1519,7 +1558,16 @@
                       </ul>
                     </section>
                     <section id="section-notes" class="misc-subsection" aria-labelledby="misc-notes-title">
-                      <h3 class="misc-subtitle" id="misc-notes-title"><span aria-hidden="true">✍️</span> Course Notes</h3>
+                      <h3 class="misc-subtitle" id="misc-notes-title"><span aria-hidden="true">🎓</span> Teaching</h3>
+                      <h4 class="teaching-group-title" id="teaching-assistant-title">Teaching Assistant</h4>
+                      <ul class="teaching-list" aria-labelledby="teaching-assistant-title">
+                        <li><span class="teaching-course">Linear Algebra (Honor)</span><span class="teaching-term">Fall 2021 &amp; Fall 2022</span></li>
+                        <li><span class="teaching-course">Algorithm and Complexity</span><span class="teaching-term">Spring 2022</span></li>
+                        <li><span class="teaching-course">Mathematical Analysis (Honor)</span><span class="teaching-term">Fall 2020 &amp; Fall 2021</span></li>
+                        <li><span class="teaching-course">C++ Programming Language (Honor)</span><span class="teaching-term">Fall 2020</span></li>
+                        <li><span class="teaching-course">Data Structure (Honor)</span><span class="teaching-term">Spring 2019</span></li>
+                      </ul>
+                      <h4 class="teaching-group-title">Course Notes</h4>
                       <p>
                          I share some of my notes in the courses I took at graduate school in <a href="https://tonyfang.net/notes">this page</a>. More notes during my undergraduate study can be found in <a href="https://github.com/galaxies99/SJTU-course-notes">this repository</a>.
                       </p>
@@ -1552,6 +1600,7 @@
         </tr>
       </tbody>
     </table>
+    </main>
     <div aria-hidden="true" class="image-modal" id="pronunciationModal" role="dialog" aria-modal="true" aria-labelledby="pronunciationModalTitle">
       <div class="image-modal-backdrop" data-modal-close=""></div>
       <div class="image-modal-content pronunciation-content" role="document">
@@ -1579,7 +1628,7 @@
         <p class="pronunciation-note">Fang is my family name; Hongjie is my given name. These English spellings are an approximation of the Mandarin pronunciation.</p>
       </div>
     </div>
-    <div aria-hidden="true" class="image-modal" id="wechatModal" role="dialog" aria-labelledby="wechatModalTitle">
+    <div aria-hidden="true" class="image-modal" id="wechatModal" role="dialog" aria-modal="true" aria-labelledby="wechatModalTitle">
       <div class="image-modal-backdrop" data-modal-close=""></div>
       <div class="image-modal-content wechat-modal-content" role="document">
         <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
@@ -1592,7 +1641,7 @@
         </p>
       </div>
     </div>
-    <div aria-hidden="true" class="image-modal travel-modal" id="travelModal" role="dialog" aria-labelledby="travelModalTitle">
+    <div aria-hidden="true" class="image-modal travel-modal" id="travelModal" role="dialog" aria-modal="true" aria-labelledby="travelModalTitle">
       <div class="image-modal-backdrop" data-modal-close=""></div>
       <div class="image-modal-content travel-modal-content" role="document">
         <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
@@ -1624,7 +1673,7 @@
         <div class="travel-modal-dots" id="travelModalDots" aria-hidden="true"></div>
       </div>
     </div>
-    <div aria-hidden="true" class="image-modal email-modal" id="emailModal" role="dialog" aria-labelledby="emailModalTitle">
+    <div aria-hidden="true" class="image-modal email-modal" id="emailModal" role="dialog" aria-modal="true" aria-labelledby="emailModalTitle">
       <div class="image-modal-backdrop" data-modal-close=""></div>
       <div class="image-modal-content email-modal-content" role="document">
         <button aria-label="Close" class="image-modal-close" data-modal-close="" type="button">
@@ -1660,42 +1709,89 @@
       </div>
     </div>
     <script>
-      (function() {
+    (function() {
+      var links = document.getElementById('siteNavLinks');
+      if (!links) return;
+      var scrollArea = links.parentElement;
+      function updateScrollHints() {
+        scrollArea.classList.toggle('has-overflow-start', links.scrollLeft > 2);
+        scrollArea.classList.toggle('has-overflow-end', links.scrollWidth - links.clientWidth - links.scrollLeft > 2);
+      }
+      links.addEventListener('scroll', updateScrollHints, { passive: true });
+      window.addEventListener('resize', updateScrollHints);
+      if ('ResizeObserver' in window) new ResizeObserver(updateScrollHints).observe(links);
+      if (document.fonts) document.fonts.ready.then(updateScrollHints);
+      updateScrollHints();
+    })();
+
+    (function() {
+      var more = document.getElementById('siteNavMore');
+      if (!more) return;
+      var summary = more.querySelector('summary');
+      // Native details keeps click, Enter, Space, and no-JavaScript navigation working.
+      document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape' || !more.open) return;
+        e.preventDefault();
+        more.open = false;
+        summary.focus({ preventScroll: true });
+      });
+      document.addEventListener('click', function(e) {
+        if (!more.contains(e.target)) more.open = false;
+      });
+      more.addEventListener('focusout', function(e) {
+        if (!more.contains(e.relatedTarget)) more.open = false;
+      });
+      more.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+          more.open = false;
+          // Move focus into the chosen section; let the anchor perform the scroll.
+          var target = document.querySelector(link.getAttribute('href'));
+          if (target) {
+            target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
+          }
+        });
+      });
+    })();
+
+    (function() {
       var img = document.getElementById('profileImg');
       var caption = document.getElementById('profileCaption');
       if (!img || !caption) return;
       var choices = [
         {
-          src: 'images/profile/profile5.png',
+          name: 'profile5',
+          alt: 'Hongjie Fang at Port Campbell, Australia',
           captionHtml: 'Photo @ Port Campbell, Australia 🇦🇺 (2026)<br>Credit to Mingyu Mei'
         },
         {
-          src: 'images/profile/profile1.png',
+          name: 'profile1',
+          alt: 'Hongjie Fang in Istanbul, Turkey',
           captionHtml: 'Photo @ Istanbul, Turkey 🇹🇷 (2025)<br>Credit to Jingjing Chen'
         },
         {
-          src: 'images/profile/profile2.png',
+          name: 'profile2',
+          alt: 'Hongjie Fang in Oslo, Norway',
           captionHtml: 'Photo @ Oslo, Norway 🇳🇴 (2025)<br>Credit to Peishen Yan'
         },
         {
-          src: 'images/profile/profile3.png',
+          name: 'profile3',
+          alt: 'Hongjie Fang in Yokohama, Japan',
           captionHtml: 'Photo @ Yokohama, Japan 🇯🇵 (2024)<br>Credit to Zhenyang Ni'
         }
       ];
 
-      var index = 0;
-      function apply(i) {
-        var pick = choices[i];
-        img.src = pick.src;
-        caption.innerHTML = pick.captionHtml;
+      function photoSource(pick, width) {
+        return 'images/profile/' + pick.name + '-' + width + '.webp';
       }
-      apply(index);
-
-      choices.forEach(function(c) {
-        var pre = new Image();
-        pre.src = c.src;
-      });
-
+      function photoSources(pick) {
+        return [240, 480, 720].map(function(width) {
+          return photoSource(pick, width) + ' ' + width + 'w';
+        }).join(', ');
+      }
+      var index = 0;
+      // The initial photo is loaded by HTML. Fetch alternatives only on request.
       img.setAttribute('role', 'button');
       img.setAttribute('tabindex', '0');
       img.setAttribute('title', 'Click for another photo');
@@ -1705,25 +1801,39 @@
       function swap(direction) {
         if (swapping || choices.length <= 1) return;
         swapping = true;
-        var step = direction === -1 ? -1 : 1;
-        var next = (index + step + choices.length) % choices.length;
-
-        img.classList.add('is-photo-swapping');
-        caption.classList.add('is-caption-swapping');
-
+        img.setAttribute('aria-busy', 'true');
+        var next = (index + (direction === -1 ? -1 : 1) + choices.length) % choices.length;
+        var pick = choices[next];
         var preload = new Image();
-        preload.src = choices[next].src;
-
-        setTimeout(function() {
-          index = next;
-          apply(index);
-          img.classList.remove('is-photo-swapping');
-          caption.classList.remove('is-caption-swapping');
-          img.classList.remove('is-photo-pulse');
-          void img.offsetWidth;
-          img.classList.add('is-photo-pulse');
+        preload.decoding = 'async';
+        function finish() {
           swapping = false;
-        }, 220);
+          img.removeAttribute('aria-busy');
+        }
+        preload.onerror = finish;
+        preload.onload = function() {
+          var decoded = preload.decode ? preload.decode().catch(function() {}) : Promise.resolve();
+          decoded.then(function() {
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!reduceMotion) {
+              img.classList.add('is-photo-swapping');
+              caption.classList.add('is-caption-swapping');
+            }
+            setTimeout(function() {
+              index = next;
+              img.srcset = photoSources(pick);
+              img.src = photoSource(pick, 480);
+              img.alt = pick.alt;
+              caption.innerHTML = pick.captionHtml;
+              img.classList.remove('is-photo-swapping');
+              caption.classList.remove('is-caption-swapping');
+              finish();
+            }, reduceMotion ? 0 : 220);
+          });
+        };
+        preload.sizes = img.sizes;
+        preload.srcset = photoSources(pick);
+        preload.src = photoSource(pick, 480);
       }
 
       img.addEventListener('click', function() { swap(1); });
@@ -1748,61 +1858,110 @@
         email: document.getElementById('emailModal'),
         travel: document.getElementById('travelModal')
       };
-      var pronunciationTrigger = document.getElementById('namePronunciationLink');
+      var activeModal = null;
+      var returnFocus = null;
+      var backgroundState = [];
+      var previousOverflow = '';
 
-      function openModal(modal) {
-        if (!modal) return;
+      function focusableElements(modal) {
+        return Array.prototype.slice.call(modal.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )).filter(function(el) {
+          return el.getClientRects().length && getComputedStyle(el).visibility !== 'hidden';
+        });
+      }
+
+      function focusFirst(modal) {
+        var first = focusableElements(modal)[0] || modal;
+        first.focus({ preventScroll: true });
+      }
+
+      function openModal(modal, trigger) {
+        if (!modal || activeModal === modal) return;
+        var initiator = trigger || document.activeElement;
+        if (activeModal) closeModal(activeModal, false);
+        returnFocus = initiator;
+        activeModal = modal;
+        previousOverflow = document.body.style.overflow;
         modal.classList.add('is-open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
-        if (modal === modals.pronunciation) {
-          modal.querySelector('button[data-modal-close]').focus({ preventScroll: true });
-        }
-      }
-      function closeModal(modal) {
-        if (!modal) return;
-        var wasOpen = modal.classList.contains('is-open');
-        modal.classList.remove('is-open');
-        modal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (wasOpen && modal === modals.pronunciation && pronunciationTrigger) {
-          pronunciationTrigger.focus({ preventScroll: true });
-        }
+        focusFirst(modal);
+        backgroundState = Array.prototype.slice.call(document.body.children)
+          .filter(function(el) { return el !== modal && !/^(SCRIPT|STYLE)$/.test(el.tagName); })
+          .map(function(el) {
+            var state = { el: el, inert: el.hasAttribute('inert'), ariaHidden: el.getAttribute('aria-hidden') };
+            el.setAttribute('inert', '');
+            el.setAttribute('aria-hidden', 'true');
+            return state;
+          });
       }
 
-      // This guide has one interactive control; keep keyboard focus inside it.
-      if (modals.pronunciation) {
-        modals.pronunciation.addEventListener('keydown', function(e) {
-          if (e.key === 'Tab') {
-            e.preventDefault();
-            modals.pronunciation.querySelector('button[data-modal-close]').focus({ preventScroll: true });
-          }
+      function closeModal(modal, restoreFocus) {
+        if (!modal || modal !== activeModal) return;
+        activeModal = null;
+        backgroundState.forEach(function(state) {
+          if (!state.inert) state.el.removeAttribute('inert');
+          if (state.ariaHidden === null) state.el.removeAttribute('aria-hidden');
+          else state.el.setAttribute('aria-hidden', state.ariaHidden);
         });
+        backgroundState = [];
+        document.body.style.overflow = previousOverflow;
+        if (restoreFocus !== false) {
+          var target = returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length
+            ? returnFocus : document.getElementById('main-content');
+          if (target) target.focus({ preventScroll: true });
+        }
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        returnFocus = null;
       }
 
       document.querySelectorAll('[data-modal]').forEach(function(trigger) {
         var key = trigger.getAttribute('data-modal');
         if (!modals[key]) return;
+        trigger.setAttribute('aria-haspopup', 'dialog');
+        trigger.setAttribute('aria-controls', modals[key].id);
         trigger.addEventListener('click', function(e) {
           e.preventDefault();
-          openModal(modals[key]);
+          openModal(modals[key], trigger);
         });
       });
 
       Object.keys(modals).forEach(function(k) {
         var modal = modals[k];
         if (!modal) return;
+        modal.setAttribute('aria-modal', 'true');
+        modal.setAttribute('tabindex', '-1');
+        modal.addEventListener('modal:open', function(e) {
+          openModal(modal, e.detail && e.detail.trigger);
+        });
         modal.querySelectorAll('[data-modal-close]').forEach(function(el) {
           el.addEventListener('click', function() { closeModal(modal); });
         });
       });
 
+      document.addEventListener('focusin', function(e) {
+        if (activeModal && !activeModal.contains(e.target)) focusFirst(activeModal);
+      });
       document.addEventListener('keydown', function(e) {
-        if (e.key !== 'Escape') return;
-        Object.keys(modals).forEach(function(k) {
-          var modal = modals[k];
-          if (modal && modal.classList.contains('is-open')) closeModal(modal);
-        });
+        if (!activeModal) return;
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          closeModal(activeModal);
+        } else if (e.key === 'Tab') {
+          var elements = focusableElements(activeModal);
+          var first = elements[0] || activeModal;
+          var last = elements[elements.length - 1] || activeModal;
+          var outside = !activeModal.contains(document.activeElement);
+          if (e.shiftKey && (document.activeElement === first || outside)) {
+            e.preventDefault();
+            last.focus({ preventScroll: true });
+          } else if (!e.shiftKey && (document.activeElement === last || outside || !elements.length)) {
+            e.preventDefault();
+            first.focus({ preventScroll: true });
+          }
+        }
       });
 
       var emailModal = modals.email;
@@ -1827,10 +1986,12 @@
               ta.setAttribute('readonly', '');
               ta.style.position = 'fixed';
               ta.style.opacity = '0';
-              document.body.appendChild(ta);
+              var previousFocus = document.activeElement;
+              emailModal.querySelector('.image-modal-content').appendChild(ta);
               ta.select();
               var ok = document.execCommand('copy');
-              document.body.removeChild(ta);
+              ta.remove();
+              if (previousFocus) previousFocus.focus({ preventScroll: true });
               ok ? resolve() : reject(new Error('execCommand copy failed'));
             } catch (err) { reject(err); }
           });
@@ -1901,6 +2062,9 @@
       });
       var roleFilter = document.getElementById('pubRoleFilter');
       var topicSummary = document.getElementById('pubTopicSummary');
+      var topicDropdown = document.getElementById('pubTopicDropdown');
+      var clearButton = document.getElementById('pubClearFilters');
+      var emptyState = document.getElementById('publicationsEmpty');
 
       var totalPapers = paperRows.length;
 
@@ -1913,6 +2077,7 @@
         var visible = paperRows.reduce(function(n, row) {
           return n + (row.classList.contains('is-hidden-by-filter') ? 0 : 1);
         }, 0);
+        if (emptyState) emptyState.hidden = visible !== 0;
         if (visible === totalPapers) {
           summaryEl.textContent = '';
           summaryEl.classList.remove('is-active');
@@ -1949,6 +2114,7 @@
       function applyFilters() {
         var activeRole = roleFilter ? roleFilter.value : 'all';
         var noFilter = activeTopics.size === 0 && !selectedOnly && activeRole === 'all';
+        if (clearButton) clearButton.hidden = noFilter;
         if (allButton) allButton.classList.toggle('is-active', activeTopics.size === 0);
         if (topicSummary) {
           topicSummary.textContent = activeTopics.size === 0 ? 'All topics'
@@ -2005,6 +2171,30 @@
         });
       });
       if (roleFilter) roleFilter.addEventListener('change', applyFilters);
+      table.querySelectorAll('[data-clear-publication-filters]').forEach(function(button) {
+        button.addEventListener('click', function() {
+          activeTopics.clear();
+          selectedOnly = false;
+          if (roleFilter) roleFilter.value = 'all';
+          buttons.forEach(function(btn) { btn.classList.remove('is-active'); });
+          if (topicDropdown) topicDropdown.open = false;
+          applyFilters();
+          // The clear button is now hidden; keep focus on a visible control.
+          if (selectedButton) selectedButton.focus({ preventScroll: true });
+        });
+      });
+      if (topicDropdown) {
+        topicDropdown.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && topicDropdown.open) {
+            e.preventDefault();
+            topicDropdown.open = false;
+            topicDropdown.querySelector('summary').focus({ preventScroll: true });
+          }
+        });
+        document.addEventListener('click', function(e) {
+          if (!topicDropdown.contains(e.target)) topicDropdown.open = false;
+        });
+      }
       applyFilters();
     })();
 
@@ -2491,7 +2681,7 @@
         card.appendChild(media);
         card.appendChild(body);
 
-        card.addEventListener('click', function() { openTravelModal(country); });
+        card.addEventListener('click', function() { openTravelModal(country, card); });
 
         return card;
       }
@@ -2603,7 +2793,7 @@
         }
       }
 
-      function openTravelModal(country) {
+      function openTravelModal(country, trigger) {
         currentCountry = country;
         currentPhotoIdx = 0;
         modalFlag.textContent = country.flag;
@@ -2611,9 +2801,7 @@
         modalSubtitle.textContent = country.continent
           + (country.cities && country.cities.length ? ' · ' + country.cities.join(', ') : '');
         renderPhoto();
-        modal.classList.add('is-open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        modal.dispatchEvent(new CustomEvent('modal:open', { detail: { trigger: trigger } }));
       }
 
       function step(dir) {
@@ -2937,7 +3125,11 @@
           })
           .on('click', function(event, d) {
             var v = visitedFor(d);
-            if (v) { hideTip(); openTravelModal(v); }
+            if (v) {
+              hideTip();
+              globeSvg.setAttribute('tabindex', '-1');
+              openTravelModal(v, globeSvg);
+            }
           });
 
         // Hide tip when pointer leaves the entire globe area
