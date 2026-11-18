@@ -21,14 +21,16 @@ const baseURL = process.argv[2] || 'http://127.0.0.1:8765';
     return url.origin === new URL(baseURL).origin ? route.continue() : route.abort();
   });
   const check = (name) => console.log(`PASS ${name}`);
-  const visiblePapers = () => page.locator('#section-publications tr:not(.is-hidden-by-filter) papertitle').count();
+  const visiblePapers = () => page.locator('#section-publications tr:visible papertitle').count();
   const focusInside = selector => page.evaluate(selector => document.querySelector(selector).contains(document.activeElement), selector);
 
   try {
     await page.goto(baseURL, { waitUntil: 'load' });
     await page.waitForFunction(() => document.querySelector('#profileImg').complete && document.querySelector('#profileImg').naturalWidth > 0);
     const paperCount = await page.locator('#section-publications papertitle').count();
-    assert.equal(await visiblePapers(), paperCount);
+    const selectedCount = await page.locator('#section-publications .paper-row-selected papertitle').count();
+    assert.equal(await visiblePapers(), selectedCount);
+    assert.equal(await page.locator('#section-publications tr:not(.paper-row-selected):visible papertitle').count(), 0);
     assert.equal(await page.locator('h1').count(), 1);
     assert.equal(await page.locator('h2.section-title').count(), 6);
     assert.equal(await page.locator('heading, name').count(), 0);
@@ -82,6 +84,19 @@ const baseURL = process.argv[2] || 'http://127.0.0.1:8765';
     await page.waitForFunction(() => document.querySelector('#profileImg').alt.includes('Istanbul'));
     check('photo load failures retain the current image; keyboard cycling recovers');
 
+    const selectedView = page.locator('[data-filter="selected"]');
+    const allView = page.locator('[data-filter="show-all"]');
+    assert.equal(await selectedView.getAttribute('aria-pressed'), 'true');
+    assert.equal(await allView.getAttribute('aria-pressed'), 'false');
+    assert.equal(await page.locator('#pubClearFilters').isVisible(), false);
+    await allView.click();
+    assert.equal(await visiblePapers(), paperCount);
+    assert.equal(await allView.getAttribute('aria-pressed'), 'true');
+    assert.equal(await selectedView.getAttribute('aria-pressed'), 'false');
+    await selectedView.press('Enter');
+    assert.equal(await visiblePapers(), selectedCount);
+    check('Selected is the default; All reveals every paper and Selected collapses the list again');
+
     await page.locator('#pubRoleFilter').selectOption('corresponding');
     await page.locator('#pubTopicDropdown summary').click();
     await page.locator('[data-filter="Human Video"]').click();
@@ -89,7 +104,7 @@ const baseURL = process.argv[2] || 'http://127.0.0.1:8765';
     assert.ok(await page.locator('#publicationsEmpty').isVisible());
     assert.ok(await page.locator('#pubClearFilters').isVisible());
     await page.locator('#publicationsEmpty [data-clear-publication-filters]').click();
-    assert.equal(await visiblePapers(), paperCount);
+    assert.equal(await visiblePapers(), selectedCount);
     assert.equal(await page.locator('#pubRoleFilter').inputValue(), 'all');
     assert.equal(await page.locator('#pubTopicSummary').textContent(), 'All topics');
     assert.equal(await page.locator('#publicationsEmpty').isVisible(), false);
@@ -97,17 +112,25 @@ const baseURL = process.argv[2] || 'http://127.0.0.1:8765';
     assert.ok(await focusInside('.pub-filter-btn-selected'));
     check('empty-state feedback, full reset, and focus after hiding the reset button');
 
-    await page.locator('.pub-filter-btn-selected').click();
     await page.locator('#pubRoleFilter').selectOption('first');
     await page.locator('#pubTopicDropdown summary').click();
     await page.locator('[data-filter="Imitation Learning"]').click();
-    const combinedCount = await visiblePapers();
-    assert.ok(combinedCount > 0 && combinedCount < paperCount);
+    const visibleTitles = page.locator('#section-publications tr:visible papertitle');
+    const selectedMatches = await visibleTitles.allTextContents();
+    assert.ok(selectedMatches.length > 0 && selectedMatches.length < selectedCount);
+    assert.equal(await page.locator('#section-publications tr:not(.paper-row-selected):visible papertitle').count(), 0);
     await page.keyboard.press('Escape');
     assert.equal(await page.locator('#pubTopicDropdown').evaluate(el => el.open), false);
+    await allView.click();
+    const allMatches = await visibleTitles.allTextContents();
+    assert.ok(allMatches.length < paperCount && selectedMatches.every(title => allMatches.includes(title)));
+    assert.equal(await page.locator('#pubRoleFilter').inputValue(), 'first');
+    assert.equal(await page.locator('#pubTopicSummary').textContent(), 'Imitation Learning');
     await page.locator('#pubClearFilters').click();
     assert.equal(await visiblePapers(), paperCount);
-    check('Selected + topic + authorship filters still combine correctly');
+    assert.ok(await focusInside('[data-filter="show-all"]'));
+    await selectedView.click();
+    check('Topic and authorship filters apply in both views; clearing keeps the current view and restores focus');
 
     const more = page.locator('#siteNavMore');
     const moreToggle = more.locator('summary');
@@ -218,7 +241,7 @@ const baseURL = process.argv[2] || 'http://127.0.0.1:8765';
           await page.screenshot({ path: path.join(__dirname, `../.cache/homepage-more-${width}-${theme}.png`) });
         }
         if (width <= 640) {
-          const shortTargets = await page.locator('.profile-link, .paper-links a, .pub-filter-btn-selected, #pubTopicDropdown summary, #pubRoleFilter, .theme-toggle, .site-nav-links a, .site-nav-more summary, .site-nav-more-links a').evaluateAll(elements =>
+          const shortTargets = await page.locator('.profile-link, .paper-links a:visible, .publications-view button, #pubTopicDropdown summary, #pubRoleFilter, .theme-toggle, .site-nav-links a, .site-nav-more summary, .site-nav-more-links a').evaluateAll(elements =>
             elements.filter(el => el.getBoundingClientRect().height < 44).map(el => el.outerHTML));
           assert.deepEqual(shortTargets, []);
         }

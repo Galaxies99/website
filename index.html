@@ -27,7 +27,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2" crossorigin/>
-    <link href="stylesheet.css?v=24" rel="stylesheet" type="text/css"/>
+    <link href="stylesheet.css?v=25" rel="stylesheet" type="text/css"/>
     <link href="images/icon.ico" rel="icon"/>
     <script>
       (function() {
@@ -154,8 +154,10 @@
                        <span class="publications-summary" id="publicationsSummary" aria-live="polite"></span>
                     </p>
                     <div class="publications-filter" id="publicationsFilter" aria-label="Filter publications">
-                      <span class="publications-filter-label">Filter by:</span>
-                      <button type="button" class="pub-filter-btn pub-filter-btn-selected" data-filter="selected" aria-pressed="false">Selected</button>
+                      <div class="publications-view" role="group" aria-label="Publication view" hidden>
+                        <button type="button" class="pub-filter-btn pub-filter-btn-selected is-active" data-filter="selected" aria-pressed="true">Selected</button>
+                        <button type="button" class="pub-filter-btn" data-filter="show-all" aria-pressed="false">All</button>
+                      </div>
                       <details class="pub-topic-dropdown" id="pubTopicDropdown">
                         <summary>Topics <span class="pub-topic-summary" id="pubTopicSummary">All topics</span></summary>
                         <div class="publications-filter-buttons" aria-label="Topics (multiple selections allowed)">
@@ -2028,8 +2030,9 @@
       var buttons = Array.prototype.slice.call(
         filterContainer.querySelectorAll('.pub-filter-btn')
       );
-      var allButton = filterContainer.querySelector('.pub-filter-btn[data-filter="all"]');
+      var view = filterContainer.querySelector('.publications-view');
       var selectedButton = filterContainer.querySelector('.pub-filter-btn[data-filter="selected"]');
+      var showAllButton = filterContainer.querySelector('.pub-filter-btn[data-filter="show-all"]');
 
       var paperRows = Array.prototype.slice.call(
         table.querySelectorAll('tr')
@@ -2087,7 +2090,7 @@
       }
 
       function countFor(filter) {
-        if (filter === 'all') return totalPapers;
+        if (filter === 'all' || filter === 'show-all') return totalPapers;
         if (filter === 'selected') {
           return rowSelected.reduce(function(n, s) { return n + (s ? 1 : 0); }, 0);
         }
@@ -2108,29 +2111,26 @@
       });
 
       var activeTopics = new Set();
-      var selectedOnly = false;
+      var selectedOnly = true;
 
       function applyFilters() {
         var activeRole = roleFilter ? roleFilter.value : 'all';
-        var noFilter = activeTopics.size === 0 && !selectedOnly && activeRole === 'all';
+        var noFilter = activeTopics.size === 0 && activeRole === 'all';
         if (clearButton) clearButton.hidden = noFilter;
-        if (allButton) allButton.classList.toggle('is-active', activeTopics.size === 0);
         if (topicSummary) {
           topicSummary.textContent = activeTopics.size === 0 ? 'All topics'
             : activeTopics.size === 1 ? Array.from(activeTopics)[0]
             : activeTopics.size + ' topics';
         }
         buttons.forEach(function(btn) {
-          btn.setAttribute('aria-pressed', btn.classList.contains('is-active') ? 'true' : 'false');
+          var filter = btn.getAttribute('data-filter');
+          var active = filter === 'selected' ? selectedOnly
+            : filter === 'show-all' ? !selectedOnly
+            : filter === 'all' ? activeTopics.size === 0
+            : activeTopics.has(filter);
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-pressed', String(active));
         });
-
-        if (noFilter) {
-          paperRows.forEach(function(row) {
-            row.classList.remove('is-hidden-by-filter');
-          });
-          updateSummary();
-          return;
-        }
 
         var needles = [];
         activeTopics.forEach(function(f) { needles.push(f.toLowerCase()); });
@@ -2151,20 +2151,12 @@
           var filter = btn.getAttribute('data-filter');
           if (filter === 'all') {
             activeTopics.clear();
-            buttons.forEach(function(b) {
-              if (b !== selectedButton) b.classList.remove('is-active');
-            });
-          } else if (filter === 'selected') {
-            selectedOnly = !selectedOnly;
-            btn.classList.toggle('is-active', selectedOnly);
+          } else if (filter === 'selected' || filter === 'show-all') {
+            selectedOnly = filter === 'selected';
+          } else if (activeTopics.has(filter)) {
+            activeTopics.delete(filter);
           } else {
-            if (activeTopics.has(filter)) {
-              activeTopics.delete(filter);
-              btn.classList.remove('is-active');
-            } else {
-              activeTopics.add(filter);
-              btn.classList.add('is-active');
-            }
+            activeTopics.add(filter);
           }
           applyFilters();
         });
@@ -2173,13 +2165,11 @@
       table.querySelectorAll('[data-clear-publication-filters]').forEach(function(button) {
         button.addEventListener('click', function() {
           activeTopics.clear();
-          selectedOnly = false;
           if (roleFilter) roleFilter.value = 'all';
-          buttons.forEach(function(btn) { btn.classList.remove('is-active'); });
           if (topicDropdown) topicDropdown.open = false;
           applyFilters();
           // The clear button is now hidden; keep focus on a visible control.
-          if (selectedButton) selectedButton.focus({ preventScroll: true });
+          (selectedOnly ? selectedButton : showAllButton).focus({ preventScroll: true });
         });
       });
       if (topicDropdown) {
@@ -2195,6 +2185,7 @@
         });
       }
       applyFilters();
+      view.hidden = false;
     })();
 
     (function() {

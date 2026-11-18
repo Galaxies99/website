@@ -4455,8 +4455,9 @@ heading, html[data-theme="dark"] heading {
   align-items: center;
 }
 
-.publications-filter-label {
-  margin-right: 2px;
+.publications-view:not([hidden]) {
+  display: inline-flex;
+  gap: 6px;
 }
 
 .pub-topic-dropdown {
