@@ -6,7 +6,7 @@ on:
   push:
     branches: ["main"]
 
-  # Refresh Scholar metrics daily at 06:17 China Standard Time (22:17 UTC).
+  # Refresh Scholar citations and GitHub stars daily at 06:17 China Standard Time.
   schedule:
     - cron: "17 22 * * *"
 
@@ -39,23 +39,41 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Test Scholar updater
-        run: python -m unittest discover -s scripts -p 'test_scholar_stats.py'
+      - name: Test citation and GitHub star updaters
+        run: python -m unittest discover -s scripts -p 'test_*.py'
       - name: Restore last successful Scholar metrics
         uses: actions/cache/restore@v4
         with:
           path: .cache/scholar-stats.json
-          key: scholar-stats-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          key: scholar-stats-v2-${{ github.run_id }}-${{ github.run_attempt }}
           restore-keys: |
+            scholar-stats-v2-
             scholar-stats-v1-
-      - name: Refresh Scholar metrics
+      - name: Refresh Scholar summary and paper citations
         run: python scripts/update_scholar_stats.py
       - name: Preserve last successful Scholar metrics
         if: ${{ hashFiles('.cache/scholar-stats.json') != '' }}
         uses: actions/cache/save@v4
         with:
           path: .cache/scholar-stats.json
-          key: scholar-stats-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          key: scholar-stats-v2-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Restore last successful GitHub stars
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache/github-stars.json
+          key: github-stars-v1-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: |
+            github-stars-v1-
+      - name: Refresh GitHub repository stars
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/update_github_stars.py
+      - name: Preserve last successful GitHub stars
+        if: ${{ hashFiles('.cache/github-stars.json') != '' }}
+        uses: actions/cache/save@v4
+        with:
+          path: .cache/github-stars.json
+          key: github-stars-v1-${{ github.run_id }}-${{ github.run_attempt }}
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Prepare static site

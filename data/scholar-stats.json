@@ -1,6 +1,153 @@
 {
   "scholar_id": "Kyio_RAAAAAJ",
-  "citations": 5662,
+  "citations": 5765,
   "h_index": 17,
-  "updated_at": "2026-11-14T18:24:33+00:00"
+  "updated_at": "2026-11-23T04:15:17+00:00",
+  "papers": {
+    "roLk4NBRz8UC": {
+      "title": "Open X-Embodiment: Robotic Learning Datasets and RT-X Models",
+      "citations": 3499,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "zYLM7Y9cAGgC": {
+      "title": "AnyGrasp: Robust and Efficient Grasp Perception in Spatial and Temporal Domains",
+      "citations": 667,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "LkGwnXOMwfcC": {
+      "title": "RH20T: A Comprehensive Robotic Dataset for Learning Diverse Skills in One-Shot",
+      "citations": 416,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "d1gkVwhDpl0C": {
+      "title": "Graspness Discovery in Clutters for Fast and Accurate Grasp Detection",
+      "citations": 250,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "2osOgNQ5qMEC": {
+      "title": "TransCG: A Large-Scale Real-World Dataset for Transparent Object Depth Completion and a Grasping Baseline",
+      "citations": 209,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "eQOLeE2rZwMC": {
+      "title": "AirExo: Low-Cost Exoskeletons for Learning Whole-Arm Manipulation in the Wild",
+      "citations": 149,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "3fE2CSJIrl8C": {
+      "title": "FoAR: Force-Aware Reactive Policy for Contact-Rich Robotic Manipulation",
+      "citations": 127,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "hqOjcs7Dif8C": {
+      "title": "RISE: 3D Perception Makes Real-World Robot Imitation Simple and Effective",
+      "citations": 89,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "ULOm3_A8WrAC": {
+      "title": "AirExo-2: Scaling up Generalizable Robotic Imitation Learning with Low-Cost Exoskeletons",
+      "citations": 58,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "Zph67rFs4hoC": {
+      "title": "AnyDexGrasp: General Dexterous Grasping for Different Hands with Human-Level Learning Efficiency",
+      "citations": 52,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "8k81kl-MbHgC": {
+      "title": "CAGE: Causal Attention Enables Data-Efficient Generalizable Robotic Manipulation",
+      "citations": 41,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "Y0pCki6q_DkC": {
+      "title": "Target-Referenced Reactive Grasping for Dynamic Objects",
+      "citations": 35,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "4DMP91E08xMC": {
+      "title": "Force Policy: Learning Hybrid Force-Position Control Policy under Interaction Frame for Contact-Rich Manipulation",
+      "citations": 33,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "MXK_kJrjxJIC": {
+      "title": "Motion Before Action: Diffusing Object Motion as Manipulation Condition",
+      "citations": 29,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "_kc_bZDykSQC": {
+      "title": "Dense Policy: Bidirectional Autoregressive Learning of Actions",
+      "citations": 27,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "qxL8FJ1GzNcC": {
+      "title": "History-Aware Visuomotor Policy Learning via Point Tracking",
+      "citations": 23,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "YsMSGLbcyi4C": {
+      "title": "Flexible Handover with Real-Time Robust Dynamic Grasp Trajectory Generation",
+      "citations": 17,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "5nxA0vEk-isC": {
+      "title": "Towards Effective Utilization of Mixed-Quality Demonstrations in Robotic Manipulation via Segment-Level Selection and Optimization",
+      "citations": 15,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "4TOpqqG69KYC": {
+      "title": "SIME: Enhancing Policy Self-Improvement with Modal-Level Exploration",
+      "citations": 8,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "M3ejUd6NZC8C": {
+      "title": "Knowledge-Driven Imitation Learning: Enabling Generalization Across Diverse Conditions",
+      "citations": 5,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "aqlVkmm33-oC": {
+      "title": "Learning Dexterous Manipulation with Quantized Hand State",
+      "citations": 4,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "7PzlFSSx8tAC": {
+      "title": "ChronoFlow-Policy: Unifying Past-Current-Future Interaction Flow in Visuomotor Policy Learning",
+      "citations": 3,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "mVmsd5A6BfQC": {
+      "title": "LIDEA: Human-to-Robot Imitation Learning via Implicit Feature Distillation and Explicit Geometry Alignment",
+      "citations": 3,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "ZeXyd9-uunAC": {
+      "title": "MATE: Asynchronous Multi-Rate Diffusion Policy Composition",
+      "citations": 2,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "mB3voiENLucC": {
+      "title": "AnyDexRT: Calibration-Efficient Dexterous Hand Retargeting with Few-Shot Human Guidance",
+      "citations": 2,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "hFOr9nPyWt4C": {
+      "title": "FP2: Equipping Robotic Foundation Models with Force Control",
+      "citations": 1,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "hC7cP41nSMkC": {
+      "title": "HINT: Human-Intent Inception for Long-Horizon Robot Manipulation",
+      "citations": 1,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "-f6ydRqryjwC": {
+      "title": "Rethinking Visual Embodiment Dependence in Visuomotor Policies",
+      "citations": 0,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    },
+    "QIV2ME_5wuYC": {
+      "title": "X-Imitator: Spatial-Aware Imitation Learning via Bidirectional Action-Pose Interaction",
+      "citations": 0,
+      "updated_at": "2026-11-23T04:15:17+00:00"
+    }
+  }
 }
