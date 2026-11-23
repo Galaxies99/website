@@ -267,7 +267,7 @@
                          <img src="images/research/hint.jpg" width="160" loading="lazy" decoding="async" alt="HINT teaser"/>
                       </div>
                       <div class="paper-tags-overlay">
-                         <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-manipulation">Long-Horizon Manipulation</span>  <span class="paper-tag paper-tag-other">Reasoning</span> <span class="paper-tag paper-tag-other">Generalization</span>  
+                         <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-manipulation">Agentic Manipulation</span> <span class="paper-tag paper-tag-other">Reasoning</span> <span class="paper-tag paper-tag-other">Generalization</span>
                       </div>
                     </div>
                   </td>
@@ -278,7 +278,7 @@
                       </em>
                     </div>
                     <papertitle>
-                       <a href="https://robot-hint.github.io/">HINT: Human-Intent Inception for Long-Horizon Robot Manipulation</a>
+                       <a href="https://robot-hint.github.io/">HINT: Human-Intent Inception for Agentic Robot Manipulation</a>
                     </papertitle>
                     <div class="paper-authors">
                        <a href="https://github.com/zming-Mei">Mingyu Mei</a>, <a href="https://github.com/xuhaojie026">Haojie Xu</a>, <a href="https://github.com/orgs/ZJU-RVIL/people/kirchhoff114514">
@@ -288,7 +288,7 @@
                        <a class="paper-link-paper" href="https://arxiv.org/pdf/2609.02653">paper </a><a class="paper-link-code" href="https://github.com/robot-hint/HINT">code </a><a class="paper-link-project" href="https://robot-hint.github.io/">project page </a>
                     </div>
                     <p>
-                      We present HINT, an agentic framework inspired by human manipulation: semantic intent changes sparsely at manipulation-pattern transitions, whereas continuous control depends on the evolving object-hand relationship. HINT invokes semantic reasoning only at those transitions to resolve the current subtask and target, then maintains this commitment through multi-view grounding and visual tracking. The intention is injected into the downstream VLA policy via image-space highlighting and attention-prior injection.
+                      We present HINT, an agentic framework that separates human-intent reasoning from motor execution. Pattern-triggered reasoning identifies the current subtask and target, while multi-view grounding and visual tracking maintain that intent between updates. Image-space highlighting and attention-prior injection guide pretrained VLA policies without adding trainable parameters to the action backbone, improving intent understanding, task progress, and end-to-end success while preserving low-latency control.
                     </p>
                   </td>
                 </tr>
