@@ -22,6 +22,7 @@ function githubRepositoryKey(href) {
 
 // Homepage order and stable Scholar IDs are independent of Scholar title changes.
 const expectedPapers = [
+  ['FlexWAM:', null],
   ['FP2:', 'hFOr9nPyWt4C'],
   ['Rethinking Visual Embodiment Dependence', '-f6ydRqryjwC'],
   ['HINT:', 'hC7cP41nSMkC'],
@@ -82,18 +83,22 @@ const expectedPapers = [
     await page.waitForFunction(() => document.querySelector('#profileImg').complete && document.querySelector('#profileImg').naturalWidth > 0);
     const paperCount = await page.locator('#section-publications papertitle').count();
     const selectedCount = await page.locator('#section-publications .paper-row-selected papertitle').count();
+    const citationCount = expectedPapers.filter(([, id]) => id !== null).length;
     assert.equal(paperCount, expectedPapers.length);
     assert.equal(await visiblePapers(), selectedCount);
     assert.equal(await page.locator('#section-publications tr:not(.paper-row-selected):visible papertitle').count(), 0);
+    const flexwam = page.locator('#section-publications tr').filter({ has: page.locator('papertitle', { hasText: 'FlexWAM:' }) });
+    assert.equal(await flexwam.count(), 1);
+    assert.equal(await flexwam.isVisible(), false, 'FlexWAM must not appear in Selected');
     const openXEmbodiment = page.locator('#section-publications tr').filter({ has: page.locator('papertitle', { hasText: 'Open X-Embodiment:' }) });
     assert.equal(await openXEmbodiment.count(), 1);
     assert.ok(await openXEmbodiment.evaluate(row => row.classList.contains('paper-row-selected')), 'Open X-Embodiment must be Selected');
     assert.ok(await openXEmbodiment.isVisible(), 'Open X-Embodiment must appear in the default Selected view');
     const citationLinks = page.locator('#section-publications .paper-venue a.paper-citations');
-    assert.equal(await citationLinks.count(), paperCount, 'Run the Scholar updater before this browser suite');
+    assert.equal(await citationLinks.count(), citationCount, 'Run the Scholar updater before this browser suite');
     assert.equal(await visibleCitations(), selectedCount);
     await assertVisibleGithubStars();
-    assert.equal(await page.locator('a.paper-citations').count(), paperCount, 'Citations belong only to publication venue rows');
+    assert.equal(await page.locator('a.paper-citations').count(), citationCount, 'Citations belong only to publication venue rows');
     assert.equal(await page.locator('.paper-links .paper-citations, .paper-link-citations').count(), 0, 'Citations must not remain standalone paper-link buttons');
     assert.ok(await openXEmbodiment.locator('.paper-venue a.paper-citations').isVisible());
     assert.equal(await page.locator('#section-projects').count(), 0, 'Commented projects must remain inactive');
@@ -195,6 +200,10 @@ const expectedPapers = [
     for (const [index, row] of paperRows.entries()) {
       const [titlePrefix, id] = expectedPapers[index];
       assert.ok(row.title.startsWith(titlePrefix), `Publication order/title changed: ${row.title}`);
+      if (id === null) {
+        assert.equal(row.citations.length, 0, `${row.title}: no verified Scholar ID`);
+        continue;
+      }
       assert.equal(row.citations.length, 1, row.title);
       const citation = row.citations[0];
       assert.equal(citation.id, id, row.title);
@@ -224,9 +233,9 @@ const expectedPapers = [
       assert.equal(citation.tooltip, tooltip, `${row.title}: per-paper update date`);
       assert.equal(citation.label, `${accessibleCount}. ${tooltip}`, `${row.title}: full accessible citation label`);
     }
-    assert.equal(paperRows.find(row => row.citations[0].id === 'hC7cP41nSMkC').title,
+    assert.equal(paperRows.find(row => row.citations[0]?.id === 'hC7cP41nSMkC').title,
       'HINT: Human-Intent Inception for Agentic Robot Manipulation');
-    check('all 29 papers have one uniquely mapped numeric Scholar citation after venue/honors; snapshot labels, HINT, Selected Open X-Embodiment, and commented projects are preserved');
+    check('mapped papers have one numeric Scholar citation after venue/honors; papers without a verified ID have none');
     assert.equal(await page.locator('h1').count(), 1);
     assert.equal(await page.locator('h2.section-title').count(), 6);
     assert.equal(await page.locator('heading, name').count(), 0);
@@ -287,7 +296,8 @@ const expectedPapers = [
     assert.equal(await page.locator('#pubClearFilters').isVisible(), false);
     await allView.click();
     assert.equal(await visiblePapers(), paperCount);
-    assert.equal(await visibleCitations(), paperCount, 'All must reveal every citation');
+    assert.ok(await flexwam.isVisible(), 'All must reveal FlexWAM');
+    assert.equal(await visibleCitations(), citationCount, 'All must reveal every citation');
     await assertVisibleGithubStars();
     assert.equal(await allView.getAttribute('aria-pressed'), 'true');
     assert.equal(await selectedView.getAttribute('aria-pressed'), 'false');
@@ -302,7 +312,7 @@ const expectedPapers = [
     }));
     assert.ok(citationFocus.visible && citationFocus.style === 'solid' && citationFocus.width >= 2);
     await page.keyboard.press('Tab');
-    assert.ok(await page.locator('#section-publications papertitle a').first().evaluate(el => el === document.activeElement),
+    assert.ok(await citationLinks.first().evaluate(link => link.closest('tr').querySelector('papertitle a') === document.activeElement),
       'Venue citation precedes the publication title and paper links in keyboard order');
     const firstRepositoryLink = page.locator('#section-publications .paper-links a:has(.github-stars)').first();
     await firstRepositoryLink.focus();
@@ -445,7 +455,7 @@ const expectedPapers = [
 
     // Exercise every citation row, including non-selected papers and long link lists.
     await allView.click();
-    assert.equal(await visibleCitations(), paperCount);
+    assert.equal(await visibleCitations(), citationCount);
     for (const width of [320, 375, 768, 1280]) {
       await page.setViewportSize({ width, height: 900 });
       for (const theme of ['light', 'dark']) {
@@ -460,7 +470,7 @@ const expectedPapers = [
         }));
         assert.ok(metrics.scroll <= metrics.width, `${width}px ${theme}: horizontal overflow ${metrics.scroll}`);
         assert.equal(metrics.sizes[0], metrics.sizes[1]);
-        assert.equal(await visibleCitations(), paperCount);
+        assert.equal(await visibleCitations(), citationCount);
         const citationLayoutIssues = await citationLinks.evaluateAll(links => links.flatMap(link => {
           const rect = link.getBoundingClientRect();
           const container = link.parentElement.getBoundingClientRect();

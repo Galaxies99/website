@@ -1,6 +1,11 @@
 {
   "version": 1,
   "repositories": {
+    "flexwam/flexwam": {
+      "full_name": "FlexWAM/FlexWAM",
+      "stars": 6,
+      "updated_at": "2026-11-24T08:11:45+00:00"
+    },
     "robot-hint/hint": {
       "full_name": "robot-hint/HINT",
       "stars": 24,
