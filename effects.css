@@ -1,0 +1,238 @@
+/* Motion and atmosphere for the homepage's existing editorial palette. */
+:root {
+  --effect-copper: rgba(181, 99, 76, 0.18);
+  --effect-blue: rgba(86, 139, 158, 0.13);
+  --effect-line: rgba(156, 70, 59, 0.24);
+  --effect-glass: rgba(252, 251, 249, 0.88);
+}
+
+html[data-theme="dark"] {
+  --effect-copper: rgba(214, 122, 96, 0.17);
+  --effect-blue: rgba(83, 147, 177, 0.16);
+  --effect-line: rgba(230, 161, 150, 0.3);
+  --effect-glass: rgba(21, 23, 25, 0.88);
+}
+
+.profile-stage {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-atmosphere {
+  position: absolute;
+  z-index: -1;
+  inset: -24px -20px 0;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse closest-side, #000 45%, transparent 100%);
+}
+
+.hero-atmosphere span {
+  position: absolute;
+  width: 560px;
+  height: 440px;
+  top: -70px;
+  right: -80px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, var(--effect-copper), transparent 68%);
+  animation: atmosphere-drift 16s ease-in-out infinite alternate;
+  animation-play-state: paused;
+}
+
+.hero-atmosphere span + span {
+  top: 50px;
+  right: 140px;
+  width: 420px;
+  background: radial-gradient(ellipse, var(--effect-blue), transparent 68%);
+  animation-delay: -8s;
+  animation-direction: alternate-reverse;
+}
+
+.hero-atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(240px circle at var(--pointer-x, 75%) var(--pointer-y, 40%), var(--effect-copper), transparent 75%);
+  opacity: 0.65;
+}
+
+.profile-portrait {
+  position: relative;
+  overflow: clip;
+  overflow-clip-margin: 24px;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto 22px;
+  transform: perspective(700px) rotateX(var(--portrait-x, 0deg)) rotateY(var(--portrait-y, 0deg));
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.profile-portrait::before,
+.profile-portrait::after,
+.portrait-orbit {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  border: 1px solid var(--effect-line);
+  border-radius: 50%;
+}
+
+.profile-portrait::before {
+  inset: -10px;
+  border-style: dashed;
+  opacity: 0.65;
+  animation: portrait-orbit 80s linear infinite reverse;
+  animation-play-state: paused;
+}
+
+.profile-portrait::after {
+  inset: -19px;
+  border-color: var(--effect-line) transparent;
+  transform: rotate(-28deg);
+}
+
+.portrait-orbit {
+  inset: -19px;
+  border-color: transparent;
+  animation: portrait-orbit 24s linear infinite;
+  animation-play-state: paused;
+}
+
+.portrait-orbit::before,
+.portrait-orbit::after {
+  content: '';
+  position: absolute;
+  top: 14%;
+  left: 14%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px var(--accent-soft), 0 0 18px var(--effect-copper);
+}
+
+.portrait-orbit::after {
+  top: auto;
+  left: auto;
+  right: 14%;
+  bottom: 14%;
+  width: 4px;
+  height: 4px;
+  opacity: 0.65;
+}
+
+.hero-in-view .hero-atmosphere span,
+.hero-in-view .profile-portrait::before,
+.hero-in-view .portrait-orbit {
+  animation-play-state: running;
+}
+
+.effects-paused .hero-atmosphere span,
+.effects-paused .profile-portrait::before,
+.effects-paused .portrait-orbit {
+  animation-play-state: paused;
+}
+
+.site-nav {
+  background: var(--effect-glass);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.reading-progress {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), #d19b75, var(--accent));
+  transform: scaleX(var(--reading-progress, 0));
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.site-nav-links a,
+.site-nav-more summary {
+  position: relative;
+  transition: color 0.2s ease, border-color 0.25s ease;
+}
+
+.site-nav-links a[aria-current="location"],
+.site-nav-more.is-current summary {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.site-nav-chevron { transition: transform 0.25s ease; }
+
+#top .profile-link,
+#top .paper-links a,
+#top .pub-filter-btn,
+#top .news-toggle {
+  transition: transform 0.22s ease, color 0.22s ease, background-color 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.section-title::before {
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #top .profile-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px var(--accent-soft);
+  }
+
+  #top .paper-links a:hover,
+  #top .pub-filter-btn:hover,
+  #top .news-toggle:hover {
+    transform: translateY(-2px);
+  }
+
+  .site-section:hover .section-title::before { transform: scaleX(1.4); }
+
+  .publications-table .paper-media-stack {
+    transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.3, 1);
+  }
+
+  .publications-table tr:hover .paper-media-stack { transform: translateY(-4px); }
+}
+
+#top .profile-link:active,
+#top .paper-links a:active,
+#top .pub-filter-btn:active { transform: translateY(0); }
+
+@keyframes atmosphere-drift {
+  from { transform: translate3d(-25px, -12px, 0) scale(0.95); }
+  to { transform: translate3d(35px, 30px, 0) scale(1.12); }
+}
+
+@keyframes portrait-orbit {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .hero-atmosphere { inset: -16px -12px 0; }
+  .hero-atmosphere span { width: 380px; right: -100px; }
+  .profile-portrait { max-width: 190px; margin-top: 14px; margin-bottom: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-atmosphere span,
+  .profile-portrait::before,
+  .portrait-orbit { animation: none; }
+
+  .profile-portrait,
+  .section-title::before,
+  .site-section:hover .section-title::before,
+  #top .profile-link,
+  #top .paper-links a,
+  #top .pub-filter-btn,
+  #top .news-toggle,
+  .publications-table .paper-media-stack,
+  .publications-table tr:hover .paper-media-stack { transition: none; transform: none; }
+
+  .site-nav-links a,
+  .site-nav-more summary,
+  .site-nav-chevron { transition: none; }
+}

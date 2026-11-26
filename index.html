@@ -6,7 +6,7 @@
       Hongjie Fang
     </title>
     <meta content="Hongjie Fang" name="author"/>
-    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
     <meta name="description" content="Hongjie (Tony) Fang is a Ph.D. student at Shanghai Jiao Tong University researching robotic manipulation, robot learning, data collection, and dexterous hands."/>
     <link rel="canonical" href="https://tonyfang.net/"/>
     <meta property="og:type" content="website"/>
@@ -28,6 +28,9 @@
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6uyw4BMUTPHjx4wXiWtFCc.woff2" crossorigin/>
     <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/lato/v15/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2" crossorigin/>
     <link href="stylesheet.css?v=27" rel="stylesheet" type="text/css"/>
+    <link href="effects.css?v=2" rel="stylesheet" type="text/css"/>
+    <link href="mobile.css?v=4" rel="stylesheet" type="text/css"/>
+    <script src="scripts/site-effects.js?v=2" defer></script>
     <link href="images/icon.ico" rel="icon"/>
     <script>
       (function() {
@@ -71,12 +74,15 @@
           <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
         </button>
       </div>
+      <span class="reading-progress" aria-hidden="true"></span>
     </nav>
     <main id="main-content" tabindex="-1">
     <table id="top" role="presentation" style="width:100%;max-width:900px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
       <tbody>
         <tr style="padding:0px">
           <td style="padding:0px">
+            <div class="profile-stage">
+            <div class="hero-atmosphere" aria-hidden="true"><span></span><span></span></div>
             <table class="profile-hero" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr style="padding:0px">
@@ -91,7 +97,10 @@
                     </p>
                   </td>
                   <td class="profile-photo-col" style="padding:2.5% 0;vertical-align:middle;">
-                     <img alt="Hongjie Fang at Port Campbell, Australia" class="hoverZoomLink" id="profileImg" src="images/profile/profile5-480.webp" srcset="images/profile/profile5-240.webp 240w, images/profile/profile5-480.webp 480w, images/profile/profile5-720.webp 720w" sizes="(max-width: 640px) 190px, 240px" width="720" height="720" fetchpriority="high" decoding="async"/>
+                    <div class="profile-portrait">
+                      <span class="portrait-orbit" aria-hidden="true"></span>
+                     <img alt="Hongjie Fang at Port Campbell, Australia" class="hoverZoomLink" id="profileImg" src="images/profile/profile5-480.webp" srcset="images/profile/profile5-240.webp 240w, images/profile/profile5-480.webp 480w, images/profile/profile5-720.webp 720w" sizes="(max-width: 767px) 112px, 240px" width="720" height="720" fetchpriority="high" decoding="async"/>
+                    </div>
                     <p id="profileCaption" aria-live="polite" aria-atomic="true">
                        Photo @ Port Campbell, Australia 🇦🇺 (2026)<br/>Credit to Mingyu Mei
                     </p>
@@ -106,6 +115,7 @@
                 </tr>
               </tbody>
             </table>
+            </div>
             <table id="section-news" class="site-section" style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
               <tbody>
                 <tr>
@@ -174,7 +184,7 @@
                           <button type="button" class="pub-filter-btn" data-category="other" data-filter="Generalization">Generalization</button>
                         </div>
                       </details>
-                      <label class="pub-role-field" for="pubRoleFilter">Authorship
+                      <label class="pub-role-field" for="pubRoleFilter"><span class="pub-role-label">Authorship</span>
                         <select id="pubRoleFilter">
                           <option value="all">Any role</option>
                           <option value="first">First Author</option>
@@ -226,12 +236,12 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" aria-label="FP2 force-control teaser">
+                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 270" aria-label="FP2 force-control teaser">
                           <source src="images/research/fp2.webm" type="video/webm"/>
                           <source src="images/research/fp2.mp4" type="video/mp4"/>
                         </video>
                       </div>
-                      <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" aria-label="FP2 wrist force-control demonstration">
+                      <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 272" aria-label="FP2 wrist force-control demonstration">
                         <source src="images/research/fp2-2.webm" type="video/webm"/>
                         <source src="images/research/fp2-2.mp4" type="video/mp4"/>
                       </video>
@@ -368,7 +378,7 @@
                           <img src="images/research/anydexrt-1.png" width="160" loading="lazy" decoding="async" alt="AnyDexRT teaser overview"/>
                         </picture>
                       </div>
-                      <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" poster="images/research/anydexrt-1.png" aria-label="AnyDexRT teaser animation">
+                      <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 170" poster="images/research/anydexrt-1.png" aria-label="AnyDexRT teaser animation">
                         <source src="images/research/anydexrt-2.webm" type="video/webm"/>
                         <source src="images/research/anydexrt-2.mp4" type="video/mp4"/>
                       </video>
@@ -402,7 +412,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="images/research/forcepolicy.mp4" width="160"></video>
+                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="images/research/forcepolicy.mp4" width="160" style="aspect-ratio: auto 860 / 1000"></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-manipulation">Contact-Rich Manipulation</span> <span class="paper-tag paper-tag-other">Force/Torque</span> <span class="paper-tag paper-tag-other">Generalization</span> 
@@ -531,7 +541,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="history/resources/video/guess-hard/3-low.mp4" width="160"></video>
+                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="history/resources/video/guess-hard/3-low.mp4" width="160" style="aspect-ratio: auto 852 / 758"></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-other">History/Memory</span>
@@ -563,7 +573,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="images/research/dqrise.mp4" width="160"></video>
+                        <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" src="images/research/dqrise.mp4" width="160" style="aspect-ratio: auto 852 / 640"></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-manipulation">Dexterous Manipulation</span> <span class="paper-tag paper-tag-data">Teleoperation</span>
@@ -627,7 +637,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/airexo2.webm" type="video/webm"/><source src="images/research/airexo2.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 360"><source src="images/research/airexo2.webm" type="video/webm"/><source src="images/research/airexo2.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-data">In-the-Wild Collection</span> <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-other">Generalization</span> <span class="paper-tag paper-tag-other">3D Perception</span>
@@ -757,7 +767,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/foar.webm" type="video/webm"/><source src="images/research/foar.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 320 / 192"><source src="images/research/foar.webm" type="video/webm"/><source src="images/research/foar.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-policy">Multimodal Learning</span> <span class="paper-tag paper-tag-manipulation">Contact-Rich Manipulation</span> <span class="paper-tag paper-tag-other">Force/Torque</span>
@@ -793,7 +803,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/mba.webm" type="video/webm"/><source src="images/research/mba.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 284 / 160"><source src="images/research/mba.webm" type="video/webm"/><source src="images/research/mba.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-policy">Imitation Learning</span> <span class="paper-tag paper-tag-other">Object Pose</span> 
@@ -929,7 +939,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/oxe.webm" type="video/webm"/><source src="images/research/oxe.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 320 / 180"><source src="images/research/oxe.webm" type="video/webm"/><source src="images/research/oxe.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-data">Manipulation Dataset</span>
@@ -963,7 +973,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/airexo.webm" type="video/webm"/><source src="images/research/airexo.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 270"><source src="images/research/airexo.webm" type="video/webm"/><source src="images/research/airexo.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-data">In-the-Wild Collection</span> <span class="paper-tag paper-tag-data">Teleoperation</span>
@@ -996,7 +1006,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/rh20t.webm" type="video/webm"/><source src="images/research/rh20t.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 480"><source src="images/research/rh20t.webm" type="video/webm"/><source src="images/research/rh20t.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-data">Manipulation Dataset</span> <span class="paper-tag paper-tag-data">Teleoperation</span>
@@ -1062,7 +1072,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/reactive.webm" type="video/webm"/><source src="images/research/reactive.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 480 / 270"><source src="images/research/reactive.webm" type="video/webm"/><source src="images/research/reactive.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-grasping">Dynamic Grasping</span>
@@ -1094,9 +1104,9 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/anygrasp.webm" type="video/webm"/><source src="images/research/anygrasp.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 300 / 170"><source src="images/research/anygrasp.webm" type="video/webm"/><source src="images/research/anygrasp.mp4" type="video/mp4"/></video>
                       </div>
-                       <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/anygrasp-fish.webm" type="video/webm"/><source src="images/research/anygrasp-fish.mp4" type="video/mp4"/></video>
+                       <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 400 / 226"><source src="images/research/anygrasp-fish.webm" type="video/webm"/><source src="images/research/anygrasp-fish.mp4" type="video/mp4"/></video>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-grasping">General Grasping</span>
                       </div>
@@ -1132,7 +1142,7 @@
                   <td class="paper-media-cell" style="padding:20px;width:25%;vertical-align:middle">
                     <div class="paper-media-stack">
                       <div class="paper-media-figure">
-                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160"><source src="images/research/transcg.webm" type="video/webm"/><source src="images/research/transcg.mp4" type="video/mp4"/></video>
+                         <video loop="" muted="" playsinline="" preload="none" data-autoplay="1" width="160" style="aspect-ratio: auto 242 / 136"><source src="images/research/transcg.webm" type="video/webm"/><source src="images/research/transcg.mp4" type="video/mp4"/></video>
                       </div>
                       <div class="paper-tags-overlay">
                          <span class="paper-tag paper-tag-data">Perception Dataset</span> <span class="paper-tag paper-tag-grasping">Grasping</span>

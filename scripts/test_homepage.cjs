@@ -490,7 +490,7 @@ const expectedPapers = [
             if (Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
               && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1) issues.push('citation overlaps venue or honor');
           }
-          if (innerWidth <= 640 && (rect.height < 44 || rect.width < 44)) issues.push('citation touch target below 44px');
+          if (innerWidth <= 640 && (rect.height < 24 || rect.width < 24)) issues.push('citation touch target below 24px');
           return issues.map(issue => `${link.dataset.scholarId}: ${issue}`);
         }));
         assert.deepEqual(citationLayoutIssues, [], `${width}px ${theme}: citation layout`);
@@ -555,9 +555,17 @@ const expectedPapers = [
           await page.screenshot({ path: path.join(__dirname, `../.cache/homepage-more-${width}-${theme}.png`) });
         }
         if (width <= 640) {
-          const shortTargets = await page.locator('.profile-link, .paper-links a:visible, .paper-venue a.paper-citations:visible, .publications-view button, #pubTopicDropdown summary, #pubRoleFilter, .theme-toggle, .site-nav-links a, .site-nav-more summary, .site-nav-more-links a').evaluateAll(elements =>
+          const shortTargets = await page.locator('.theme-toggle, .site-nav-links a, .site-nav-more summary, .site-nav-more-links a').evaluateAll(elements =>
             elements.filter(el => el.getBoundingClientRect().height < 44).map(el => el.outerHTML));
           assert.deepEqual(shortTargets, []);
+          const compactTargets = await page.locator('.profile-link, .publications-view button, #pubTopicDropdown summary, #pubRoleFilter, .paper-links a:visible').evaluateAll(elements =>
+            elements.filter(el => Math.abs(el.getBoundingClientRect().height - 30) > 1).map(el => el.outerHTML));
+          assert.deepEqual(compactTargets, [], 'Mobile content controls share a compact 30px height');
+          const publicationTargets = await page.locator('.paper-links a:visible, .paper-venue a.paper-citations:visible, .publications-view button, #pubTopicDropdown summary, #pubRoleFilter').evaluateAll(elements =>
+            elements.filter(el => el.getBoundingClientRect().height < 24).map(el => el.outerHTML));
+          assert.deepEqual(publicationTargets, []);
+          const viewBounds = await page.locator('.publications-view').boundingBox();
+          assert.ok(viewBounds.width < 220 && viewBounds.height <= 31, 'Mobile publication tabs must stay compact');
         }
         await page.keyboard.press('Escape');
         if (width <= 640) {
@@ -614,6 +622,43 @@ const expectedPapers = [
     await page.evaluate(() => document.documentElement.removeAttribute('data-theme'));
     await page.locator('.profile-name-row').scrollIntoViewIfNeeded();
     await page.screenshot({ path: path.join(__dirname, '../.cache/homepage-desktop.png') });
+
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.locator('.site-nav-links a[href="#top"]').click();
+    await page.waitForFunction(() => document.querySelector('.profile-stage').classList.contains('hero-in-view'));
+    await page.mouse.move(800, 200);
+    await page.waitForFunction(() => document.querySelector('.profile-stage').style.getPropertyValue('--portrait-y') !== '');
+    await page.mouse.move(0, 0);
+    await page.waitForFunction(() => document.querySelector('.profile-stage').style.getPropertyValue('--portrait-y') === '');
+
+    // Rotating transparent corners must not widen the page between breakpoints.
+    for (const width of [375, 641, 662, 768]) {
+      await page.setViewportSize({ width, height: 900 });
+      const overflow = await page.locator('.portrait-orbit').evaluate(el => {
+        const animation = el.getAnimations()[0];
+        animation.pause();
+        const widths = [];
+        for (const time of [0, 3000, 6000, 9000, 12000, 15000, 18000, 21000]) {
+          animation.currentTime = time;
+          widths.push(document.documentElement.scrollWidth);
+        }
+        animation.play();
+        return Math.max(...widths) - window.innerWidth;
+      });
+      assert.ok(overflow <= 0, `${width}px: orbit causes ${overflow}px horizontal overflow`);
+    }
+    await page.setViewportSize({ width: 1280, height: 900 });
+    for (const target of ['#section-services', '#section-talks']) {
+      await page.locator(target).evaluate(el => el.scrollIntoView({ behavior: 'instant' }));
+      await page.waitForFunction(target => document.querySelector('.site-nav [aria-current="location"]')?.getAttribute('href') === target, target);
+    }
+    await page.waitForFunction(() => getComputedStyle(document.querySelector('.portrait-orbit')).animationPlayState === 'paused');
+    assert.ok(Number(await page.locator('.site-nav').evaluate(el => el.style.getPropertyValue('--reading-progress'))) > 0);
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    assert.equal(await page.locator('.portrait-orbit').evaluate(el => getComputedStyle(el).animationName), 'none');
+    assert.equal(await page.locator('.profile-portrait').evaluate(el => getComputedStyle(el).transitionDuration), '0s');
+    check('pointer feedback resets, orbit stays within narrow viewports, navigation follows document order, and offscreen/reduced motion stops animation');
+
     assert.deepEqual(errors, [], `JavaScript errors: ${errors.join('; ')}`);
     check('no uncaught JavaScript errors');
 
@@ -625,6 +670,35 @@ const expectedPapers = [
       await mobilePage.route('**/*', route => new URL(route.request().url()).origin === new URL(baseURL).origin
         ? route.continue() : route.abort());
       await mobilePage.goto(baseURL, { waitUntil: 'load' });
+      if (javaScriptEnabled) await mobilePage.emulateMedia({ reducedMotion: 'reduce' });
+      const identity = await mobilePage.locator('#profileImg').boundingBox();
+      const name = await mobilePage.locator('.profile-name-row').boundingBox();
+      const contact = await mobilePage.locator('.profile-links').boundingBox();
+      const intro = await mobilePage.locator('.profile-intro').boundingBox();
+      assert.ok(identity.y < 240 && name.y < 240, 'Mobile identity must be visible near the top');
+      assert.ok(contact.y + contact.height < 600 && contact.y + contact.height <= intro.y, 'Contact links precede the biography on mobile');
+      const firstPaper = mobilePage.locator('#section-publications tr:visible').filter({ has: mobilePage.locator('papertitle') }).first();
+      const title = await firstPaper.locator('papertitle').boundingBox();
+      const media = await firstPaper.locator('.paper-media-cell').boundingBox();
+      assert.ok(title.y + title.height <= media.y, 'Mobile paper titles precede their media');
+      const selectedMarker = await mobilePage.locator('.paper-row-selected:visible .paper-media-cell').first().evaluate(el => {
+        const style = getComputedStyle(el, '::before');
+        return { content: style.content, display: style.display };
+      });
+      assert.match(selectedMarker.content, /selected/i);
+      assert.notEqual(selectedMarker.display, 'none', 'Selected paper markers remain visible on mobile');
+      const selectedBackground = await mobilePage.locator('.paper-row-selected:visible').first().evaluate(el => ({
+        paper: getComputedStyle(el).backgroundColor,
+        page: getComputedStyle(document.body).backgroundColor,
+      }));
+      assert.notEqual(selectedBackground.paper, 'rgba(0, 0, 0, 0)', 'Selected papers retain their background on mobile');
+      assert.notEqual(selectedBackground.paper, selectedBackground.page);
+      if (javaScriptEnabled) {
+        await mobilePage.screenshot({ path: path.join(__dirname, '../.cache/homepage-mobile-hero.png') });
+        await firstPaper.scrollIntoViewIfNeeded();
+        await mobilePage.screenshot({ path: path.join(__dirname, '../.cache/homepage-mobile-research.png') });
+        await mobilePage.locator('.site-nav-links a[href="#top"]').click();
+      }
       const mobileMore = mobilePage.locator('#siteNavMore');
       await mobileMore.locator('summary').tap();
       await mobileMore.locator('a[href="#section-collab"]').tap();
@@ -634,7 +708,7 @@ const expectedPapers = [
       check(`touch navigation ${javaScriptEnabled ? 'with' : 'without'} JavaScript`);
     }
 
-    for (const [scale, width, expected] of [[2, 1280, 480], [3, 375, 720]]) {
+    for (const [scale, width, expected] of [[2, 1280, 480], [3, 375, 480]]) {
       const retina = await browser.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: scale });
       const retinaPage = await retina.newPage();
       const photos = [];
